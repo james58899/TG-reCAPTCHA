@@ -65,8 +65,10 @@ typings/
 # Output of 'npm pack'
 *.tgz
 
-# Yarn Integrity file
+# Yarn files
 .yarn-integrity
+.yarn/unplugged
+.yarn/build-state.yml
 
 # dotenv environment variables file
 .env
@@ -102,3 +104,6 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Config
+config.json

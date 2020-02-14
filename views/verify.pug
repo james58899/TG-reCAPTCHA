@@ -1,0 +1,49 @@
+doctype html
+html
+  head
+    title Simple-reCAPTCHA
+    style(type='text/css').
+      html,body{
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .container{
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .hide{
+        display: none;
+      }
+  body
+    .container
+      h1#closeMessage.hide YOU CAN CLOSE THIS PAGE
+      #captcha.captcha !{captcha}
+    script.
+        function cb(token){
+            fetch(window.location, {
+              method: 'POST',
+              body: JSON.stringify({ 'g-recaptcha-response': token }),
+              headers: new Headers({ 'Content-Type': 'application/json' })
+            }).then(res => {
+              switch(res.status) {
+                case 200:
+                  setTimeout(() => {
+                    document.getElementById('captcha').remove()
+                    document.getElementById('closeMessage').classList.remove('hide')
+                  }, 1000)
+                  break
+                case 400:
+                  location.reload()
+                  break
+                case 410:
+                  location.reload()
+                  break
+              }
+            })
+        }

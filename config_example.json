@@ -1,0 +1,10 @@
+{
+    "token": "",
+    "url": "",
+    "port": 8080,
+    "webhook": false,
+    "recaptcha": {
+        "site_key": "",
+        "secret_key": ""
+    }
+}
