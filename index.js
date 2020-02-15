@@ -27,8 +27,6 @@ app.set('trust proxy', true)
 app.use(morgan('combined'))
 app.use(bodyparser.json())
 
-app.get('/', (_, res) => res.send('Hello world!'))
-
 if (config.webhook) {
   bot.setWebHook(`${config.url}/bot${config.token}`)
 
@@ -38,6 +36,7 @@ if (config.webhook) {
   });
 }
 
+app.get('/', (_, res) => res.send('Hello world!'))
 app.get('/verify/:token', recaptcha.middleware.render, (req, res) => {
   if (req.query.hash) {
     const token = parserToken(req.params.token)
@@ -97,9 +96,14 @@ app.listen(config.port, () => console.log(`app listening on port ${config.port}!
 
 bot.on('new_chat_members', async msg => {
   const members = msg.new_chat_members.filter(i => !i.is_bot).filter(i => !i.is_bot)
-  const message = await bot.sendMessage(msg.chat.id, 'Generating token...', { reply_to_message_id: msg.message_id })
 
-  members.forEach(i => bot.restrictChatMember(msg.chat.id, i.id, { can_send_messages: false }))
+  if (members.length === 0) return
+
+  let message = bot.sendMessage(msg.chat.id, 'Generating token...', { reply_to_message_id: msg.message_id })
+
+  await Promise.allSettled(members.map(i => bot.restrictChatMember(msg.chat.id, i.id, { can_send_messages: false })))
+
+  message = await message
 
   const token = genToken(msg.chat.id, message.message_id, members.map(i => i.id))
 
