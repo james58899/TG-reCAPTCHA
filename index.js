@@ -1,4 +1,4 @@
-const crypto = require('crypto');
+const crypto = require('crypto')
 const express = require('express')
 const bodyparser = require('body-parser')
 const morgan = require('morgan')
@@ -28,12 +28,12 @@ app.use(morgan('combined'))
 app.use(bodyparser.json())
 
 if (config.webhook) {
-  bot.setWebHook(`${config.url}/bot${config.token}`)
-
   app.post(`/bot${config.token}`, (req, res) => {
-    bot.processUpdate(req.body);
-    res.sendStatus(200);
-  });
+    res.sendStatus(200)
+    bot.processUpdate(req.body)
+  })
+
+  bot.setWebHook(`${config.url}/bot${config.token}`)
 }
 
 app.get('/', (_, res) => res.send('Hello world!'))
