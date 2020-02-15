@@ -114,14 +114,18 @@ bot.on('new_chat_members', async msg => {
   })
 })
 
-bot.on('callback_query', async callback => {  
-  if (callback.message.reply_to_message.new_chat_members.map(i => i.id).includes(callback.from.id)) {
-    const data = parserToken(callback.message.reply_markup.inline_keyboard[0][0].url.split('/').slice(-1)[0])
+bot.on('callback_query', async callback => {
+  const data = parserToken(callback.message.reply_markup.inline_keyboard[0][0].url.split('/').slice(-1)[0])
+  const unvailedUsers = (await Promise.all(data.users.map(i => bot.getChatMember(data.chat, i)))).filter(i => i.status === 'restricted')
 
-    bot.editMessageReplyMarkup(genKeyboard(genToken(data.chat, data.id, data.users)), { chat_id: data.chat, message_id: data.id })
-    bot.answerCallbackQuery(callback.id, {cache_time: 30, text: 'Token updated'})
+  if (unvailedUsers.length === 0) {
+    bot.deleteMessage(data.chat, data.id)
+    bot.answerCallbackQuery(callback.id)
+  } else if (callback.message.reply_to_message.new_chat_members.map(i => i.id).includes(callback.from.id)) {
+    bot.editMessageReplyMarkup(genKeyboard(genToken(data.chat, data.id, unvailedUsers)), { chat_id: data.chat, message_id: data.id })
+    bot.answerCallbackQuery(callback.id, { cache_time: 30, text: 'Token updated' })
   } else {
-    bot.answerCallbackQuery(callback.id, {cache_time: 300})
+    bot.answerCallbackQuery(callback.id, { cache_time: 300 })
   }
 })
 
