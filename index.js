@@ -18,14 +18,12 @@ const unban = {
   can_pin_messages: true
 }
 
-const bot = new telegrambot(config.token, { polling: true })
+const bot = new telegrambot(config.token, { polling: !config.webhook })
 const app = express()
 var recaptcha = new Recaptcha(config.recaptcha.site_key, config.recaptcha.secret_key, { checkremoteip: true, callback: 'cb' })
 
-// bot.setwebhook(`${url}/bot${token}`);
 app.set('view engine', 'pug')
 app.set('trust proxy', true)
-// app.use(bodyparser.urlencoded({ extended: false }))
 app.use(morgan('combined'))
 app.use(bodyparser.json())
 
