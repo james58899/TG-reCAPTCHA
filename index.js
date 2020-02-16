@@ -128,7 +128,7 @@ bot.on('callback_query', async callback => {
   if (unvailedUsers.length === 0) {
     bot.deleteMessage(data.chat, data.id)
     bot.answerCallbackQuery(callback.id)
-  } else if (callback.message.reply_to_message.new_chat_members.map(i => i.id).includes(callback.from.id)) {
+  } else if (unvailedUsers.includes(callback.from.id)) {
     bot.editMessageReplyMarkup(genKeyboard(genToken(data.chat, data.id, unvailedUsers)), { chat_id: data.chat, message_id: data.id })
     bot.answerCallbackQuery(callback.id, { cache_time: 30, text: 'Token updated' })
   } else {
