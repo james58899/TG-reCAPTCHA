@@ -117,7 +117,7 @@ bot.on('new_chat_members', async msg => {
 
 bot.on('callback_query', async callback => {
   const data = parserToken(callback.message.reply_markup.inline_keyboard[0][0].url.split('/').slice(-1)[0])
-  const unvailedUsers = (await Promise.all(data.users.map(i => bot.getChatMember(data.chat, i)))).filter(i => i.status === 'restricted')
+  const unvailedUsers = (await Promise.all(data.users.map(i => bot.getChatMember(data.chat, i)))).filter(i => i.status === 'restricted').map(i => i.id)
 
   if (unvailedUsers.length === 0) {
     bot.deleteMessage(data.chat, data.id)
