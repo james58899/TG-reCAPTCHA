@@ -117,6 +117,12 @@ bot.on('new_chat_members', async msg => {
 
 bot.on('callback_query', async callback => {
   const data = parserToken(callback.message.reply_markup.inline_keyboard[0][0].url.split('/').slice(-1)[0])
+
+  // Wrokaround 35ba5c2
+  if (data.users[0].id) {
+    data.users = data.users.map(i => i.id)
+  }
+
   const unvailedUsers = (await Promise.all(data.users.map(i => bot.getChatMember(data.chat, i)))).filter(i => i.status === 'restricted').map(i => i.id)
 
   if (unvailedUsers.length === 0) {
