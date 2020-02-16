@@ -119,7 +119,7 @@ bot.on('callback_query', async callback => {
   const data = parserToken(callback.message.reply_markup.inline_keyboard[0][0].url.split('/').slice(-1)[0])
 
   // Wrokaround 35ba5c2
-  if (data.users[0].user.id) {
+  if (data.users[0].user) {
     data.users = data.users.map(i => i.user.id)
   }
 
