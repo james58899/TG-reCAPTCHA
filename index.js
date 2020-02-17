@@ -43,7 +43,7 @@ app.get('/verify/:token', recaptcha.middleware.render, (req, res) => {
     const token = parserToken(req.params.token)
     const now = getUnixtime()
 
-    if (now - req.query.auth_date > 10 || now - token.date > 30) {
+    if (now - req.query.auth_date > 10 || now - token.date > 60) {
       res.status(403).send("Token outdated, please try again.")
       return
     }
@@ -70,7 +70,7 @@ app.post('/verify/:token', recaptcha.middleware.verify, (req, res) => {
     if (!req.recaptcha.error) {
       const data = parserToken(req.params.token)
 
-      if (getUnixtime() - data.date > 30) {
+      if (getUnixtime() - data.date > 60) {
         res.status(410).send('Token expired')
         return
       }
