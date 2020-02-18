@@ -44,7 +44,7 @@ app.get('/verify/:token', recaptcha.middleware.render, (req, res) => {
     const now = getUnixtime()
 
     if (now - req.query.auth_date > 10 || now - token.date > 60) {
-      res.status(403).send("Token outdated, please try again.")
+      res.status(403).send("Token expired, please update and try again.")
       return
     }
 
@@ -58,7 +58,7 @@ app.get('/verify/:token', recaptcha.middleware.render, (req, res) => {
       return
     }
 
-    res.render('verify', { captcha: res.recaptcha })
+    res.render('Verify', { captcha: res.recaptcha })
     return
   }
 
@@ -86,7 +86,6 @@ app.post('/verify/:token', recaptcha.middleware.verify, (req, res) => {
       } else {
         bot.editMessageReplyMarkup(genKeyboard(genToken(data.chat, data.id, users)), { chat_id: data.chat, message_id: data.id })
       }
-      return
     } else {
       res.status(400).send('reCAPTCHA vailed failed.')
     }
