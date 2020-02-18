@@ -58,7 +58,7 @@ app.get('/verify/:token', recaptcha.middleware.render, (req, res) => {
       return
     }
 
-    res.render('Verify', { captcha: res.recaptcha })
+    res.render('verify', { captcha: res.recaptcha })
     return
   }
 
@@ -166,7 +166,7 @@ function getUnixtime() {
 function genKeyboard(token) {
   return {
     inline_keyboard: [
-      [{ text: 'verify', login_url: { url: `${config.url}/verify/${token}` } }, { text: "Update token", callback_data: "update" }]
+      [{ text: 'Verify', login_url: { url: `${config.url}/verify/${token}` } }, { text: "Update token", callback_data: "update" }]
     ]
   }
 }
