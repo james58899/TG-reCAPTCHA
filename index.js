@@ -166,7 +166,8 @@ function getUnixtime() {
 function genKeyboard(token) {
   return {
     inline_keyboard: [
-      [{ text: 'Verify', login_url: { url: `${config.url}/verify/${token}` } }, { text: "Update token", callback_data: "update" }]
+      [{ text: "I'm not a robot", login_url: { url: `${config.url}/verify/${token}` } }],
+      [{ text: "Update token", callback_data: "update" }]
     ]
   }
 }
