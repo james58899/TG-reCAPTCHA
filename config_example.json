@@ -1,6 +1,7 @@
 {
     "token": "",
     "url": "",
+    "bind": "",
     "port": 8080,
     "webhook": false,
     "recaptcha": {

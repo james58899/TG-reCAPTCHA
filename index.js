@@ -7,6 +7,10 @@ const Recaptcha = require('express-recaptcha').RecaptchaV2
 const config = require('./config.json')
 
 const secretKey = crypto.createHash('sha256').update(config.token).digest()
+const pollingOption = {
+  interval: 0,
+  params: { timeout: 60 }
+}
 const unban = {
   can_send_messages: true,
   can_send_media_messages: true,
@@ -18,7 +22,7 @@ const unban = {
   can_pin_messages: true
 }
 
-const bot = new telegrambot(config.token, { polling: !config.webhook })
+const bot = new telegrambot(config.token, { polling: config.webhook ? false : pollingOption })
 const app = express()
 var recaptcha = new Recaptcha(config.recaptcha.site_key, config.recaptcha.secret_key, { checkremoteip: true, callback: 'cb' })
 
@@ -92,7 +96,7 @@ app.post('/verify/:token', recaptcha.middleware.verify, (req, res) => {
   }
 })
 
-app.listen(config.port, () => console.log(`app listening on port ${config.port}!`))
+app.listen(config.port, config.bind, () => console.log(`app listening on port ${config.port}!`))
 
 bot.on('new_chat_members', async msg => {
   const members = msg.new_chat_members.filter(i => !i.is_bot).filter(i => !i.is_bot)
