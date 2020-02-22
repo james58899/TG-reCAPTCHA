@@ -48,12 +48,12 @@ app.get('/verify/:token', recaptcha.middleware.render, (req, res) => {
     const now = getUnixtime()
 
     if (now - req.query.auth_date > 10 || now - token.date > 60) {
-      res.status(403).send("Token expired, please update and try again.")
+      res.status(403).send("Token expired, please click <b>Update token</b> and try again.")
       return
     }
 
     if (!checkVaild(req.query)) {
-      res.status(403).send("Auth failed, please try again.")
+      res.status(401).send("Auth failed, please try again.")
       return
     }
 
@@ -67,7 +67,7 @@ app.get('/verify/:token', recaptcha.middleware.render, (req, res) => {
   }
 
   // todo generate auth token whitout login
-  res.status(401).send('Need login')
+  res.status(400).send('Need login to know who you are.')
 })
 app.post('/verify/:token', recaptcha.middleware.verify, (req, res) => {
   if (req.query.hash && checkVaild(req.query, req.query.hash)) {
