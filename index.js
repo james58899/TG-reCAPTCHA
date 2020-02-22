@@ -27,6 +27,7 @@ const app = express()
 var recaptcha = new Recaptcha(config.recaptcha.site_key, config.recaptcha.secret_key, { checkremoteip: true, callback: 'cb' })
 
 recaptcha._api.host = 'www.recaptcha.net'
+app.disable('x-powered-by')
 app.set('view engine', 'pug')
 app.set('trust proxy', true)
 app.use(morgan('combined'))
