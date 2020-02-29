@@ -100,7 +100,7 @@ app.post('/verify/:token', recaptcha.middleware.verify, (req, res) => {
 app.listen(config.port, config.bind, () => console.log(`app listening on port ${config.port}!`))
 
 bot.on('new_chat_members', async msg => {
-  const members = msg.new_chat_members.filter(i => !i.is_bot).filter(i => !i.is_bot)
+  const members = msg.new_chat_members.filter(i => !i.is_bot)
 
   if (members.length === 0) return
 
