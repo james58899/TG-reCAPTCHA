@@ -48,7 +48,7 @@ app.get('/verify/:token', recaptcha.middleware.render, (req, res) => {
     const token = parserToken(req.params.token)
     const now = getUnixtime()
 
-    if (now - req.query.auth_date > 10 || now - token.date > 60) {
+    if (now - req.query.auth_date > 60 || now - token.date > 60) {
       res.status(403).send("Token expired, please click <b>Update token</b> and try again.")
       return
     }
