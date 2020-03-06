@@ -1,0 +1,12 @@
+# Docker
+Dockerfile
+.dockerignore
+
+# Yarn files
+.yarn/*
+!.yarn/cache
+!.yarn/releases
+!.yarn/plugins
+
+# Config
+.config.json
