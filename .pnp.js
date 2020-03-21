@@ -38,7 +38,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["body-parser", "npm:1.19.0"],
             ["express", "npm:4.17.1"],
             ["express-recaptcha", "npm:5.0.1"],
-            ["morgan", "npm:1.9.1"],
+            ["morgan", "npm:1.10.0"],
             ["node-telegram-bot-api", "npm:0.40.0"],
             ["pug", "npm:2.0.4"]
           ],
@@ -102,10 +102,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["ajv", [
-        ["npm:6.11.0", {
-          "packageLocation": "./.yarn/cache/ajv-npm-6.11.0-b066b61d3a-2.zip/node_modules/ajv/",
+        ["npm:6.12.0", {
+          "packageLocation": "./.yarn/cache/ajv-npm-6.12.0-2c613c5c4b-2.zip/node_modules/ajv/",
           "packageDependencies": [
-            ["ajv", "npm:6.11.0"],
+            ["ajv", "npm:6.12.0"],
             ["fast-deep-equal", "npm:3.1.1"],
             ["fast-json-stable-stringify", "npm:2.1.0"],
             ["json-schema-traverse", "npm:0.4.1"],
@@ -136,10 +136,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["array.prototype.findindex", [
-        ["npm:2.0.2", {
-          "packageLocation": "./.yarn/cache/array.prototype.findindex-npm-2.0.2-eacd652c4f-2.zip/node_modules/array.prototype.findindex/",
+        ["npm:2.1.0", {
+          "packageLocation": "./.yarn/cache/array.prototype.findindex-npm-2.1.0-5bcc2eef88-2.zip/node_modules/array.prototype.findindex/",
           "packageDependencies": [
-            ["array.prototype.findindex", "npm:2.0.2"],
+            ["array.prototype.findindex", "npm:2.1.0"],
             ["define-properties", "npm:1.1.3"],
             ["es-abstract", "npm:1.17.4"]
           ],
@@ -512,6 +512,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["depd", "npm:1.1.2"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:2.0.0", {
+          "packageLocation": "./.yarn/cache/depd-npm-2.0.0-b6c51a4b43-2.zip/node_modules/depd/",
+          "packageDependencies": [
+            ["depd", "npm:2.0.0"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["destroy", [
@@ -663,7 +670,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["on-finished", "npm:2.3.0"],
             ["parseurl", "npm:1.3.3"],
             ["path-to-regexp", "npm:0.1.7"],
-            ["proxy-addr", "npm:2.0.5"],
+            ["proxy-addr", "npm:2.0.6"],
             ["qs", "npm:6.7.0"],
             ["range-parser", "npm:1.2.1"],
             ["safe-buffer", "npm:5.1.2"],
@@ -820,7 +827,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/har-validator-npm-5.1.3-f192d43c41-2.zip/node_modules/har-validator/",
           "packageDependencies": [
             ["har-validator", "npm:5.1.3"],
-            ["ajv", "npm:6.11.0"],
+            ["ajv", "npm:6.12.0"],
             ["har-schema", "npm:2.0.0"]
           ],
           "linkType": "HARD",
@@ -891,10 +898,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["ipaddr.js", [
-        ["npm:1.9.0", {
-          "packageLocation": "./.yarn/cache/ipaddr.js-npm-1.9.0-6f46daf988-2.zip/node_modules/ipaddr.js/",
+        ["npm:1.9.1", {
+          "packageLocation": "./.yarn/cache/ipaddr.js-npm-1.9.1-19ae7878b4-2.zip/node_modules/ipaddr.js/",
           "packageDependencies": [
-            ["ipaddr.js", "npm:1.9.0"]
+            ["ipaddr.js", "npm:1.9.1"]
           ],
           "linkType": "HARD",
         }]
@@ -1155,13 +1162,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["morgan", [
-        ["npm:1.9.1", {
-          "packageLocation": "./.yarn/cache/morgan-npm-1.9.1-cfe5c59dac-2.zip/node_modules/morgan/",
+        ["npm:1.10.0", {
+          "packageLocation": "./.yarn/cache/morgan-npm-1.10.0-a0da109b6b-2.zip/node_modules/morgan/",
           "packageDependencies": [
-            ["morgan", "npm:1.9.1"],
+            ["morgan", "npm:1.10.0"],
             ["basic-auth", "npm:2.0.1"],
             ["debug", "virtual:6e177cabfad012f413f9c41366539c04d8701f0567119998690ab02224012faa99ec3a16b9f74f4d7920ab472c12b3e70f47f8f143239c06d0e2569e60ed9f62#npm:2.6.9"],
-            ["depd", "npm:1.1.2"],
+            ["depd", "npm:2.0.0"],
             ["on-finished", "npm:2.3.0"],
             ["on-headers", "npm:1.0.2"]
           ],
@@ -1205,7 +1212,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/node-telegram-bot-api-npm-0.40.0-067db321ea-2.zip/node_modules/node-telegram-bot-api/",
           "packageDependencies": [
             ["node-telegram-bot-api", "npm:0.40.0"],
-            ["array.prototype.findindex", "npm:2.0.2"],
+            ["array.prototype.findindex", "npm:2.1.0"],
             ["bl", "npm:1.2.2"],
             ["bluebird", "npm:3.7.2"],
             ["debug", "virtual:067db321ea5da46fb2d69ff9d1381fa8a3314ae751ea63dd1ab650976b3041a7ab9ad657dca25a0cb399a514f757dfc72930494e2d17a6e5d3fc7a7b90d0a786#npm:3.2.6"],
@@ -1354,12 +1361,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["proxy-addr", [
-        ["npm:2.0.5", {
-          "packageLocation": "./.yarn/cache/proxy-addr-npm-2.0.5-194dbca683-2.zip/node_modules/proxy-addr/",
+        ["npm:2.0.6", {
+          "packageLocation": "./.yarn/cache/proxy-addr-npm-2.0.6-8fafed6ca5-2.zip/node_modules/proxy-addr/",
           "packageDependencies": [
-            ["proxy-addr", "npm:2.0.5"],
+            ["proxy-addr", "npm:2.0.6"],
             ["forwarded", "npm:0.1.2"],
-            ["ipaddr.js", "npm:1.9.0"]
+            ["ipaddr.js", "npm:1.9.1"]
           ],
           "linkType": "HARD",
         }]
@@ -1843,7 +1850,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["body-parser", "npm:1.19.0"],
             ["express", "npm:4.17.1"],
             ["express-recaptcha", "npm:5.0.1"],
-            ["morgan", "npm:1.9.1"],
+            ["morgan", "npm:1.10.0"],
             ["node-telegram-bot-api", "npm:0.40.0"],
             ["pug", "npm:2.0.4"]
           ],

@@ -58,14 +58,14 @@ __metadata:
   linkType: hard
 
 "ajv@npm:^6.5.5":
-  version: 6.11.0
-  resolution: "ajv@npm:6.11.0"
+  version: 6.12.0
+  resolution: "ajv@npm:6.12.0"
   dependencies:
     fast-deep-equal: ^3.1.1
     fast-json-stable-stringify: ^2.0.0
     json-schema-traverse: ^0.4.1
     uri-js: ^4.2.2
-  checksum: 2/64f53d553feaac3baf8ef6fdc4cf66e6823f9e0f5bdbf612f4674322c40664448664f09b1b37e5a341a399bf7bc530366cde1a06fe991f06518299773b4f9330
+  checksum: 2/aed1e0ab1b906913e2b466b1a0372ee5e4fe2927802ff81bcce350f482b0546cdb49df6ab551adad191ac19766007cdaf6c2d8b70e992528b806d9a8275ce2bd
   languageName: node
   linkType: hard
 
@@ -88,12 +88,12 @@ __metadata:
   linkType: hard
 
 "array.prototype.findindex@npm:^2.0.2":
-  version: 2.0.2
-  resolution: "array.prototype.findindex@npm:2.0.2"
+  version: 2.1.0
+  resolution: "array.prototype.findindex@npm:2.1.0"
   dependencies:
-    define-properties: ^1.1.2
-    es-abstract: ^1.5.0
-  checksum: 2/c130b8b80c65cc39945505a8a3f6725cbb6717e26e4e99f4e3634b06804eb1e0f23414d2fca29f924a6cfc9915340955d4a779d5c41148a63aa7e4f61ba53a7e
+    define-properties: ^1.1.3
+    es-abstract: ^1.17.4
+  checksum: 2/be04927c80f864d7353a74fce0d3b87d4ffe1f48ae8a2daa4ca4065089934e1d65ff521fbebc36c6b47f310b32b61a888f4c0453555ade47e28fdcc44a2b3543
   languageName: node
   linkType: hard
 
@@ -172,7 +172,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"basic-auth@npm:~2.0.0":
+"basic-auth@npm:~2.0.1":
   version: 2.0.1
   resolution: "basic-auth@npm:2.0.1"
   dependencies:
@@ -407,6 +407,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"depd@npm:~2.0.0":
+  version: 2.0.0
+  resolution: "depd@npm:2.0.0"
+  checksum: 2/20726d843f5ab5e933211fcb5a440a1a3986ef9d6f85d38cf1eae815ea3cc12fa4436bd35a38e21bdb391a021b57f2d97b9f856873852506acac1b07ac913ba4
+  languageName: node
+  linkType: hard
+
 "destroy@npm:~1.0.4":
   version: 1.0.4
   resolution: "destroy@npm:1.0.4"
@@ -454,7 +461,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"es-abstract@npm:^1.5.0":
+"es-abstract@npm:^1.17.4":
   version: 1.17.4
   resolution: "es-abstract@npm:1.17.4"
   dependencies:
@@ -728,10 +735,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ipaddr.js@npm:1.9.0":
-  version: 1.9.0
-  resolution: "ipaddr.js@npm:1.9.0"
-  checksum: 2/2fb82d47626b8230e4c412eb6bae3bb8c43dabaa39df3fa60bfd1b98f6ffdd6c80d6821d1029432efb9c9655ddea1168f7fd6f7aeaf2f6f906f6e20df5beded2
+"ipaddr.js@npm:1.9.1":
+  version: 1.9.1
+  resolution: "ipaddr.js@npm:1.9.1"
+  checksum: 2/de15bc7e63973d960abc43c9fbbf19589c726774f59d157d1b29382a1e86ae87c68cbd8b5c78a1712a87fc4fcd91e10762c7671950c66a1a19040ff4fd2f9c9b
   languageName: node
   linkType: hard
 
@@ -945,16 +952,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"morgan@npm:^1.9.1":
-  version: 1.9.1
-  resolution: "morgan@npm:1.9.1"
+"morgan@npm:^1.10.0":
+  version: 1.10.0
+  resolution: "morgan@npm:1.10.0"
   dependencies:
-    basic-auth: ~2.0.0
+    basic-auth: ~2.0.1
     debug: 2.6.9
-    depd: ~1.1.2
+    depd: ~2.0.0
     on-finished: ~2.3.0
-    on-headers: ~1.0.1
-  checksum: 2/3ffe266d6a491361da904b8714aad549cdc2a17b481a1eb76a132037ec41a39070395727a28ba0e6d09707feb16db1d81134e92f0b7ca1c86cc3e3472aad5bf5
+    on-headers: ~1.0.2
+  checksum: 2/64328f82f69a826254a364de5ab2ce992d807149ee8050a7978e0e043e098c247ba55f74f3ad1354f80e744680a0c9ab1ed9a8c2a1d5bb81824cea547d0dc234
   languageName: node
   linkType: hard
 
@@ -1054,7 +1061,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"on-headers@npm:~1.0.1":
+"on-headers@npm:~1.0.2":
   version: 1.0.2
   resolution: "on-headers@npm:1.0.2"
   checksum: 2/51e75c80755169e765aa76238722e5ad1623f62b13bbc23544ade20cdbb6950cf0e6aa91de35d02ec956f47dc072ee460d8eef82354e4abf8fa692885cb3f2d8
@@ -1115,12 +1122,12 @@ __metadata:
   linkType: hard
 
 "proxy-addr@npm:~2.0.5":
-  version: 2.0.5
-  resolution: "proxy-addr@npm:2.0.5"
+  version: 2.0.6
+  resolution: "proxy-addr@npm:2.0.6"
   dependencies:
     forwarded: ~0.1.2
-    ipaddr.js: 1.9.0
-  checksum: 2/432cb36057d71b4c97cf293e874db34c4358a2505085d5d7a99962c4b59d3d94bd99e1cc246f5664c5bc98e97504fa77ed451b66899c2d118ebe1fb29779900c
+    ipaddr.js: 1.9.1
+  checksum: 2/a7dcfd70258cdc3b73c5dc4a35c73db9857f3bf4cf5e6404380e8ea558f8c5569147e721a01195d00b450e36b4dde727fc9d22fdea14310ba38faa595530cd58
   languageName: node
   linkType: hard
 
@@ -1558,7 +1565,7 @@ resolve@^1.1.6:
     body-parser: ^1.19.0
     express: ^4.17.1
     express-recaptcha: ^5.0.1
-    morgan: ^1.9.1
+    morgan: ^1.10.0
     node-telegram-bot-api: ^0.40.0
     pug: ^2.0.4
   languageName: unknown
