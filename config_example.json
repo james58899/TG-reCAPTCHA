@@ -7,5 +7,7 @@
     "recaptcha": {
         "site_key": "",
         "secret_key": ""
-    }
+    },
+    "redis": "",
+    "timeout": 3600
 }

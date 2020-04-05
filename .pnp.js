@@ -40,7 +40,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["express-recaptcha", "npm:5.0.1"],
             ["morgan", "npm:1.10.0"],
             ["node-telegram-bot-api", "npm:0.40.0"],
-            ["pug", "npm:2.0.4"]
+            ["pug", "npm:2.0.4"],
+            ["redis", "npm:3.0.2"]
           ],
           "linkType": "SOFT",
         }]
@@ -141,7 +142,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["array.prototype.findindex", "npm:2.1.0"],
             ["define-properties", "npm:1.1.3"],
-            ["es-abstract", "npm:1.17.4"]
+            ["es-abstract", "npm:1.17.5"]
           ],
           "linkType": "HARD",
         }]
@@ -505,6 +506,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["denque", [
+        ["npm:1.4.1", {
+          "packageLocation": "./.yarn/cache/denque-npm-1.4.1-91d454774e-2.zip/node_modules/denque/",
+          "packageDependencies": [
+            ["denque", "npm:1.4.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["depd", [
         ["npm:1.1.2", {
           "packageLocation": "./.yarn/cache/depd-npm-1.1.2-b0c8414da7-2.zip/node_modules/depd/",
@@ -579,10 +589,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["es-abstract", [
-        ["npm:1.17.4", {
-          "packageLocation": "./.yarn/cache/es-abstract-npm-1.17.4-bc343b5153-2.zip/node_modules/es-abstract/",
+        ["npm:1.17.5", {
+          "packageLocation": "./.yarn/cache/es-abstract-npm-1.17.5-7b6ab50e26-2.zip/node_modules/es-abstract/",
           "packageDependencies": [
-            ["es-abstract", "npm:1.17.4"],
+            ["es-abstract", "npm:1.17.5"],
             ["es-to-primitive", "npm:1.2.1"],
             ["function-bind", "npm:1.1.1"],
             ["has", "npm:1.0.3"],
@@ -592,8 +602,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["object-inspect", "npm:1.7.0"],
             ["object-keys", "npm:1.1.1"],
             ["object.assign", "npm:4.1.0"],
-            ["string.prototype.trimleft", "npm:2.1.1"],
-            ["string.prototype.trimright", "npm:2.1.1"]
+            ["string.prototype.trimleft", "npm:2.1.2"],
+            ["string.prototype.trimright", "npm:2.1.2"]
           ],
           "linkType": "HARD",
         }]
@@ -1372,10 +1382,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["psl", [
-        ["npm:1.7.0", {
-          "packageLocation": "./.yarn/cache/psl-npm-1.7.0-44bf515f4d-2.zip/node_modules/psl/",
+        ["npm:1.8.0", {
+          "packageLocation": "./.yarn/cache/psl-npm-1.8.0-226099d70e-2.zip/node_modules/psl/",
           "packageDependencies": [
-            ["psl", "npm:1.7.0"]
+            ["psl", "npm:1.8.0"]
           ],
           "linkType": "HARD",
         }]
@@ -1598,6 +1608,47 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["redis", [
+        ["npm:3.0.2", {
+          "packageLocation": "./.yarn/cache/redis-npm-3.0.2-488560e37e-2.zip/node_modules/redis/",
+          "packageDependencies": [
+            ["redis", "npm:3.0.2"],
+            ["denque", "npm:1.4.1"],
+            ["redis-commands", "npm:1.5.0"],
+            ["redis-errors", "npm:1.2.0"],
+            ["redis-parser", "npm:3.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["redis-commands", [
+        ["npm:1.5.0", {
+          "packageLocation": "./.yarn/cache/redis-commands-npm-1.5.0-be476d36e6-2.zip/node_modules/redis-commands/",
+          "packageDependencies": [
+            ["redis-commands", "npm:1.5.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["redis-errors", [
+        ["npm:1.2.0", {
+          "packageLocation": "./.yarn/cache/redis-errors-npm-1.2.0-a81fd9b0f1-2.zip/node_modules/redis-errors/",
+          "packageDependencies": [
+            ["redis-errors", "npm:1.2.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["redis-parser", [
+        ["npm:3.0.0", {
+          "packageLocation": "./.yarn/cache/redis-parser-npm-3.0.0-7ebe40abcb-2.zip/node_modules/redis-parser/",
+          "packageDependencies": [
+            ["redis-parser", "npm:3.0.0"],
+            ["redis-errors", "npm:1.2.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["regenerator-runtime", [
         ["npm:0.11.1", {
           "packageLocation": "./.yarn/cache/regenerator-runtime-npm-0.11.1-a31e4f8dcd-2.zip/node_modules/regenerator-runtime/",
@@ -1810,24 +1861,48 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["string.prototype.trimleft", [
-        ["npm:2.1.1", {
-          "packageLocation": "./.yarn/cache/string.prototype.trimleft-npm-2.1.1-96b7e999e2-2.zip/node_modules/string.prototype.trimleft/",
+      ["string.prototype.trimend", [
+        ["npm:1.0.0", {
+          "packageLocation": "./.yarn/cache/string.prototype.trimend-npm-1.0.0-108b6ffa0d-2.zip/node_modules/string.prototype.trimend/",
           "packageDependencies": [
-            ["string.prototype.trimleft", "npm:2.1.1"],
+            ["string.prototype.trimend", "npm:1.0.0"],
             ["define-properties", "npm:1.1.3"],
-            ["function-bind", "npm:1.1.1"]
+            ["es-abstract", "npm:1.17.5"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["string.prototype.trimleft", [
+        ["npm:2.1.2", {
+          "packageLocation": "./.yarn/cache/string.prototype.trimleft-npm-2.1.2-ae3615d81f-2.zip/node_modules/string.prototype.trimleft/",
+          "packageDependencies": [
+            ["string.prototype.trimleft", "npm:2.1.2"],
+            ["define-properties", "npm:1.1.3"],
+            ["es-abstract", "npm:1.17.5"],
+            ["string.prototype.trimstart", "npm:1.0.0"]
           ],
           "linkType": "HARD",
         }]
       ]],
       ["string.prototype.trimright", [
-        ["npm:2.1.1", {
-          "packageLocation": "./.yarn/cache/string.prototype.trimright-npm-2.1.1-6247e528ee-2.zip/node_modules/string.prototype.trimright/",
+        ["npm:2.1.2", {
+          "packageLocation": "./.yarn/cache/string.prototype.trimright-npm-2.1.2-634eb1e814-2.zip/node_modules/string.prototype.trimright/",
           "packageDependencies": [
-            ["string.prototype.trimright", "npm:2.1.1"],
+            ["string.prototype.trimright", "npm:2.1.2"],
             ["define-properties", "npm:1.1.3"],
-            ["function-bind", "npm:1.1.1"]
+            ["es-abstract", "npm:1.17.5"],
+            ["string.prototype.trimend", "npm:1.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["string.prototype.trimstart", [
+        ["npm:1.0.0", {
+          "packageLocation": "./.yarn/cache/string.prototype.trimstart-npm-1.0.0-105508ab58-2.zip/node_modules/string.prototype.trimstart/",
+          "packageDependencies": [
+            ["string.prototype.trimstart", "npm:1.0.0"],
+            ["define-properties", "npm:1.1.3"],
+            ["es-abstract", "npm:1.17.5"]
           ],
           "linkType": "HARD",
         }]
@@ -1852,7 +1927,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["express-recaptcha", "npm:5.0.1"],
             ["morgan", "npm:1.10.0"],
             ["node-telegram-bot-api", "npm:0.40.0"],
-            ["pug", "npm:2.0.4"]
+            ["pug", "npm:2.0.4"],
+            ["redis", "npm:3.0.2"]
           ],
           "linkType": "SOFT",
         }]
@@ -1889,7 +1965,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/tough-cookie-npm-2.5.0-79a2fe43fe-2.zip/node_modules/tough-cookie/",
           "packageDependencies": [
             ["tough-cookie", "npm:2.5.0"],
-            ["psl", "npm:1.7.0"],
+            ["psl", "npm:1.8.0"],
             ["punycode", "npm:2.1.1"]
           ],
           "linkType": "HARD",

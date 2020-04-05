@@ -4,6 +4,8 @@ const bodyparser = require('body-parser')
 const morgan = require('morgan')
 const telegrambot = require('node-telegram-bot-api')
 const Recaptcha = require('express-recaptcha').RecaptchaV2
+const redis = require("redis")
+const util = require('util');
 const config = require('./config.json')
 
 const secretKey = crypto.createHash('sha256').update(config.token).digest()
@@ -24,7 +26,20 @@ const unban = {
 
 const bot = new telegrambot(config.token, { polling: config.webhook ? false : pollingOption })
 const app = express()
-var recaptcha = new Recaptcha(config.recaptcha.site_key, config.recaptcha.secret_key, { checkremoteip: true, callback: 'cb' })
+const recaptcha = new Recaptcha(config.recaptcha.site_key, config.recaptcha.secret_key, { checkremoteip: true, callback: 'cb' })
+let redisClient, timeout
+
+if (config.redis && config.redis != "") {
+  redisClient = redis.createClient(config.redis)
+  redisClient.on("ready", () => console.log("Redis ready."))
+  redisClient.on("error", console.error)
+} else {
+  timeout = new Map()
+}
+
+if (!config.timeout) config.timeout = 3600
+
+setInterval(doTimeout, 60000)
 
 recaptcha._api.host = 'www.recaptcha.net'
 app.disable('x-powered-by')
@@ -117,6 +132,8 @@ bot.on('new_chat_members', async msg => {
     message_id: message.message_id,
     reply_markup: genKeyboard(token)
   })
+
+  addTimeout(getUnixtime(), { chat: msg.chat.id, users: members.map(i => i.id), id: message.message_id, msg: msg.message_id })
 })
 
 bot.on('callback_query', async callback => {
@@ -175,4 +192,46 @@ function genKeyboard(token) {
       [{ text: "Update token", callback_data: "update" }]
     ]
   }
+}
+
+function addTimeout(time, data) {
+  if (redisClient) {
+    redisClient.zadd("timeout", time, JSON.stringify(data))
+  } else {
+    timeout.set(time, data)
+  }
+}
+
+async function doTimeout() {
+  const time = getUnixtime() - config.timeout
+  if (redisClient) {
+    if (await util.promisify(redisClient.zcount).bind(redisClient)("timeout", 0, time) != 0) {
+      for (value of (await util.promisify(redisClient.zrangebyscore).bind(redisClient)("timeout", 0, time)).map(i => JSON.parse(i))) {
+        cleanTimeout(value)
+      }
+      redisClient.zremrangebyscore("timeout", 0, time)
+    }
+  } else {
+    timeout.forEach((value, key) => {
+      if (key < time) {
+        cleanTimeout(value)
+        timeout.delete(key)
+      }
+    })
+  }
+}
+
+async function cleanTimeout(value) {
+  for (user of value.users) {
+    bot.getChatMember(value.chat, user).then(member => {
+      if (member.status === "restricted") {
+        bot.kickChatMember(value.chat, user).then(() => {
+          bot.unbanChatMember(value.chat, user)
+        })
+      }
+    })
+  }
+  try {
+    if (await bot.deleteMessage(value.chat, value.id)) bot.deleteMessage(value.chat, value.msg)
+  } catch (error) {}
 }
