@@ -232,6 +232,6 @@ async function cleanTimeout(value) {
     })
   }
   try {
-    if (await bot.deleteMessage(value.chat, value.id)) bot.deleteMessage(value.chat, value.msg)
+    if (await bot.deleteMessage(value.chat, value.id)) await bot.deleteMessage(value.chat, value.msg)
   } catch (error) {}
 }
