@@ -2,6 +2,7 @@ doctype html
 html
   head
     title Simple-reCAPTCHA
+    meta(name="viewport", content="width=device-width")
     style(type='text/css').
       html,body{
         margin: 0;
@@ -20,10 +21,17 @@ html
       .hide{
         display: none;
       }
+      .captcha {
+        border: 2px solid #888;
+        border-radius: 5px;
+        padding: 20px;
+      }
   body
     .container
       h1#closeMessage.hide Welcome Human!
-      #captcha.captcha !{captcha}
+      #captcha.captcha
+        h3 Human?
+        |!{recaptcha}
     script.
         function cb(token){
             fetch(window.location, {
