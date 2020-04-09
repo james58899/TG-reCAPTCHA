@@ -45,7 +45,6 @@ recaptcha._api.host = 'www.recaptcha.net'
 app.disable('x-powered-by')
 app.set('view engine', 'pug')
 app.set('trust proxy', true)
-app.use(morgan('combined'))
 app.use(bodyparser.json())
 
 if (config.webhook) {
@@ -57,6 +56,8 @@ if (config.webhook) {
   bot.setWebHook(`${config.url}/bot${config.token}`)
 }
 
+// Skip webhook logging
+app.use(morgan('combined'))
 app.get('/', (_, res) => res.send('Hello world!'))
 app.get('/verify/:token', recaptcha.middleware.render, (req, res) => {
   if (req.query.hash) {
