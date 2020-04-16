@@ -1442,20 +1442,20 @@ __metadata:
   linkType: hard
 
 resolve@^1.1.6:
-  version: 1.15.1
-  resolution: "resolve@npm:1.15.1"
+  version: 1.16.0
+  resolution: "resolve@npm:1.16.0"
   dependencies:
     path-parse: ^1.0.6
-  checksum: 2/34f77287b44a7eb4588d9d631165c763099a82aca3132920e0fdcde428a51f2cf69190c19e2309e35288a0702f57fefeb951da6138677036a16636b2f0e7b8dd
+  checksum: 2/7b5d25493560d793a690dcaeada67a17c09c21a4fc276abfe899dc2ea825063a545b0450926e4162e8f93740491139bed1a3c4491139578ea61e41f051cd0c78
   languageName: node
   linkType: hard
 
 "resolve@patch:resolve@^1.1.6#builtin<compat/resolve>":
-  version: 1.15.1
-  resolution: "resolve@patch:resolve@npm%3A1.15.1#builtin<compat/resolve>::version=1.15.1&hash=8fccd0"
+  version: 1.16.0
+  resolution: "resolve@patch:resolve@npm%3A1.16.0#builtin<compat/resolve>::version=1.16.0&hash=8fccd0"
   dependencies:
     path-parse: ^1.0.6
-  checksum: 2/fe7e72ddef33d5c157991b824ba2d439cafcd386cb4b26d86c32e77fea442bdd9a93c6cdd93ab90f87a29449008df64b53a8310dd89ebe88ea87fb5db09c03aa
+  checksum: 2/16e54d055d9a10bc72acea3fa72cb79e9df53838b73200dcf15da581acb1b03712fc768e4ee0dd7367a4663fc4e3a827b60f9b500d674770e28aea64eb08b386
   languageName: node
   linkType: hard
 
@@ -1572,12 +1572,12 @@ resolve@^1.1.6:
   linkType: hard
 
 "string.prototype.trimend@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "string.prototype.trimend@npm:1.0.0"
+  version: 1.0.1
+  resolution: "string.prototype.trimend@npm:1.0.1"
   dependencies:
     define-properties: ^1.1.3
     es-abstract: ^1.17.5
-  checksum: 2/e1bae7e46ef46c37765740f095ba286bcde74ac74d25ea2c8b88675f194d90e74d1568fa2ff242757e0d57992ae93cb734eacfe8bf8ef3b3e7cf77efdbd429fe
+  checksum: 2/93046463de6a3b4ae27d0622ae8795239c8d372b1be1a60122fce591bf7578b719becf00bf04326642a868bc6185f35901119b61a246509dd0dc0666b2a803ed
   languageName: node
   linkType: hard
 
@@ -1604,12 +1604,12 @@ resolve@^1.1.6:
   linkType: hard
 
 "string.prototype.trimstart@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "string.prototype.trimstart@npm:1.0.0"
+  version: 1.0.1
+  resolution: "string.prototype.trimstart@npm:1.0.1"
   dependencies:
     define-properties: ^1.1.3
     es-abstract: ^1.17.5
-  checksum: 2/f26c8ac21491b9ac1e067a5832f90d282a2bef347d212624d53f1850bacb4c49b7d68d1d3e9173544e2609ba618e96cc9cf4a9d1bc32d44eaf3bdaa6c2987e2a
+  checksum: 2/20c4a940f1ba65b0aa5abf0c319dceba4fbf04d24553583b0b82eba2711815d1e40663ce36175ed06475701dbe797cac81be1ec1dc4bb4416b2077e8b0409036
   languageName: node
   linkType: hard
 
