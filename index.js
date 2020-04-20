@@ -115,10 +115,8 @@ app.post('/verify/:token', recaptcha.middleware.verify, (req, res) => {
 
 app.listen(config.port, config.bind, () => console.log(`app listening on port ${config.port}!`))
 
-bot.on('message', async msg => {
-  if (msg.text.match(/\/ping(?:@\w+)?/)) {
-    bot.sendMessage(msg.chat.id, "pong", { reply_to_message_id: msg.message_id })
-  }
+bot.onText(/\/ping(?:@\w+)?/, async msg => {
+  bot.sendMessage(msg.chat.id, "pong", { reply_to_message_id: msg.message_id })
 })
 
 bot.on('new_chat_members', async msg => {
