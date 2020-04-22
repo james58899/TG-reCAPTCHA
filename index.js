@@ -113,7 +113,7 @@ app.post('/verify/:token', recaptcha.middleware.verify, (req, res) => {
   }
 })
 
-app.listen(config.port, config.bind, () => console.log(`app listening on port ${config.port}!`))
+app.listen(config.port, config.bind, () => console.log(`app listening on port ${config.port}!`)).keepAliveTimeout = 15 * 60 * 1000
 
 bot.onText(/\/ping(?:@\w+)?/, async msg => {
   bot.sendMessage(msg.chat.id, "pong", { reply_to_message_id: msg.message_id })
