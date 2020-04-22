@@ -124,18 +124,16 @@ bot.on('new_chat_members', async msg => {
 
   if (members.length === 0) return
 
-  let message = bot.sendMessage(msg.chat.id, 'Generating token...', { reply_to_message_id: msg.message_id })
+  const muteJoin = Promise.allSettled(members.map(i => bot.restrictChatMember(msg.chat.id, i.id, { can_send_messages: false })))
 
-  await Promise.allSettled(members.map(i => bot.restrictChatMember(msg.chat.id, i.id, { can_send_messages: false })))
+  const message = await bot.sendMessage(msg.chat.id, 'Generating token...', { reply_to_message_id: msg.message_id })
 
-  message = await message
-
-  const token = genToken(msg.chat.id, message.message_id, members.map(i => i.id))
+  await muteJoin
 
   bot.editMessageText("reCAPTCHA", {
     chat_id: message.chat.id,
     message_id: message.message_id,
-    reply_markup: genKeyboard(token)
+    reply_markup: genKeyboard(genToken(msg.chat.id, message.message_id, members.map(i => i.id)))
   })
 
   addTimeout(getUnixtime(), { chat: msg.chat.id, users: members.map(i => i.id), id: message.message_id, msg: msg.message_id })
@@ -234,7 +232,7 @@ async function cleanTimeout(value) {
           bot.unbanChatMember(value.chat, user)
         })
       }
-    })
+    }).catch(e => console.error("getChatMember failed: ", e))
   }
   try {
     if (await bot.deleteMessage(value.chat, value.id)) await bot.deleteMessage(value.chat, value.msg)
