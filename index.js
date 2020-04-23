@@ -128,6 +128,7 @@ bot.on('new_chat_members', async msg => {
 
   const message = await bot.sendMessage(msg.chat.id, 'Generating token...', { reply_to_message_id: msg.message_id })
 
+  await sleep(1000)
   await muteJoin
 
   bot.editMessageText("reCAPTCHA", {
@@ -226,15 +227,22 @@ async function doTimeout() {
 
 async function cleanTimeout(value) {
   for (user of value.users) {
-    bot.getChatMember(value.chat, user).then(member => {
+    try {
+      const member = await bot.getChatMember(value.chat, user)
       if (member.status === "restricted") {
-        bot.kickChatMember(value.chat, user).then(() => {
-          bot.unbanChatMember(value.chat, user)
-        })
+        if (await bot.kickChatMember(val.chat, member.user.id)) {
+          await bot.unbanChatMember(value.chat, member.user.id)
+        }
       }
-    }).catch(e => console.error("getChatMember failed: ", e))
+    } catch (error) {
+      console.error("Kick error", error)
+    }
   }
   try {
     if (await bot.deleteMessage(value.chat, value.id)) await bot.deleteMessage(value.chat, value.msg)
   } catch (error) { }
+}
+
+function sleep(time) {
+  return new Promise(resolve => setTimeout(resolve, time));
 }
