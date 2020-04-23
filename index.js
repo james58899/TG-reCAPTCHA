@@ -230,7 +230,7 @@ async function cleanTimeout(value) {
     try {
       const member = await bot.getChatMember(value.chat, user)
       if (member.status === "restricted") {
-        if (await bot.kickChatMember(val.chat, member.user.id)) {
+        if (await bot.kickChatMember(value.chat, member.user.id)) {
           await bot.unbanChatMember(value.chat, member.user.id)
         }
       }
