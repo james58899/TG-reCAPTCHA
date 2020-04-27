@@ -97,15 +97,16 @@ app.post('/verify/:token', recaptcha.middleware.verify, (req, res) => {
       }
 
       // unban & response
-      bot.restrictChatMember(data.chat, req.query.id, unban)
+      bot.restrictChatMember(data.chat, req.query.id, unban).catch(e => console.trace("[Pass] Unban failed.", e.stack))
       res.send()
 
       // update or delete message
       const users = data.users.filter(i => i !== parseInt(req.query.id))
       if (users.length === 0) {
-        bot.deleteMessage(data.chat, data.id)
+        bot.deleteMessage(data.chat, data.id).catch(e => console.trace("[Pass] delete message failed.", e.stack))
       } else {
-        bot.editMessageReplyMarkup(genKeyboard(genToken(data.chat, data.id, users)), { chat_id: data.chat, message_id: data.id })
+        retryCooldown(() => bot.editMessageReplyMarkup(genKeyboard(genToken(data.chat, data.id, users)), { chat_id: data.chat, message_id: data.id }))
+          .catch(e => console.trace("[Pass] Update message failed.", e.stack))
       }
     } else {
       res.status(400).send('reCAPTCHA vailed failed.')
@@ -116,7 +117,7 @@ app.post('/verify/:token', recaptcha.middleware.verify, (req, res) => {
 app.listen(config.port, config.bind, () => console.log(`app listening on port ${config.port}!`)).keepAliveTimeout = 15 * 60 * 1000
 
 bot.onText(/\/ping(?:@\w+)?/, async msg => {
-  bot.sendMessage(msg.chat.id, "pong", { reply_to_message_id: msg.message_id })
+  retryCooldown(() => bot.sendMessage(msg.chat.id, "pong", { reply_to_message_id: msg.message_id }))
 })
 
 bot.on('new_chat_members', async msg => {
