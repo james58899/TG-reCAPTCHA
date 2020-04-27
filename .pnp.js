@@ -100,7 +100,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/accepts-npm-1.3.7-0dc9de65aa-2.zip/node_modules/accepts/",
           "packageDependencies": [
             ["accepts", "npm:1.3.7"],
-            ["mime-types", "npm:2.1.26"],
+            ["mime-types", "npm:2.1.27"],
             ["negotiator", "npm:0.6.2"]
           ],
           "linkType": "HARD",
@@ -133,10 +133,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["ajv", [
-        ["npm:6.12.0", {
-          "packageLocation": "./.yarn/cache/ajv-npm-6.12.0-2c613c5c4b-2.zip/node_modules/ajv/",
+        ["npm:6.12.2", {
+          "packageLocation": "./.yarn/cache/ajv-npm-6.12.2-7ff2bc9f1e-2.zip/node_modules/ajv/",
           "packageDependencies": [
-            ["ajv", "npm:6.12.0"],
+            ["ajv", "npm:6.12.2"],
             ["fast-deep-equal", "npm:3.1.1"],
             ["fast-json-stable-stringify", "npm:2.1.0"],
             ["json-schema-traverse", "npm:0.4.1"],
@@ -811,7 +811,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["form-data", "npm:2.3.3"],
             ["asynckit", "npm:0.4.0"],
             ["combined-stream", "npm:1.0.8"],
-            ["mime-types", "npm:2.1.26"]
+            ["mime-types", "npm:2.1.27"]
           ],
           "linkType": "HARD",
         }]
@@ -867,7 +867,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/har-validator-npm-5.1.3-f192d43c41-2.zip/node_modules/har-validator/",
           "packageDependencies": [
             ["har-validator", "npm:5.1.3"],
-            ["ajv", "npm:6.12.0"],
+            ["ajv", "npm:6.12.2"],
             ["har-schema", "npm:2.0.0"]
           ],
           "linkType": "HARD",
@@ -985,10 +985,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["is-promise", [
-        ["npm:2.1.0", {
-          "packageLocation": "./.yarn/cache/is-promise-npm-2.1.0-ab46647421-2.zip/node_modules/is-promise/",
+        ["npm:2.2.2", {
+          "packageLocation": "./.yarn/cache/is-promise-npm-2.2.2-afbf94db67-2.zip/node_modules/is-promise/",
           "packageDependencies": [
-            ["is-promise", "npm:2.1.0"]
+            ["is-promise", "npm:2.2.2"]
           ],
           "linkType": "HARD",
         }]
@@ -1103,7 +1103,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/jstransformer-npm-1.0.0-41a47d180a-2.zip/node_modules/jstransformer/",
           "packageDependencies": [
             ["jstransformer", "npm:1.0.0"],
-            ["is-promise", "npm:2.1.0"],
+            ["is-promise", "npm:2.2.2"],
             ["promise", "npm:7.3.1"]
           ],
           "linkType": "HARD",
@@ -1183,20 +1183,20 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["mime-db", [
-        ["npm:1.43.0", {
-          "packageLocation": "./.yarn/cache/mime-db-npm-1.43.0-b0bbde9132-2.zip/node_modules/mime-db/",
+        ["npm:1.44.0", {
+          "packageLocation": "./.yarn/cache/mime-db-npm-1.44.0-d6ab7b4e20-2.zip/node_modules/mime-db/",
           "packageDependencies": [
-            ["mime-db", "npm:1.43.0"]
+            ["mime-db", "npm:1.44.0"]
           ],
           "linkType": "HARD",
         }]
       ]],
       ["mime-types", [
-        ["npm:2.1.26", {
-          "packageLocation": "./.yarn/cache/mime-types-npm-2.1.26-6c5c824f25-2.zip/node_modules/mime-types/",
+        ["npm:2.1.27", {
+          "packageLocation": "./.yarn/cache/mime-types-npm-2.1.27-bbebca8e17-2.zip/node_modules/mime-types/",
           "packageDependencies": [
-            ["mime-types", "npm:2.1.26"],
-            ["mime-db", "npm:1.43.0"]
+            ["mime-types", "npm:2.1.27"],
+            ["mime-db", "npm:1.44.0"]
           ],
           "linkType": "HARD",
         }]
@@ -1485,7 +1485,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jstransformer", "npm:1.0.0"],
             ["pug-error", "npm:1.3.3"],
             ["pug-walk", "npm:1.1.8"],
-            ["resolve", "patch:resolve@npm%3A1.16.0#builtin<compat/resolve>::version=1.16.0&hash=8fccd0"],
+            ["resolve", "patch:resolve@npm%3A1.17.0#builtin<compat/resolve>::version=1.17.0&hash=8fccd0"],
             ["uglify-js", "npm:2.8.29"]
           ],
           "linkType": "HARD",
@@ -1714,7 +1714,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["is-typedarray", "npm:1.0.0"],
             ["isstream", "npm:0.1.2"],
             ["json-stringify-safe", "npm:5.0.1"],
-            ["mime-types", "npm:2.1.26"],
+            ["mime-types", "npm:2.1.27"],
             ["oauth-sign", "npm:0.9.0"],
             ["performance-now", "npm:2.1.0"],
             ["qs", "npm:6.5.2"],
@@ -1758,10 +1758,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["resolve", [
-        ["patch:resolve@npm%3A1.16.0#builtin<compat/resolve>::version=1.16.0&hash=8fccd0", {
-          "packageLocation": "./.yarn/cache/resolve-patch-1e9630ac90-2.zip/node_modules/resolve/",
+        ["patch:resolve@npm%3A1.17.0#builtin<compat/resolve>::version=1.17.0&hash=8fccd0", {
+          "packageLocation": "./.yarn/cache/resolve-patch-6a583e3b37-2.zip/node_modules/resolve/",
           "packageDependencies": [
-            ["resolve", "patch:resolve@npm%3A1.16.0#builtin<compat/resolve>::version=1.16.0&hash=8fccd0"],
+            ["resolve", "patch:resolve@npm%3A1.17.0#builtin<compat/resolve>::version=1.17.0&hash=8fccd0"],
             ["path-parse", "npm:1.0.6"]
           ],
           "linkType": "HARD",
@@ -2026,7 +2026,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["type-is", "npm:1.6.18"],
             ["media-typer", "npm:0.3.0"],
-            ["mime-types", "npm:2.1.26"]
+            ["mime-types", "npm:2.1.27"]
           ],
           "linkType": "HARD",
         }]
