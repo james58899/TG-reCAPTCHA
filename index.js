@@ -39,7 +39,7 @@ if (config.redis && config.redis != "") {
 
 if (!config.timeout) config.timeout = 3600
 
-setInterval(doTimeout, 60000)
+setInterval(doTimeout, Math.min(60000, config.timeout * 1000))
 
 recaptcha._api.host = 'www.recaptcha.net'
 app.disable('x-powered-by')
@@ -124,24 +124,31 @@ bot.on('new_chat_members', async msg => {
 
   if (members.length === 0) return
 
+  // TODO handle error
   const muteJoin = Promise.allSettled(members.map(i => bot.restrictChatMember(msg.chat.id, i.id, { can_send_messages: false })))
 
-  const message = await bot.sendMessage(msg.chat.id, 'Generating token...', { reply_to_message_id: msg.message_id })
+  let message
+  try {
+    message = await retryCooldown(() => bot.sendMessage(msg.chat.id, 'Generating token...', { reply_to_message_id: msg.message_id }))
+  } catch (e) {
+    console.trace("[Join] Send message failed.", e.stack)
+    return
+  }
 
   await sleep(1000)
   await muteJoin
 
-  bot.editMessageText("reCAPTCHA", {
+  retryCooldown(() => bot.editMessageText("reCAPTCHA", {
     chat_id: message.chat.id,
     message_id: message.message_id,
     reply_markup: genKeyboard(genToken(msg.chat.id, message.message_id, members.map(i => i.id)))
-  })
+  })).catch(e => console.trace("[Join] Edit message failed.", e.stack))
 
   addTimeout(getUnixtime(), { chat: msg.chat.id, users: members.map(i => i.id), id: message.message_id, msg: msg.message_id })
 })
 
 bot.on('callback_query', async callback => {
-  const data = parserToken(callback.message.reply_markup.inline_keyboard[0][0].url.split('/').slice(-1)[0])
+  const data = parserToken(callback.message.reply_markup.inline_keyboard[0][0].url.split('/').pop())
 
   // Wrokaround 35ba5c2
   if (data.users[0].user) {
@@ -151,10 +158,11 @@ bot.on('callback_query', async callback => {
   const unvailedUsers = (await Promise.all(data.users.map(i => bot.getChatMember(data.chat, i)))).filter(i => i.status === 'restricted').map(i => i.user.id)
 
   if (unvailedUsers.length === 0) {
-    bot.deleteMessage(data.chat, data.id)
+    bot.deleteMessage(data.chat, data.id).catch(e => console.trace("[Callback] Delete message failed.", e.stack))
     bot.answerCallbackQuery(callback.id)
   } else if (unvailedUsers.includes(callback.from.id)) {
     bot.editMessageReplyMarkup(genKeyboard(genToken(data.chat, data.id, unvailedUsers)), { chat_id: data.chat, message_id: data.id })
+      .catch(e => console.trace("[Callback] Edit message failed.", e.stack))
     bot.answerCallbackQuery(callback.id, { cache_time: 30, text: 'Token updated' })
   } else {
     bot.answerCallbackQuery(callback.id, { cache_time: 300 })
@@ -235,7 +243,7 @@ async function cleanTimeout(value) {
         }
       }
     } catch (error) {
-      console.error("Kick error", error)
+      console.trace("[Timeout] Kick failed.", error.stack)
     }
   }
   try {
@@ -245,4 +253,19 @@ async function cleanTimeout(value) {
 
 function sleep(time) {
   return new Promise(resolve => setTimeout(resolve, time));
+}
+
+async function retryCooldown(request) {
+  try {
+    return await request()
+  } catch (error) {
+    if (error.code === "ETELEGRAM" && error.response.statusCode === 429) {
+      const delayTime = error.message.split(' ').pop()
+
+      if (isNaN(delayTime)) throw error
+
+      await sleep(delayTime)
+      return retryCooldown(request)
+    } else throw error
+  }
 }
