@@ -265,7 +265,7 @@ async function retryCooldown(request) {
 
       if (isNaN(delayTime)) throw error
 
-      await sleep(delayTime)
+      await sleep(delayTime * 1000)
       return retryCooldown(request)
     } else throw error
   }
