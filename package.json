@@ -21,7 +21,7 @@
     "express": "^4.17.1",
     "express-recaptcha": "^5.0.1",
     "morgan": "^1.10.0",
-    "node-telegram-bot-api": "^0.40.0",
+    "node-telegram-bot-api": "^0.50.0",
     "pug": "^2.0.4",
     "redis": "^3.0.2"
   }
