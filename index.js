@@ -108,6 +108,9 @@ app.post('/verify/:token', recaptcha.middleware.verify, (req, res) => {
         retryCooldown(() => bot.editMessageReplyMarkup(genKeyboard(genToken(data.chat, data.id, users)), { chat_id: data.chat, message_id: data.id }))
           .catch(e => console.trace("[Pass] Update message failed.", e.stack))
       }
+
+      // Remove timeout countdown
+      removeTimeout(data.date, parseInt(req.query.id))
     } else {
       res.status(400).send('reCAPTCHA vailed failed.')
     }
@@ -212,6 +215,38 @@ function addTimeout(time, data) {
     redisClient.zadd("timeout", time, JSON.stringify(data))
   } else {
     timeout.set(time, data)
+  }
+}
+
+async function removeTimeout(time, user) {
+  if (redisClient) {
+    for (value of (await util.promisify(redisClient.zrangebyscore).bind(redisClient)("timeout", time, time))) {
+      const data = JSON.parse(value)
+
+      const index = data.users.indexOf(user);
+      if (index > -1) {
+        data.users.splice(index, 1);
+      }
+
+      if (data.users.length === 0) {
+        redisClient.zrem("timeout", value)
+      } else {
+        // Update data
+        redisClient.zrem("timeout", value).then(() => redisClient.zadd("timeout", time, JSON.stringify(data)))
+      }
+    }
+  } else if (timeout.has(time)) {
+    const data = timeout.get(time)
+
+    // Remove user from array
+    const index = data.users.indexOf(user);
+    if (index > -1) {
+      data.users.splice(index, 1);
+    }
+
+    if (data.users.length === 0) {
+      timeout.delete(time)
+    }
   }
 }
 
