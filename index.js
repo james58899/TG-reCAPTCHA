@@ -1,6 +1,5 @@
 const crypto = require('crypto')
 const express = require('express')
-const bodyparser = require('body-parser')
 const morgan = require('morgan')
 const telegrambot = require('node-telegram-bot-api')
 const Recaptcha = require('express-recaptcha').RecaptchaV2
@@ -45,7 +44,7 @@ recaptcha._api.host = 'www.recaptcha.net'
 app.disable('x-powered-by')
 app.set('view engine', 'pug')
 app.set('trust proxy', true)
-app.use(bodyparser.json())
+app.use(express.json())
 
 if (config.webhook) {
   app.post(`/bot${config.token}`, (req, res) => {
