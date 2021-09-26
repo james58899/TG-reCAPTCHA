@@ -273,8 +273,12 @@ async function cleanTimeout(value) {
     try {
       const member = await bot.getChatMember(value.chat, user)
       if (member.status === "restricted") {
-        if (await bot.kickChatMember(value.chat, member.user.id)) {
-          await bot.unbanChatMember(value.chat, member.user.id)
+        if (member.is_member === true) {
+          await bot.banChatMember(value.chat, user, { until_date: Math.floor(+new Date() / 1000) + 60 })
+          await sleep(1000) // Workaround TG API laggy
+          await bot.unbanChatMember(value.chat, user, { only_if_banned: true })
+        } else {
+          await bot.unbanChatMember(value.chat, user)
         }
       }
     } catch (error) {
