@@ -26,12 +26,16 @@ const unban = {
 const bot = new telegrambot(config.token, { polling: config.webhook ? false : pollingOption })
 const app = express()
 const recaptcha = new Recaptcha(config.recaptcha.site_key, config.recaptcha.secret_key, { checkremoteip: true, callback: 'cb' })
-let redisClient, timeout
+/** @type {import('redis').RedisClientType} */
+let redisClient
+/** @type {Map<Number, Array} */
+let timeout
 
 if (config.redis && config.redis != "") {
   redisClient = redis.createClient(config.redis)
   redisClient.on("ready", () => console.log("Redis ready."))
   redisClient.on("error", console.error)
+  redisClient.connect()
 } else {
   timeout = new Map()
 }
@@ -99,17 +103,15 @@ app.post('/verify/:token', recaptcha.middleware.verify, (req, res) => {
       bot.restrictChatMember(data.chat, req.query.id, unban).catch(e => console.trace("[Pass] Unban failed.", e.stack))
       res.send()
 
-      // update or delete message
-      const users = data.users.filter(i => i !== parseInt(req.query.id))
-      if (users.length === 0) {
-        bot.deleteMessage(data.chat, data.id).catch(e => console.trace("[Pass] delete message failed.", e.stack))
-      } else {
-        retryCooldown(() => bot.editMessageReplyMarkup(genKeyboard(genToken(data.chat, data.id, users)), { chat_id: data.chat, message_id: data.id }))
-          .catch(e => console.trace("[Pass] Update message failed.", e.stack))
-      }
-
-      // Remove timeout countdown
-      removeTimeout(data.date, parseInt(req.query.id))
+      // Remove timeout countdown & Update or delete message
+      removeTimeout(data.date, parseInt(req.query.id)).then(users => {
+        if (users.length === 0) {
+          bot.deleteMessage(data.chat, data.id).catch(e => console.trace("[Pass] delete message failed.", e.stack))
+        } else {
+          retryCooldown(() => bot.editMessageReplyMarkup(genKeyboard(genToken(data.chat, data.id, users)), { chat_id: data.chat, message_id: data.id }))
+            .catch(e => console.trace("[Pass] Update message failed.", e.stack))
+        }
+      })
     } else {
       res.status(400).send('reCAPTCHA vailed failed.')
     }
@@ -152,11 +154,6 @@ bot.on('new_chat_members', async msg => {
 
 bot.on('callback_query', async callback => {
   const data = parserToken(callback.message.reply_markup.inline_keyboard[0][0].url.split('/').pop())
-
-  // Wrokaround 35ba5c2
-  if (data.users[0].user) {
-    data.users = data.users.map(i => i.user.id)
-  }
 
   const unvailedUsers = (await Promise.all(data.users.map(i => bot.getChatMember(data.chat, i)))).filter(i => i.status === 'restricted').map(i => i.user.id)
 
@@ -211,57 +208,66 @@ function genKeyboard(token) {
 
 function addTimeout(time, data) {
   if (redisClient) {
-    redisClient.zadd("timeout", time, JSON.stringify(data))
+    redisClient.zAdd("timeout", { score: time, value: JSON.stringify(data) })
   } else {
-    timeout.set(time, data)
+    timeout.has(time) ? timeout.get(time).push(data) : timeout.set(time, [data])
   }
 }
 
+/**
+ * 
+ * @param {Number} time
+ * @param {Number} user
+ * @returns {Promise<Array<Number>>}
+ */
 async function removeTimeout(time, user) {
+  let pending = []
   if (redisClient) {
-    for (value of (await util.promisify(redisClient.zrangebyscore).bind(redisClient)("timeout", time, time))) {
+    for (const value of (await redisClient.zRangeByScore("timeout", time, time))) {
       const data = JSON.parse(value)
 
       const index = data.users.indexOf(user);
       if (index > -1) {
         data.users.splice(index, 1);
-      }
+        pending = data.users
+      } else continue
 
       if (data.users.length === 0) {
-        redisClient.zrem("timeout", value)
+        redisClient.zRem("timeout", value)
       } else {
         // Update data
-        redisClient.zrem("timeout", value).then(() => redisClient.zadd("timeout", time, JSON.stringify(data)))
+        redisClient.multi().zRem("timeout", value).zAdd("timeout", { score: time, value: JSON.stringify(data) }).exec()
       }
     }
   } else if (timeout.has(time)) {
-    const data = timeout.get(time)
+    const updated = timeout.get(time).filter((data) => {
+      // Remove user from array
+      const index = data.users.indexOf(user);
+      if (index > -1) {
+        data.users.splice(index, 1);
+        pending = data.users
+      }
+      return data.users.length !== 0
+    })
 
-    // Remove user from array
-    const index = data.users.indexOf(user);
-    if (index > -1) {
-      data.users.splice(index, 1);
-    }
-
-    if (data.users.length === 0) {
-      timeout.delete(time)
-    }
+    updated.length === 0 ? timeout.delete(time) : timeout.set(time, updated)
   }
+  return pending
 }
 
 async function doTimeout() {
   const time = getUnixtime() - config.timeout
   if (redisClient) {
-    if (await util.promisify(redisClient.zcount).bind(redisClient)("timeout", 0, time) != 0) {
-      for (value of (await util.promisify(redisClient.zrangebyscore).bind(redisClient)("timeout", 0, time)).map(i => JSON.parse(i))) {
+    if (await redisClient.zCount("timeout", 0, time) != 0) {
+      for (const value of (await redisClient.zRangeByScore("timeout", 0, time)).map(i => JSON.parse(i))) {
         cleanTimeout(value)
       }
-      redisClient.zremrangebyscore("timeout", 0, time)
+      redisClient.zRemRangeByScore("timeout", 0, time)
     }
   } else {
     timeout.forEach((value, key) => {
       if (key < time) {
-        cleanTimeout(value)
+        for (const i of value) cleanTimeout(i)
         timeout.delete(key)
       }
     })
@@ -269,16 +275,16 @@ async function doTimeout() {
 }
 
 async function cleanTimeout(value) {
-  for (user of value.users) {
+  for (const user of value.users) {
     try {
       const member = await bot.getChatMember(value.chat, user)
       if (member.status === "restricted") {
         if (member.is_member === true) {
-          await bot.banChatMember(value.chat, user, { until_date: Math.floor(+new Date() / 1000) + 60 })
+          await retryCooldown(() => bot.banChatMember(value.chat, member.user.id, { until_date: Math.floor(+new Date() / 1000) + 60 }))
           await sleep(1000) // Workaround TG API laggy
-          await bot.unbanChatMember(value.chat, user, { only_if_banned: true })
+          await retryCooldown(() => bot.unbanChatMember(value.chat, member.user.id, { only_if_banned: true }))
         } else {
-          await bot.unbanChatMember(value.chat, user)
+          await retryCooldown(() => bot.unbanChatMember(value.chat, member.user.id))
         }
       }
     } catch (error) {
@@ -304,6 +310,9 @@ async function retryCooldown(request) {
       if (isNaN(delayTime)) throw error
 
       await sleep(delayTime * 1000)
+      return retryCooldown(request)
+    } else if (error.response && error.response.statusCode >= 500) {
+      await sleep(1000)
       return retryCooldown(request)
     } else throw error
   }
