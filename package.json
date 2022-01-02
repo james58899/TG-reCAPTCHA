@@ -17,12 +17,12 @@
   },
   "homepage": "https://github.com/james58899/tg-recaptcha#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.2",
     "express-recaptcha": "^5.0.2",
     "morgan": "^1.10.0",
-    "node-telegram-bot-api": "^0.54.0",
+    "node-telegram-bot-api": "^0.56.0",
     "pug": "^3.0.2",
-    "redis": "^3.1.2"
+    "redis": "^4.0.1"
   },
-  "packageManager": "yarn@3.0.2"
+  "packageManager": "yarn@3.1.1"
 }
