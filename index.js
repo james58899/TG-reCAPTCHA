@@ -23,7 +23,7 @@ const unban = {
   can_pin_messages: true
 }
 
-const bot = new telegrambot(config.token, { polling: config.webhook ? false : pollingOption })
+const bot = new telegrambot(config.token, { polling: config.webhook ? false : pollingOption, baseApiUrl: config.api_base })
 const app = express()
 const recaptcha = new Recaptcha(config.recaptcha.site_key, config.recaptcha.secret_key, { checkremoteip: true, callback: 'cb' })
 /** @type {import('redis').RedisClientType} */
