@@ -275,10 +275,12 @@ async function doTimeout() {
 }
 
 async function cleanTimeout(value) {
+  let deleteJoin = false
   for (const user of value.users) {
     try {
       const member = await bot.getChatMember(value.chat, user)
       if (member.status === "restricted") {
+        deleteJoin = true
         if (member.is_member === true) {
           await retryCooldown(() => bot.banChatMember(value.chat, member.user.id, { until_date: Math.floor(+new Date() / 1000) + 60 }))
           await sleep(1000) // Workaround TG API laggy
@@ -286,13 +288,15 @@ async function cleanTimeout(value) {
         } else {
           await retryCooldown(() => bot.unbanChatMember(value.chat, member.user.id))
         }
+      } else if (member.status === "kicked") {
+        deleteJoin = true
       }
     } catch (error) {
       console.trace("[Timeout] Kick failed.", error.stack)
     }
   }
   try {
-    if (await bot.deleteMessage(value.chat, value.id)) await bot.deleteMessage(value.chat, value.msg)
+    if (await bot.deleteMessage(value.chat, value.id) && deleteJoin) await bot.deleteMessage(value.chat, value.msg)
   } catch (error) { }
 }
 
