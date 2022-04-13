@@ -64,10 +64,10 @@ app.use(morgan('combined'))
 app.get('/', (_, res) => res.send('Hello world!'))
 app.get('/verify/:token', recaptcha.middleware.render, (req, res) => {
   if (req.query.hash) {
-    const token = parserToken(req.params.token)
+    const data = parserToken(req.params.token)
     const now = getUnixtime()
 
-    if (now - req.query.auth_date > 60 || now - token.date > 60) {
+    if (!data || now - req.query.auth_date > 60 || now - data.ts > 60) {
       res.status(403).send("Token expired, please click <b>Update token</b> and try again.")
       return
     }
@@ -77,7 +77,7 @@ app.get('/verify/:token', recaptcha.middleware.render, (req, res) => {
       return
     }
 
-    if (!parserToken(req.params.token).users.includes(parseInt(req.query.id))) {
+    if (!data.users.includes(parseInt(req.query.id))) {
       res.status(400).send("User not match token")
       return
     }
@@ -94,7 +94,7 @@ app.post('/verify/:token', recaptcha.middleware.verify, (req, res) => {
     if (!req.recaptcha.error) {
       const data = parserToken(req.params.token)
 
-      if (getUnixtime() - data.date > 60) {
+      if (getUnixtime() - data.ts > 60) {
         res.status(410).send('Token expired')
         return
       }
@@ -104,11 +104,11 @@ app.post('/verify/:token', recaptcha.middleware.verify, (req, res) => {
       res.send()
 
       // Remove timeout countdown & Update or delete message
-      removeTimeout(data.date, parseInt(req.query.id)).then(users => {
+      removeTimeout(data.time, parseInt(req.query.id)).then(users => {
         if (users.length === 0) {
           bot.deleteMessage(data.chat, data.id).catch(e => console.trace("[Pass] delete message failed.", e.stack))
         } else {
-          retryCooldown(() => bot.editMessageReplyMarkup(genKeyboard(genToken(data.chat, data.id, users)), { chat_id: data.chat, message_id: data.id }))
+          retryCooldown(() => bot.editMessageReplyMarkup(genKeyboard(genToken(data.time, data.chat, data.id, users)), { chat_id: data.chat, message_id: data.id }))
             .catch(e => console.trace("[Pass] Update message failed.", e.stack))
         }
       })
@@ -143,29 +143,36 @@ bot.on('new_chat_members', async msg => {
   await sleep(1000)
   await muteJoin
 
+  const time = getUnixtime()
   retryCooldown(() => bot.editMessageText("reCAPTCHA", {
     chat_id: message.chat.id,
     message_id: message.message_id,
-    reply_markup: genKeyboard(genToken(msg.chat.id, message.message_id, members.map(i => i.id)))
+    reply_markup: genKeyboard(genToken(time, msg.chat.id, message.message_id, members.map(i => i.id)))
   })).catch(e => console.trace("[Join] Edit message failed.", e.stack))
 
-  addTimeout(getUnixtime(), { chat: msg.chat.id, users: members.map(i => i.id), id: message.message_id, msg: msg.message_id })
+  addTimeout(time, { chat: msg.chat.id, users: members.map(i => i.id), id: message.message_id, msg: msg.message_id })
 })
 
 bot.on('callback_query', async callback => {
   const data = parserToken(callback.message.reply_markup.inline_keyboard[0][0].url.split('/').pop())
 
-  const unvailedUsers = (await Promise.all(data.users.map(i => bot.getChatMember(data.chat, i)))).filter(i => i.status === 'restricted').map(i => i.user.id)
+  const users = await Promise.all(data.users.map(i => bot.getChatMember(data.chat, i)))
 
+  const unvailedUsers = users.filter(i => i.status === 'restricted').map(i => i.user.id)
   if (unvailedUsers.length === 0) {
     bot.deleteMessage(data.chat, data.id).catch(e => console.trace("[Callback] Delete message failed.", e.stack))
     bot.answerCallbackQuery(callback.id)
   } else if (unvailedUsers.includes(callback.from.id)) {
-    bot.editMessageReplyMarkup(genKeyboard(genToken(data.chat, data.id, unvailedUsers)), { chat_id: data.chat, message_id: data.id })
+    bot.editMessageReplyMarkup(genKeyboard(genToken(data.time, data.chat, data.id, unvailedUsers)), { chat_id: data.chat, message_id: data.id })
       .catch(e => console.trace("[Callback] Edit message failed.", e.stack))
     bot.answerCallbackQuery(callback.id, { cache_time: 30, text: 'Token updated' })
   } else {
     bot.answerCallbackQuery(callback.id, { cache_time: 300 })
+  }
+
+  const vailedUsers = users.filter(i => i.status !== 'restricted').map(i => i.user.id)
+  if (vailedUsers.length !== 0) {
+    await Promise.all(vailedUsers.map(i => removeTimeout(data.time, i)))
   }
 })
 
@@ -180,17 +187,19 @@ function checkVaild(input) {
 }
 
 function parserToken(input) {
-  const rawdata = Buffer.from(input, 'base64').toString().split(' ')
+  const rawdata = Buffer.from(input, 'base64url')
+  const hash = rawdata.subarray(0, 32)
+  const data = rawdata.subarray(32)
 
-  if (rawdata[0] === crypto.createHmac('sha256', secretKey).update(rawdata[1]).digest('hex')) {
-    return JSON.parse(rawdata[1])
+  if (hash.equals(crypto.createHmac('sha256', secretKey).update(data).digest())) {
+    return JSON.parse(data.toString('latin1'))
   }
 }
 
-function genToken(chat, id, users) {
-  const data = JSON.stringify({ chat, id, users, date: getUnixtime() })
-  const hash = crypto.createHmac('sha256', secretKey).update(data).digest('hex')
-  return Buffer.from(`${hash} ${data}`).toString('base64')
+function genToken(time, chat, id, users) {
+  const data = JSON.stringify({ chat, id, users, time, ts: getUnixtime() })
+  const hash = crypto.createHmac('sha256', secretKey).update(data).digest()
+  return Buffer.concat([hash,Buffer.from(data, 'latin1')]).toString('base64url')
 }
 
 function getUnixtime() {
