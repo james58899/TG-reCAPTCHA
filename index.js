@@ -30,6 +30,9 @@ const recaptcha = new Recaptcha(config.recaptcha.site_key, config.recaptcha.secr
 let redisClient
 /** @type {Map<Number, Array} */
 let timeout
+let me = 0;
+
+bot.getMe().then(i => me = i.id);
 
 if (config.redis && config.redis != "") {
   redisClient = redis.createClient(config.redis)
@@ -141,7 +144,11 @@ bot.on('new_chat_members', async msg => {
   }
 
   await sleep(1000)
-  await muteJoin
+  // Wait and check mute success, if fail delete message.
+  if ((await muteJoin).every(i => i.status === "rejected")) {
+    bot.deleteMessage(message.chat.id, message.message_id)
+    return
+  }
 
   const time = getUnixtime()
   retryCooldown(() => bot.editMessageText("reCAPTCHA", {
@@ -151,6 +158,11 @@ bot.on('new_chat_members', async msg => {
   })).catch(e => console.trace("[Join] Edit message failed.", e.stack))
 
   addTimeout(time, { chat: msg.chat.id, users: members.map(i => i.id), id: message.message_id, msg: msg.message_id })
+})
+
+// Delete kick message
+bot.on('left_chat_member', async msg => {
+  if (msg.from.id === me) bot.deleteMessage(msg.chat.id, msg.message_id)
 })
 
 bot.on('callback_query', async callback => {
@@ -199,7 +211,7 @@ function parserToken(input) {
 function genToken(time, chat, id, users) {
   const data = JSON.stringify({ chat, id, users, time, ts: getUnixtime() })
   const hash = crypto.createHmac('sha256', secretKey).update(data).digest()
-  return Buffer.concat([hash,Buffer.from(data, 'latin1')]).toString('base64url')
+  return Buffer.concat([hash, Buffer.from(data, 'latin1')]).toString('base64url')
 }
 
 function getUnixtime() {
