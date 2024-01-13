@@ -10,7 +10,7 @@ const config = require('./config.json')
 const secretKey = crypto.createHash('sha256').update(config.token).digest()
 const pollingOption = {
   interval: 0,
-  params: { timeout: 60 }
+  params: { timeout: 60, allowed_updates: JSON.stringify(["message", "callback_query", "chat_member"]) }
 }
 const unban = {
   can_send_messages: true,
@@ -65,6 +65,10 @@ if (config.webhook) {
 // Skip webhook logging
 app.use(morgan('combined'))
 app.get('/', (_, res) => res.send('Hello world!'))
+app.get('/robots.txt', (_, res) => {
+  res.set('Content-Type', 'text/plain')
+  res.send('User-agent: *\nDisallow: /')
+})
 app.get('/verify/:token', recaptcha.middleware.render, (req, res) => {
   if (req.query.hash) {
     const data = parserToken(req.params.token)
@@ -127,13 +131,66 @@ bot.onText(/\/ping(?:@\w+)?/, async msg => {
   retryCooldown(() => bot.sendMessage(msg.chat.id, "pong", { reply_to_message_id: msg.message_id }))
 })
 
+bot.on('chat_member', async event => {
+  // Only trigger on join
+  const oldStatus = event.old_chat_member
+  const newStatus = event.new_chat_member
+  let muteJoin = false
+  if ((newStatus.status === oldStatus.status && !oldStatus.is_member) || newStatus.status === "member" && oldStatus.status !== "restricted") {
+    muteJoin = await bot.restrictChatMember(event.chat.id, newStatus.user.id, { can_send_messages: false }).catch(() => false)
+  } else return
+
+  // Only send message with user if not join message
+  let chatInfo = bot.getChat(event.chat.id);
+  let memberCount = bot.getChatMemberCount(event.chat.id);
+  if (!muteJoin || !(await chatInfo).has_hidden_members && (await memberCount) < 10000) return
+
+  // Send message
+  let message
+  let name = newStatus.user.username
+  if (newStatus.user.username) {
+    name = '@' + newStatus.user.username
+  } else {
+    name = newStatus.user.first_name
+    let graphemes = [...(new Intl.Segmenter()).segment(name)] // unicode graphemes
+    if (graphemes.length > 10) {
+      name = graphemes.slice(0, 10).map(s => s.segment).join('') + '...'
+    }
+  }
+  try {
+    message = await retryCooldown(() => bot.sendMessage(event.chat.id,
+      `${name} are you a robot?\n\nGenerating token...`,
+      {
+        protect_content: true,
+        entities: [{ type: "text_mention", offset: 0, length: name.length, user: { id: newStatus.user.id } }]
+      }
+    ))
+  } catch (e) {
+    console.trace("[Join] Send message failed.", e.stack)
+    return
+  }
+
+  await sleep(1000) // Wait client sync...
+
+  const time = getUnixtime()
+  retryCooldown(() => bot.editMessageText(`${name} are you a robot?`, {
+    chat_id: message.chat.id,
+    message_id: message.message_id,
+    entities: [{ type: "text_mention", offset: 0, length: name.length, user: { id: newStatus.user.id } }],
+    reply_markup: genKeyboard(genToken(time, event.chat.id, message.message_id, [newStatus.user.id]))
+  })).catch(e => console.trace("[Join] Edit message failed.", e.stack))
+
+  addTimeout(time, { chat: event.chat.id, users: [newStatus.user.id], id: message.message_id })
+})
+
 bot.on('new_chat_members', async msg => {
   const members = msg.new_chat_members.filter(i => !i.is_bot)
 
   if (members.length === 0) return
 
-  // TODO handle error
-  const muteJoin = Promise.allSettled(members.map(i => bot.restrictChatMember(msg.chat.id, i.id, { can_send_messages: false })))
+  // This will mute member double time, just check bot has permission
+  const muteJoin = await Promise.allSettled(members.map(i => bot.restrictChatMember(msg.chat.id, i.id, { can_send_messages: false })))
+  if (muteJoin.every(i => i.status === "rejected")) return
 
   let message
   try {
@@ -143,15 +200,10 @@ bot.on('new_chat_members', async msg => {
     return
   }
 
-  await sleep(1000)
-  // Wait and check mute success, if fail delete message.
-  if ((await muteJoin).every(i => i.status === "rejected")) {
-    bot.deleteMessage(message.chat.id, message.message_id)
-    return
-  }
+  await sleep(1000) // Wait client sync...
 
   const time = getUnixtime()
-  retryCooldown(() => bot.editMessageText("reCAPTCHA", {
+  retryCooldown(() => bot.editMessageText("Are you a robot?", {
     chat_id: message.chat.id,
     message_id: message.message_id,
     reply_markup: genKeyboard(genToken(time, msg.chat.id, message.message_id, members.map(i => i.id)))
@@ -317,7 +369,7 @@ async function cleanTimeout(value) {
     }
   }
   try {
-    if (await bot.deleteMessage(value.chat, value.id) && deleteJoin) await bot.deleteMessage(value.chat, value.msg)
+    if (await bot.deleteMessage(value.chat, value.id) && deleteJoin && value.msg) await bot.deleteMessage(value.chat, value.msg)
   } catch (error) { }
 }
 
