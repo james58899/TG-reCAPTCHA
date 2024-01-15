@@ -136,7 +136,7 @@ bot.on('chat_member', async event => {
   const oldStatus = event.old_chat_member
   const newStatus = event.new_chat_member
   let muteJoin = false
-  if ((newStatus.status === oldStatus.status && !oldStatus.is_member) || newStatus.status === "member" && oldStatus.status !== "restricted") {
+  if (newStatus.status === "member" && ["left", "kicked"].includes(oldStatus.status)) {
     muteJoin = await bot.restrictChatMember(event.chat.id, newStatus.user.id, { can_send_messages: false }).catch(() => false)
   } else return
 
