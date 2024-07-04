@@ -131,6 +131,10 @@ bot.onText(/^\/ping(?:@\w+)?/, async msg => {
   retryCooldown(() => bot.sendMessage(msg.chat.id, "pong", { reply_to_message_id: msg.message_id }))
 })
 
+bot.onText(/^\/privacy/, async msg => {
+  retryCooldown(() => bot.sendMessage(msg.chat.id, "This bot will store access logs for debugging and security purposes.", { reply_to_message_id: msg.message_id }))
+})
+
 bot.on('chat_member', async event => {
   // Only trigger on join
   const oldStatus = event.old_chat_member
