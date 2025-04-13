@@ -17,6 +17,7 @@ const RAW_RUNTIME_STATE =
   ],\
   "enableTopLevelFallback": true,\
   "ignorePatternData": "(^(?:\\\\.yarn\\\\/sdks(?:\\\\/(?!\\\\.{1,2}(?:\\\\/|$))(?:(?:(?!(?:^|\\\\/)\\\\.{1,2}(?:\\\\/|$)).)*?)|$))$)",\
+  "pnpZipBackend": "libzip",\
   "fallbackExclusionList": [\
     ["tg-recaptcha", ["workspace:."]]\
   ],\
@@ -27,77 +28,77 @@ const RAW_RUNTIME_STATE =
       [null, {\
         "packageLocation": "./",\
         "packageDependencies": [\
-          ["express", "npm:4.19.2"],\
+          ["express", "npm:5.1.0"],\
           ["express-recaptcha", "npm:5.1.0"],\
           ["morgan", "npm:1.10.0"],\
           ["node-telegram-bot-api", "npm:0.66.0"],\
           ["pug", "npm:3.0.3"],\
-          ["redis", "npm:4.6.14"]\
+          ["redis", "npm:4.7.0"],\
+          ["tg-recaptcha", "workspace:."]\
         ],\
         "linkType": "SOFT"\
       }]\
     ]],\
     ["@babel/helper-string-parser", [\
-      ["npm:7.24.7", {\
-        "packageLocation": "./.yarn/cache/@babel-helper-string-parser-npm-7.24.7-560b175e3f-47840c7004.zip/node_modules/@babel/helper-string-parser/",\
+      ["npm:7.25.9", {\
+        "packageLocation": "./.yarn/cache/@babel-helper-string-parser-npm-7.25.9-eade578078-7244b45d8e.zip/node_modules/@babel/helper-string-parser/",\
         "packageDependencies": [\
-          ["@babel/helper-string-parser", "npm:7.24.7"]\
+          ["@babel/helper-string-parser", "npm:7.25.9"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["@babel/helper-validator-identifier", [\
-      ["npm:7.24.7", {\
-        "packageLocation": "./.yarn/cache/@babel-helper-validator-identifier-npm-7.24.7-748889c8d2-87ad608694.zip/node_modules/@babel/helper-validator-identifier/",\
+      ["npm:7.25.9", {\
+        "packageLocation": "./.yarn/cache/@babel-helper-validator-identifier-npm-7.25.9-2634b947a4-4fc6f83017.zip/node_modules/@babel/helper-validator-identifier/",\
         "packageDependencies": [\
-          ["@babel/helper-validator-identifier", "npm:7.24.7"]\
+          ["@babel/helper-validator-identifier", "npm:7.25.9"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["@babel/parser", [\
-      ["npm:7.24.7", {\
-        "packageLocation": "./.yarn/cache/@babel-parser-npm-7.24.7-79d233f3d1-8b24475687.zip/node_modules/@babel/parser/",\
+      ["npm:7.27.0", {\
+        "packageLocation": "./.yarn/cache/@babel-parser-npm-7.27.0-ab7dea7b75-ba2ed3f417.zip/node_modules/@babel/parser/",\
         "packageDependencies": [\
-          ["@babel/parser", "npm:7.24.7"],\
-          ["@babel/types", "npm:7.24.7"]\
+          ["@babel/parser", "npm:7.27.0"],\
+          ["@babel/types", "npm:7.27.0"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["@babel/types", [\
-      ["npm:7.24.7", {\
-        "packageLocation": "./.yarn/cache/@babel-types-npm-7.24.7-43a9e43e29-d9ecbfc3eb.zip/node_modules/@babel/types/",\
+      ["npm:7.27.0", {\
+        "packageLocation": "./.yarn/cache/@babel-types-npm-7.27.0-4fc27759e5-6f1592eabe.zip/node_modules/@babel/types/",\
         "packageDependencies": [\
-          ["@babel/types", "npm:7.24.7"],\
-          ["@babel/helper-string-parser", "npm:7.24.7"],\
-          ["@babel/helper-validator-identifier", "npm:7.24.7"],\
-          ["to-fast-properties", "npm:2.0.0"]\
+          ["@babel/helper-string-parser", "npm:7.25.9"],\
+          ["@babel/helper-validator-identifier", "npm:7.25.9"],\
+          ["@babel/types", "npm:7.27.0"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["@cypress/request", [\
-      ["npm:3.0.1", {\
-        "packageLocation": "./.yarn/cache/@cypress-request-npm-3.0.1-7528f5a10a-8eb92a665e.zip/node_modules/@cypress/request/",\
+      ["npm:3.0.8", {\
+        "packageLocation": "./.yarn/cache/@cypress-request-npm-3.0.8-a776d8464c-76cabf6ad6.zip/node_modules/@cypress/request/",\
         "packageDependencies": [\
-          ["@cypress/request", "npm:3.0.1"],\
+          ["@cypress/request", "npm:3.0.8"],\
           ["aws-sign2", "npm:0.7.0"],\
-          ["aws4", "npm:1.13.0"],\
+          ["aws4", "npm:1.13.2"],\
           ["caseless", "npm:0.12.0"],\
           ["combined-stream", "npm:1.0.8"],\
           ["extend", "npm:3.0.2"],\
           ["forever-agent", "npm:0.6.1"],\
-          ["form-data", "npm:2.3.3"],\
-          ["http-signature", "npm:1.3.6"],\
+          ["form-data", "npm:4.0.2"],\
+          ["http-signature", "npm:1.4.0"],\
           ["is-typedarray", "npm:1.0.0"],\
           ["isstream", "npm:0.1.2"],\
           ["json-stringify-safe", "npm:5.0.1"],\
           ["mime-types", "npm:2.1.35"],\
           ["performance-now", "npm:2.1.0"],\
-          ["qs", "npm:6.10.4"],\
+          ["qs", "npm:6.14.0"],\
           ["safe-buffer", "npm:5.2.1"],\
-          ["tough-cookie", "npm:4.1.4"],\
+          ["tough-cookie", "npm:5.1.2"],\
           ["tunnel-agent", "npm:0.6.0"],\
           ["uuid", "npm:8.3.2"]\
         ],\
@@ -115,8 +116,8 @@ const RAW_RUNTIME_STATE =
       ["virtual:e13978655384f892c9628a4691ca5628e2dea4aeea20da844adf813d3cea9cf0e9de3fb79ab3307043282b300a7c583d9d06e33bba1a509a8fcbff871fced3f6#npm:5.0.0", {\
         "packageLocation": "./.yarn/__virtual__/@cypress-request-promise-virtual-ddbf3e160f/0/cache/@cypress-request-promise-npm-5.0.0-68acc79aaf-1e5fb3c1d6.zip/node_modules/@cypress/request-promise/",\
         "packageDependencies": [\
+          ["@cypress/request", "npm:3.0.8"],\
           ["@cypress/request-promise", "virtual:e13978655384f892c9628a4691ca5628e2dea4aeea20da844adf813d3cea9cf0e9de3fb79ab3307043282b300a7c583d9d06e33bba1a509a8fcbff871fced3f6#npm:5.0.0"],\
-          ["@cypress/request", "npm:3.0.1"],\
           ["@types/cypress__request", null],\
           ["bluebird", "npm:3.7.2"],\
           ["request-promise-core", "virtual:ddbf3e160f41d2f8606724ce72d18f5bb5c369377fc2ec65909f6089071972a2ed4395606a66f0632bc900e9103096aab02f355bb7eb3301ed0fa27df91cb4b0#npm:1.1.3"],\
@@ -138,11 +139,11 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:5a48a938248ad7064ab3f0fe9b0d3afb5044609fd8d757cbaf1b9e226f4267dfabfc9ce1ead3f6cde73341bf3ba35ff907bc6e04a066936cd597d8a59ff08879#npm:1.2.0", {\
-        "packageLocation": "./.yarn/__virtual__/@redis-bloom-virtual-972cd4dd13/0/cache/@redis-bloom-npm-1.2.0-c3ffcb341a-7dde8e6718.zip/node_modules/@redis/bloom/",\
+      ["virtual:3130248fc5502cf3dd14bad540ab1605f1f63708ab04c1e61b91cfb9b96e73e7240a14374fe4caeca2c1be28fc1392f81548c96ba640b645d40b7e043177e16d#npm:1.2.0", {\
+        "packageLocation": "./.yarn/__virtual__/@redis-bloom-virtual-c42adc8a82/0/cache/@redis-bloom-npm-1.2.0-c3ffcb341a-7dde8e6718.zip/node_modules/@redis/bloom/",\
         "packageDependencies": [\
-          ["@redis/bloom", "virtual:5a48a938248ad7064ab3f0fe9b0d3afb5044609fd8d757cbaf1b9e226f4267dfabfc9ce1ead3f6cde73341bf3ba35ff907bc6e04a066936cd597d8a59ff08879#npm:1.2.0"],\
-          ["@redis/client", "npm:1.5.16"],\
+          ["@redis/bloom", "virtual:3130248fc5502cf3dd14bad540ab1605f1f63708ab04c1e61b91cfb9b96e73e7240a14374fe4caeca2c1be28fc1392f81548c96ba640b645d40b7e043177e16d#npm:1.2.0"],\
+          ["@redis/client", "npm:1.6.0"],\
           ["@types/redis__client", null]\
         ],\
         "packagePeers": [\
@@ -153,10 +154,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@redis/client", [\
-      ["npm:1.5.16", {\
-        "packageLocation": "./.yarn/cache/@redis-client-npm-1.5.16-b5b5d53f14-80098cff92.zip/node_modules/@redis/client/",\
+      ["npm:1.6.0", {\
+        "packageLocation": "./.yarn/cache/@redis-client-npm-1.6.0-951a6e0d76-c80a01b4f7.zip/node_modules/@redis/client/",\
         "packageDependencies": [\
-          ["@redis/client", "npm:1.5.16"],\
+          ["@redis/client", "npm:1.6.0"],\
           ["cluster-key-slot", "npm:1.1.2"],\
           ["generic-pool", "npm:3.9.0"],\
           ["yallist", "npm:4.0.0"]\
@@ -172,11 +173,11 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:5a48a938248ad7064ab3f0fe9b0d3afb5044609fd8d757cbaf1b9e226f4267dfabfc9ce1ead3f6cde73341bf3ba35ff907bc6e04a066936cd597d8a59ff08879#npm:1.1.1", {\
-        "packageLocation": "./.yarn/__virtual__/@redis-graph-virtual-a374c6f79b/0/cache/@redis-graph-npm-1.1.1-c9b94b077a-64199db2cb.zip/node_modules/@redis/graph/",\
+      ["virtual:3130248fc5502cf3dd14bad540ab1605f1f63708ab04c1e61b91cfb9b96e73e7240a14374fe4caeca2c1be28fc1392f81548c96ba640b645d40b7e043177e16d#npm:1.1.1", {\
+        "packageLocation": "./.yarn/__virtual__/@redis-graph-virtual-352cc082b6/0/cache/@redis-graph-npm-1.1.1-c9b94b077a-64199db2cb.zip/node_modules/@redis/graph/",\
         "packageDependencies": [\
-          ["@redis/graph", "virtual:5a48a938248ad7064ab3f0fe9b0d3afb5044609fd8d757cbaf1b9e226f4267dfabfc9ce1ead3f6cde73341bf3ba35ff907bc6e04a066936cd597d8a59ff08879#npm:1.1.1"],\
-          ["@redis/client", "npm:1.5.16"],\
+          ["@redis/client", "npm:1.6.0"],\
+          ["@redis/graph", "virtual:3130248fc5502cf3dd14bad540ab1605f1f63708ab04c1e61b91cfb9b96e73e7240a14374fe4caeca2c1be28fc1392f81548c96ba640b645d40b7e043177e16d#npm:1.1.1"],\
           ["@types/redis__client", null]\
         ],\
         "packagePeers": [\
@@ -187,18 +188,18 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@redis/json", [\
-      ["npm:1.0.6", {\
-        "packageLocation": "./.yarn/cache/@redis-json-npm-1.0.6-fc7bbce89a-ac6072c33a.zip/node_modules/@redis/json/",\
+      ["npm:1.0.7", {\
+        "packageLocation": "./.yarn/cache/@redis-json-npm-1.0.7-f6715a905f-cef473711d.zip/node_modules/@redis/json/",\
         "packageDependencies": [\
-          ["@redis/json", "npm:1.0.6"]\
+          ["@redis/json", "npm:1.0.7"]\
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:5a48a938248ad7064ab3f0fe9b0d3afb5044609fd8d757cbaf1b9e226f4267dfabfc9ce1ead3f6cde73341bf3ba35ff907bc6e04a066936cd597d8a59ff08879#npm:1.0.6", {\
-        "packageLocation": "./.yarn/__virtual__/@redis-json-virtual-46e9afebaf/0/cache/@redis-json-npm-1.0.6-fc7bbce89a-ac6072c33a.zip/node_modules/@redis/json/",\
+      ["virtual:3130248fc5502cf3dd14bad540ab1605f1f63708ab04c1e61b91cfb9b96e73e7240a14374fe4caeca2c1be28fc1392f81548c96ba640b645d40b7e043177e16d#npm:1.0.7", {\
+        "packageLocation": "./.yarn/__virtual__/@redis-json-virtual-09b7a57e73/0/cache/@redis-json-npm-1.0.7-f6715a905f-cef473711d.zip/node_modules/@redis/json/",\
         "packageDependencies": [\
-          ["@redis/json", "virtual:5a48a938248ad7064ab3f0fe9b0d3afb5044609fd8d757cbaf1b9e226f4267dfabfc9ce1ead3f6cde73341bf3ba35ff907bc6e04a066936cd597d8a59ff08879#npm:1.0.6"],\
-          ["@redis/client", "npm:1.5.16"],\
+          ["@redis/client", "npm:1.6.0"],\
+          ["@redis/json", "virtual:3130248fc5502cf3dd14bad540ab1605f1f63708ab04c1e61b91cfb9b96e73e7240a14374fe4caeca2c1be28fc1392f81548c96ba640b645d40b7e043177e16d#npm:1.0.7"],\
           ["@types/redis__client", null]\
         ],\
         "packagePeers": [\
@@ -209,18 +210,18 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@redis/search", [\
-      ["npm:1.1.6", {\
-        "packageLocation": "./.yarn/cache/@redis-search-npm-1.1.6-4ce4e9ed5e-690b30dc91.zip/node_modules/@redis/search/",\
+      ["npm:1.2.0", {\
+        "packageLocation": "./.yarn/cache/@redis-search-npm-1.2.0-21b616db68-01d57ac10d.zip/node_modules/@redis/search/",\
         "packageDependencies": [\
-          ["@redis/search", "npm:1.1.6"]\
+          ["@redis/search", "npm:1.2.0"]\
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:5a48a938248ad7064ab3f0fe9b0d3afb5044609fd8d757cbaf1b9e226f4267dfabfc9ce1ead3f6cde73341bf3ba35ff907bc6e04a066936cd597d8a59ff08879#npm:1.1.6", {\
-        "packageLocation": "./.yarn/__virtual__/@redis-search-virtual-4594395516/0/cache/@redis-search-npm-1.1.6-4ce4e9ed5e-690b30dc91.zip/node_modules/@redis/search/",\
+      ["virtual:3130248fc5502cf3dd14bad540ab1605f1f63708ab04c1e61b91cfb9b96e73e7240a14374fe4caeca2c1be28fc1392f81548c96ba640b645d40b7e043177e16d#npm:1.2.0", {\
+        "packageLocation": "./.yarn/__virtual__/@redis-search-virtual-5baf761cca/0/cache/@redis-search-npm-1.2.0-21b616db68-01d57ac10d.zip/node_modules/@redis/search/",\
         "packageDependencies": [\
-          ["@redis/search", "virtual:5a48a938248ad7064ab3f0fe9b0d3afb5044609fd8d757cbaf1b9e226f4267dfabfc9ce1ead3f6cde73341bf3ba35ff907bc6e04a066936cd597d8a59ff08879#npm:1.1.6"],\
-          ["@redis/client", "npm:1.5.16"],\
+          ["@redis/client", "npm:1.6.0"],\
+          ["@redis/search", "virtual:3130248fc5502cf3dd14bad540ab1605f1f63708ab04c1e61b91cfb9b96e73e7240a14374fe4caeca2c1be28fc1392f81548c96ba640b645d40b7e043177e16d#npm:1.2.0"],\
           ["@types/redis__client", null]\
         ],\
         "packagePeers": [\
@@ -231,18 +232,18 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@redis/time-series", [\
-      ["npm:1.0.5", {\
-        "packageLocation": "./.yarn/cache/@redis-time-series-npm-1.0.5-5df2dd2005-3c7f31f64a.zip/node_modules/@redis/time-series/",\
+      ["npm:1.1.0", {\
+        "packageLocation": "./.yarn/cache/@redis-time-series-npm-1.1.0-f132273b08-503d0d5cbc.zip/node_modules/@redis/time-series/",\
         "packageDependencies": [\
-          ["@redis/time-series", "npm:1.0.5"]\
+          ["@redis/time-series", "npm:1.1.0"]\
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:5a48a938248ad7064ab3f0fe9b0d3afb5044609fd8d757cbaf1b9e226f4267dfabfc9ce1ead3f6cde73341bf3ba35ff907bc6e04a066936cd597d8a59ff08879#npm:1.0.5", {\
-        "packageLocation": "./.yarn/__virtual__/@redis-time-series-virtual-a3d3f2ec25/0/cache/@redis-time-series-npm-1.0.5-5df2dd2005-3c7f31f64a.zip/node_modules/@redis/time-series/",\
+      ["virtual:3130248fc5502cf3dd14bad540ab1605f1f63708ab04c1e61b91cfb9b96e73e7240a14374fe4caeca2c1be28fc1392f81548c96ba640b645d40b7e043177e16d#npm:1.1.0", {\
+        "packageLocation": "./.yarn/__virtual__/@redis-time-series-virtual-5f93f54281/0/cache/@redis-time-series-npm-1.1.0-f132273b08-503d0d5cbc.zip/node_modules/@redis/time-series/",\
         "packageDependencies": [\
-          ["@redis/time-series", "virtual:5a48a938248ad7064ab3f0fe9b0d3afb5044609fd8d757cbaf1b9e226f4267dfabfc9ce1ead3f6cde73341bf3ba35ff907bc6e04a066936cd597d8a59ff08879#npm:1.0.5"],\
-          ["@redis/client", "npm:1.5.16"],\
+          ["@redis/client", "npm:1.6.0"],\
+          ["@redis/time-series", "virtual:3130248fc5502cf3dd14bad540ab1605f1f63708ab04c1e61b91cfb9b96e73e7240a14374fe4caeca2c1be28fc1392f81548c96ba640b645d40b7e043177e16d#npm:1.1.0"],\
           ["@types/redis__client", null]\
         ],\
         "packagePeers": [\
@@ -253,12 +254,12 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["accepts", [\
-      ["npm:1.3.8", {\
-        "packageLocation": "./.yarn/cache/accepts-npm-1.3.8-9a812371c9-3a35c5f558.zip/node_modules/accepts/",\
+      ["npm:2.0.0", {\
+        "packageLocation": "./.yarn/cache/accepts-npm-2.0.0-134226d1d0-9837474209.zip/node_modules/accepts/",\
         "packageDependencies": [\
-          ["accepts", "npm:1.3.8"],\
-          ["mime-types", "npm:2.1.35"],\
-          ["negotiator", "npm:0.6.3"]\
+          ["accepts", "npm:2.0.0"],\
+          ["mime-types", "npm:3.0.1"],\
+          ["negotiator", "npm:1.0.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -273,52 +274,43 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["array-buffer-byte-length", [\
-      ["npm:1.0.1", {\
-        "packageLocation": "./.yarn/cache/array-buffer-byte-length-npm-1.0.1-e7afc30010-f5cdf54527.zip/node_modules/array-buffer-byte-length/",\
+      ["npm:1.0.2", {\
+        "packageLocation": "./.yarn/cache/array-buffer-byte-length-npm-1.0.2-c2be1e97e0-74e1d2d996.zip/node_modules/array-buffer-byte-length/",\
         "packageDependencies": [\
-          ["array-buffer-byte-length", "npm:1.0.1"],\
-          ["call-bind", "npm:1.0.7"],\
-          ["is-array-buffer", "npm:3.0.4"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["array-flatten", [\
-      ["npm:1.1.1", {\
-        "packageLocation": "./.yarn/cache/array-flatten-npm-1.1.1-9d94ad5f1d-806966c8ab.zip/node_modules/array-flatten/",\
-        "packageDependencies": [\
-          ["array-flatten", "npm:1.1.1"]\
+          ["array-buffer-byte-length", "npm:1.0.2"],\
+          ["call-bound", "npm:1.0.4"],\
+          ["is-array-buffer", "npm:3.0.5"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["array.prototype.findindex", [\
-      ["npm:2.2.3", {\
-        "packageLocation": "./.yarn/cache/array.prototype.findindex-npm-2.2.3-9ab34f5eff-3c212377bb.zip/node_modules/array.prototype.findindex/",\
+      ["npm:2.2.4", {\
+        "packageLocation": "./.yarn/cache/array.prototype.findindex-npm-2.2.4-f7da3d2a0a-b12c8bf5be.zip/node_modules/array.prototype.findindex/",\
         "packageDependencies": [\
-          ["array.prototype.findindex", "npm:2.2.3"],\
-          ["call-bind", "npm:1.0.7"],\
+          ["array.prototype.findindex", "npm:2.2.4"],\
+          ["call-bind", "npm:1.0.8"],\
+          ["call-bound", "npm:1.0.4"],\
           ["define-properties", "npm:1.2.1"],\
-          ["es-abstract", "npm:1.23.3"],\
-          ["es-object-atoms", "npm:1.0.0"],\
-          ["es-shim-unscopables", "npm:1.0.2"]\
+          ["es-abstract", "npm:1.23.9"],\
+          ["es-object-atoms", "npm:1.1.1"],\
+          ["es-shim-unscopables", "npm:1.1.0"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["arraybuffer.prototype.slice", [\
-      ["npm:1.0.3", {\
-        "packageLocation": "./.yarn/cache/arraybuffer.prototype.slice-npm-1.0.3-97a993a091-d32754045b.zip/node_modules/arraybuffer.prototype.slice/",\
+      ["npm:1.0.4", {\
+        "packageLocation": "./.yarn/cache/arraybuffer.prototype.slice-npm-1.0.4-01f62a9713-2f2459caa0.zip/node_modules/arraybuffer.prototype.slice/",\
         "packageDependencies": [\
-          ["arraybuffer.prototype.slice", "npm:1.0.3"],\
-          ["array-buffer-byte-length", "npm:1.0.1"],\
-          ["call-bind", "npm:1.0.7"],\
+          ["array-buffer-byte-length", "npm:1.0.2"],\
+          ["arraybuffer.prototype.slice", "npm:1.0.4"],\
+          ["call-bind", "npm:1.0.8"],\
           ["define-properties", "npm:1.2.1"],\
-          ["es-abstract", "npm:1.23.3"],\
+          ["es-abstract", "npm:1.23.9"],\
           ["es-errors", "npm:1.3.0"],\
-          ["get-intrinsic", "npm:1.2.4"],\
-          ["is-array-buffer", "npm:3.0.4"],\
-          ["is-shared-array-buffer", "npm:1.0.3"]\
+          ["get-intrinsic", "npm:1.3.0"],\
+          ["is-array-buffer", "npm:3.0.5"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -343,10 +335,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["assert-never", [\
-      ["npm:1.2.1", {\
-        "packageLocation": "./.yarn/cache/assert-never-npm-1.2.1-d423b480cd-c720bb99cd.zip/node_modules/assert-never/",\
+      ["npm:1.4.0", {\
+        "packageLocation": "./.yarn/cache/assert-never-npm-1.4.0-410769002f-494db08b89.zip/node_modules/assert-never/",\
         "packageDependencies": [\
-          ["assert-never", "npm:1.2.1"]\
+          ["assert-never", "npm:1.4.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -356,6 +348,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/assert-plus-npm-1.0.0-cac95ef098-b194b9d50c.zip/node_modules/assert-plus/",\
         "packageDependencies": [\
           ["assert-plus", "npm:1.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["async-function", [\
+      ["npm:1.0.0", {\
+        "packageLocation": "./.yarn/cache/async-function-npm-1.0.0-a81667ebcd-669a32c2cb.zip/node_modules/async-function/",\
+        "packageDependencies": [\
+          ["async-function", "npm:1.0.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -374,7 +375,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/available-typed-arrays-npm-1.0.7-e5e5d79687-d07226ef4f.zip/node_modules/available-typed-arrays/",\
         "packageDependencies": [\
           ["available-typed-arrays", "npm:1.0.7"],\
-          ["possible-typed-array-names", "npm:1.0.0"]\
+          ["possible-typed-array-names", "npm:1.1.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -389,10 +390,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["aws4", [\
-      ["npm:1.13.0", {\
-        "packageLocation": "./.yarn/cache/aws4-npm-1.13.0-40298c3a5d-4c71398543.zip/node_modules/aws4/",\
+      ["npm:1.13.2", {\
+        "packageLocation": "./.yarn/cache/aws4-npm-1.13.2-b493d08ff0-c993d0d186.zip/node_modules/aws4/",\
         "packageDependencies": [\
-          ["aws4", "npm:1.13.0"]\
+          ["aws4", "npm:1.13.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -401,8 +402,8 @@ const RAW_RUNTIME_STATE =
       ["npm:3.0.0-canary-5", {\
         "packageLocation": "./.yarn/cache/babel-walk-npm-3.0.0-canary-5-61b07ed745-17b689874d.zip/node_modules/babel-walk/",\
         "packageDependencies": [\
-          ["babel-walk", "npm:3.0.0-canary-5"],\
-          ["@babel/types", "npm:7.24.7"]\
+          ["@babel/types", "npm:7.27.0"],\
+          ["babel-walk", "npm:3.0.0-canary-5"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -448,22 +449,19 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["body-parser", [\
-      ["npm:1.20.2", {\
-        "packageLocation": "./.yarn/cache/body-parser-npm-1.20.2-44738662cf-06f1438fff.zip/node_modules/body-parser/",\
+      ["npm:2.2.0", {\
+        "packageLocation": "./.yarn/cache/body-parser-npm-2.2.0-b3d2aaf918-a9ded39e71.zip/node_modules/body-parser/",\
         "packageDependencies": [\
-          ["body-parser", "npm:1.20.2"],\
+          ["body-parser", "npm:2.2.0"],\
           ["bytes", "npm:3.1.2"],\
           ["content-type", "npm:1.0.5"],\
-          ["debug", "virtual:44738662cf800ff2863ba9baeabb817b24a959a14f86e20a31680e5dc79a4a738f7ceb7dca32753d579fae475aa061dffad8228a3391f3a9546b122f077e29a5#npm:2.6.9"],\
-          ["depd", "npm:2.0.0"],\
-          ["destroy", "npm:1.2.0"],\
+          ["debug", "virtual:b3d2aaf918b7353bd0443ec66626f23848085fec7626c8198deeeb11823698c64a4c04de542c97d383c7d367525cd5f3dbbc5626864e9aab284c22611d9f418b#npm:4.4.0"],\
           ["http-errors", "npm:2.0.0"],\
-          ["iconv-lite", "npm:0.4.24"],\
+          ["iconv-lite", "npm:0.6.3"],\
           ["on-finished", "npm:2.4.1"],\
-          ["qs", "npm:6.11.0"],\
-          ["raw-body", "npm:2.5.2"],\
-          ["type-is", "npm:1.6.18"],\
-          ["unpipe", "npm:1.0.0"]\
+          ["qs", "npm:6.14.0"],\
+          ["raw-body", "npm:3.0.0"],\
+          ["type-is", "npm:2.0.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -478,15 +476,36 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["call-bind", [\
-      ["npm:1.0.7", {\
-        "packageLocation": "./.yarn/cache/call-bind-npm-1.0.7-762763ef96-a3ded2e423.zip/node_modules/call-bind/",\
+      ["npm:1.0.8", {\
+        "packageLocation": "./.yarn/cache/call-bind-npm-1.0.8-4145a20621-a13819be06.zip/node_modules/call-bind/",\
         "packageDependencies": [\
-          ["call-bind", "npm:1.0.7"],\
-          ["es-define-property", "npm:1.0.0"],\
-          ["es-errors", "npm:1.3.0"],\
-          ["function-bind", "npm:1.1.2"],\
-          ["get-intrinsic", "npm:1.2.4"],\
+          ["call-bind", "npm:1.0.8"],\
+          ["call-bind-apply-helpers", "npm:1.0.2"],\
+          ["es-define-property", "npm:1.0.1"],\
+          ["get-intrinsic", "npm:1.3.0"],\
           ["set-function-length", "npm:1.2.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["call-bind-apply-helpers", [\
+      ["npm:1.0.2", {\
+        "packageLocation": "./.yarn/cache/call-bind-apply-helpers-npm-1.0.2-3eedbea3bb-47bd9901d5.zip/node_modules/call-bind-apply-helpers/",\
+        "packageDependencies": [\
+          ["call-bind-apply-helpers", "npm:1.0.2"],\
+          ["es-errors", "npm:1.3.0"],\
+          ["function-bind", "npm:1.1.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["call-bound", [\
+      ["npm:1.0.4", {\
+        "packageLocation": "./.yarn/cache/call-bound-npm-1.0.4-359cfa32c7-f4796a6a09.zip/node_modules/call-bound/",\
+        "packageDependencies": [\
+          ["call-bind-apply-helpers", "npm:1.0.2"],\
+          ["call-bound", "npm:1.0.4"],\
+          ["get-intrinsic", "npm:1.3.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -505,7 +524,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/character-parser-npm-2.2.0-a5df9fb883-5a8d3eff2c.zip/node_modules/character-parser/",\
         "packageDependencies": [\
           ["character-parser", "npm:2.2.0"],\
-          ["is-regex", "npm:1.1.4"]\
+          ["is-regex", "npm:1.2.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -533,18 +552,18 @@ const RAW_RUNTIME_STATE =
       ["npm:4.0.1", {\
         "packageLocation": "./.yarn/cache/constantinople-npm-4.0.1-925d9c26ce-15129adef1.zip/node_modules/constantinople/",\
         "packageDependencies": [\
-          ["constantinople", "npm:4.0.1"],\
-          ["@babel/parser", "npm:7.24.7"],\
-          ["@babel/types", "npm:7.24.7"]\
+          ["@babel/parser", "npm:7.27.0"],\
+          ["@babel/types", "npm:7.27.0"],\
+          ["constantinople", "npm:4.0.1"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["content-disposition", [\
-      ["npm:0.5.4", {\
-        "packageLocation": "./.yarn/cache/content-disposition-npm-0.5.4-2d93678616-bac0316ebf.zip/node_modules/content-disposition/",\
+      ["npm:1.0.0", {\
+        "packageLocation": "./.yarn/cache/content-disposition-npm-1.0.0-3349ca3b40-c7b1ba0cea.zip/node_modules/content-disposition/",\
         "packageDependencies": [\
-          ["content-disposition", "npm:0.5.4"],\
+          ["content-disposition", "npm:1.0.0"],\
           ["safe-buffer", "npm:5.2.1"]\
         ],\
         "linkType": "HARD"\
@@ -560,19 +579,19 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["cookie", [\
-      ["npm:0.6.0", {\
-        "packageLocation": "./.yarn/cache/cookie-npm-0.6.0-362d6a2e45-f2318b31af.zip/node_modules/cookie/",\
+      ["npm:0.7.2", {\
+        "packageLocation": "./.yarn/cache/cookie-npm-0.7.2-6ea9ee4231-9596e8ccdb.zip/node_modules/cookie/",\
         "packageDependencies": [\
-          ["cookie", "npm:0.6.0"]\
+          ["cookie", "npm:0.7.2"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["cookie-signature", [\
-      ["npm:1.0.6", {\
-        "packageLocation": "./.yarn/cache/cookie-signature-npm-1.0.6-93f325f7f0-b36fd0d4e3.zip/node_modules/cookie-signature/",\
+      ["npm:1.2.2", {\
+        "packageLocation": "./.yarn/cache/cookie-signature-npm-1.2.2-8474a8ac29-54e05df1a2.zip/node_modules/cookie-signature/",\
         "packageDependencies": [\
-          ["cookie-signature", "npm:1.0.6"]\
+          ["cookie-signature", "npm:1.2.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -597,44 +616,44 @@ const RAW_RUNTIME_STATE =
       ["npm:1.14.1", {\
         "packageLocation": "./.yarn/cache/dashdash-npm-1.14.1-be8f10a286-64589a15c5.zip/node_modules/dashdash/",\
         "packageDependencies": [\
-          ["dashdash", "npm:1.14.1"],\
-          ["assert-plus", "npm:1.0.0"]\
+          ["assert-plus", "npm:1.0.0"],\
+          ["dashdash", "npm:1.14.1"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["data-view-buffer", [\
-      ["npm:1.0.1", {\
-        "packageLocation": "./.yarn/cache/data-view-buffer-npm-1.0.1-d911beebce-8984119e59.zip/node_modules/data-view-buffer/",\
+      ["npm:1.0.2", {\
+        "packageLocation": "./.yarn/cache/data-view-buffer-npm-1.0.2-93c9247e37-7986d40fc7.zip/node_modules/data-view-buffer/",\
         "packageDependencies": [\
-          ["data-view-buffer", "npm:1.0.1"],\
-          ["call-bind", "npm:1.0.7"],\
+          ["call-bound", "npm:1.0.4"],\
+          ["data-view-buffer", "npm:1.0.2"],\
           ["es-errors", "npm:1.3.0"],\
-          ["is-data-view", "npm:1.0.1"]\
+          ["is-data-view", "npm:1.0.2"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["data-view-byte-length", [\
-      ["npm:1.0.1", {\
-        "packageLocation": "./.yarn/cache/data-view-byte-length-npm-1.0.1-538a9e432e-b7d9e48a0c.zip/node_modules/data-view-byte-length/",\
+      ["npm:1.0.2", {\
+        "packageLocation": "./.yarn/cache/data-view-byte-length-npm-1.0.2-96d312fb9c-f8a4534b5c.zip/node_modules/data-view-byte-length/",\
         "packageDependencies": [\
-          ["data-view-byte-length", "npm:1.0.1"],\
-          ["call-bind", "npm:1.0.7"],\
+          ["call-bound", "npm:1.0.4"],\
+          ["data-view-byte-length", "npm:1.0.2"],\
           ["es-errors", "npm:1.3.0"],\
-          ["is-data-view", "npm:1.0.1"]\
+          ["is-data-view", "npm:1.0.2"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["data-view-byte-offset", [\
-      ["npm:1.0.0", {\
-        "packageLocation": "./.yarn/cache/data-view-byte-offset-npm-1.0.0-7112a24a4b-21b0d2e53f.zip/node_modules/data-view-byte-offset/",\
+      ["npm:1.0.1", {\
+        "packageLocation": "./.yarn/cache/data-view-byte-offset-npm-1.0.1-315a12a556-fa7aa40078.zip/node_modules/data-view-byte-offset/",\
         "packageDependencies": [\
-          ["data-view-byte-offset", "npm:1.0.0"],\
-          ["call-bind", "npm:1.0.7"],\
+          ["call-bound", "npm:1.0.4"],\
+          ["data-view-byte-offset", "npm:1.0.1"],\
           ["es-errors", "npm:1.3.0"],\
-          ["is-data-view", "npm:1.0.1"]\
+          ["is-data-view", "npm:1.0.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -654,12 +673,33 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:44738662cf800ff2863ba9baeabb817b24a959a14f86e20a31680e5dc79a4a738f7ceb7dca32753d579fae475aa061dffad8228a3391f3a9546b122f077e29a5#npm:2.6.9", {\
-        "packageLocation": "./.yarn/__virtual__/debug-virtual-fad9a3537e/0/cache/debug-npm-2.6.9-7d4cb597dc-121908fb83.zip/node_modules/debug/",\
+      ["npm:4.4.0", {\
+        "packageLocation": "./.yarn/cache/debug-npm-4.4.0-f6efe76023-db94f1a182.zip/node_modules/debug/",\
         "packageDependencies": [\
-          ["debug", "virtual:44738662cf800ff2863ba9baeabb817b24a959a14f86e20a31680e5dc79a4a738f7ceb7dca32753d579fae475aa061dffad8228a3391f3a9546b122f077e29a5#npm:2.6.9"],\
+          ["debug", "npm:4.4.0"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:a0da109b6bb2221d58f29dc59726c567934008a44a6ba5ff00fb6a418135f3bfbb062d75cc9584275e233f5c2369177667c01f9eb6419553dc7abe081d7542fb#npm:2.6.9", {\
+        "packageLocation": "./.yarn/__virtual__/debug-virtual-dc49b120dc/0/cache/debug-npm-2.6.9-7d4cb597dc-121908fb83.zip/node_modules/debug/",\
+        "packageDependencies": [\
           ["@types/supports-color", null],\
+          ["debug", "virtual:a0da109b6bb2221d58f29dc59726c567934008a44a6ba5ff00fb6a418135f3bfbb062d75cc9584275e233f5c2369177667c01f9eb6419553dc7abe081d7542fb#npm:2.6.9"],\
           ["ms", "npm:2.0.0"],\
+          ["supports-color", null]\
+        ],\
+        "packagePeers": [\
+          "@types/supports-color",\
+          "supports-color"\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["virtual:b3d2aaf918b7353bd0443ec66626f23848085fec7626c8198deeeb11823698c64a4c04de542c97d383c7d367525cd5f3dbbc5626864e9aab284c22611d9f418b#npm:4.4.0", {\
+        "packageLocation": "./.yarn/__virtual__/debug-virtual-e8d039f5fc/0/cache/debug-npm-4.4.0-f6efe76023-db94f1a182.zip/node_modules/debug/",\
+        "packageDependencies": [\
+          ["@types/supports-color", null],\
+          ["debug", "virtual:b3d2aaf918b7353bd0443ec66626f23848085fec7626c8198deeeb11823698c64a4c04de542c97d383c7d367525cd5f3dbbc5626864e9aab284c22611d9f418b#npm:4.4.0"],\
+          ["ms", "npm:2.1.3"],\
           ["supports-color", null]\
         ],\
         "packagePeers": [\
@@ -671,8 +711,8 @@ const RAW_RUNTIME_STATE =
       ["virtual:e13978655384f892c9628a4691ca5628e2dea4aeea20da844adf813d3cea9cf0e9de3fb79ab3307043282b300a7c583d9d06e33bba1a509a8fcbff871fced3f6#npm:3.2.7", {\
         "packageLocation": "./.yarn/__virtual__/debug-virtual-d00e745a3a/0/cache/debug-npm-3.2.7-754e818c7a-37d96ae42c.zip/node_modules/debug/",\
         "packageDependencies": [\
-          ["debug", "virtual:e13978655384f892c9628a4691ca5628e2dea4aeea20da844adf813d3cea9cf0e9de3fb79ab3307043282b300a7c583d9d06e33bba1a509a8fcbff871fced3f6#npm:3.2.7"],\
           ["@types/supports-color", null],\
+          ["debug", "virtual:e13978655384f892c9628a4691ca5628e2dea4aeea20da844adf813d3cea9cf0e9de3fb79ab3307043282b300a7c583d9d06e33bba1a509a8fcbff871fced3f6#npm:3.2.7"],\
           ["ms", "npm:2.1.3"],\
           ["supports-color", null]\
         ],\
@@ -688,9 +728,9 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/define-data-property-npm-1.1.4-4cbd8efc51-dea0606d14.zip/node_modules/define-data-property/",\
         "packageDependencies": [\
           ["define-data-property", "npm:1.1.4"],\
-          ["es-define-property", "npm:1.0.0"],\
+          ["es-define-property", "npm:1.0.1"],\
           ["es-errors", "npm:1.3.0"],\
-          ["gopd", "npm:1.0.1"]\
+          ["gopd", "npm:1.2.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -699,8 +739,8 @@ const RAW_RUNTIME_STATE =
       ["npm:1.2.1", {\
         "packageLocation": "./.yarn/cache/define-properties-npm-1.2.1-8a4d42413b-88a152319f.zip/node_modules/define-properties/",\
         "packageDependencies": [\
-          ["define-properties", "npm:1.2.1"],\
           ["define-data-property", "npm:1.1.4"],\
+          ["define-properties", "npm:1.2.1"],\
           ["has-property-descriptors", "npm:1.0.2"],\
           ["object-keys", "npm:1.1.1"]\
         ],\
@@ -725,20 +765,23 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
-    ["destroy", [\
-      ["npm:1.2.0", {\
-        "packageLocation": "./.yarn/cache/destroy-npm-1.2.0-6a511802e2-bd7633942f.zip/node_modules/destroy/",\
-        "packageDependencies": [\
-          ["destroy", "npm:1.2.0"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
     ["doctypes", [\
       ["npm:1.1.0", {\
         "packageLocation": "./.yarn/cache/doctypes-npm-1.1.0-cb4fdda595-b3f9d597ad.zip/node_modules/doctypes/",\
         "packageDependencies": [\
           ["doctypes", "npm:1.1.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["dunder-proto", [\
+      ["npm:1.0.1", {\
+        "packageLocation": "./.yarn/cache/dunder-proto-npm-1.0.1-90eb6829db-199f2a0c1c.zip/node_modules/dunder-proto/",\
+        "packageDependencies": [\
+          ["call-bind-apply-helpers", "npm:1.0.2"],\
+          ["dunder-proto", "npm:1.0.1"],\
+          ["es-errors", "npm:1.3.0"],\
+          ["gopd", "npm:1.2.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -764,10 +807,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["encodeurl", [\
-      ["npm:1.0.2", {\
-        "packageLocation": "./.yarn/cache/encodeurl-npm-1.0.2-f8c8454c41-f6c2387379.zip/node_modules/encodeurl/",\
+      ["npm:2.0.0", {\
+        "packageLocation": "./.yarn/cache/encodeurl-npm-2.0.0-3660bcc92a-5d317306ac.zip/node_modules/encodeurl/",\
         "packageDependencies": [\
-          ["encodeurl", "npm:1.0.2"]\
+          ["encodeurl", "npm:2.0.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -783,66 +826,70 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["es-abstract", [\
-      ["npm:1.23.3", {\
-        "packageLocation": "./.yarn/cache/es-abstract-npm-1.23.3-ffd85665f7-d27e9afafb.zip/node_modules/es-abstract/",\
+      ["npm:1.23.9", {\
+        "packageLocation": "./.yarn/cache/es-abstract-npm-1.23.9-65d488dcce-1de229c9e0.zip/node_modules/es-abstract/",\
         "packageDependencies": [\
-          ["es-abstract", "npm:1.23.3"],\
-          ["array-buffer-byte-length", "npm:1.0.1"],\
-          ["arraybuffer.prototype.slice", "npm:1.0.3"],\
+          ["array-buffer-byte-length", "npm:1.0.2"],\
+          ["arraybuffer.prototype.slice", "npm:1.0.4"],\
           ["available-typed-arrays", "npm:1.0.7"],\
-          ["call-bind", "npm:1.0.7"],\
-          ["data-view-buffer", "npm:1.0.1"],\
-          ["data-view-byte-length", "npm:1.0.1"],\
-          ["data-view-byte-offset", "npm:1.0.0"],\
-          ["es-define-property", "npm:1.0.0"],\
+          ["call-bind", "npm:1.0.8"],\
+          ["call-bound", "npm:1.0.4"],\
+          ["data-view-buffer", "npm:1.0.2"],\
+          ["data-view-byte-length", "npm:1.0.2"],\
+          ["data-view-byte-offset", "npm:1.0.1"],\
+          ["es-abstract", "npm:1.23.9"],\
+          ["es-define-property", "npm:1.0.1"],\
           ["es-errors", "npm:1.3.0"],\
-          ["es-object-atoms", "npm:1.0.0"],\
-          ["es-set-tostringtag", "npm:2.0.3"],\
-          ["es-to-primitive", "npm:1.2.1"],\
-          ["function.prototype.name", "npm:1.1.6"],\
-          ["get-intrinsic", "npm:1.2.4"],\
-          ["get-symbol-description", "npm:1.0.2"],\
+          ["es-object-atoms", "npm:1.1.1"],\
+          ["es-set-tostringtag", "npm:2.1.0"],\
+          ["es-to-primitive", "npm:1.3.0"],\
+          ["function.prototype.name", "npm:1.1.8"],\
+          ["get-intrinsic", "npm:1.3.0"],\
+          ["get-proto", "npm:1.0.1"],\
+          ["get-symbol-description", "npm:1.1.0"],\
           ["globalthis", "npm:1.0.4"],\
-          ["gopd", "npm:1.0.1"],\
+          ["gopd", "npm:1.2.0"],\
           ["has-property-descriptors", "npm:1.0.2"],\
-          ["has-proto", "npm:1.0.3"],\
-          ["has-symbols", "npm:1.0.3"],\
+          ["has-proto", "npm:1.2.0"],\
+          ["has-symbols", "npm:1.1.0"],\
           ["hasown", "npm:2.0.2"],\
-          ["internal-slot", "npm:1.0.7"],\
-          ["is-array-buffer", "npm:3.0.4"],\
+          ["internal-slot", "npm:1.1.0"],\
+          ["is-array-buffer", "npm:3.0.5"],\
           ["is-callable", "npm:1.2.7"],\
-          ["is-data-view", "npm:1.0.1"],\
-          ["is-negative-zero", "npm:2.0.3"],\
-          ["is-regex", "npm:1.1.4"],\
-          ["is-shared-array-buffer", "npm:1.0.3"],\
-          ["is-string", "npm:1.0.7"],\
-          ["is-typed-array", "npm:1.1.13"],\
-          ["is-weakref", "npm:1.0.2"],\
-          ["object-inspect", "npm:1.13.2"],\
+          ["is-data-view", "npm:1.0.2"],\
+          ["is-regex", "npm:1.2.1"],\
+          ["is-shared-array-buffer", "npm:1.0.4"],\
+          ["is-string", "npm:1.1.1"],\
+          ["is-typed-array", "npm:1.1.15"],\
+          ["is-weakref", "npm:1.1.1"],\
+          ["math-intrinsics", "npm:1.1.0"],\
+          ["object-inspect", "npm:1.13.4"],\
           ["object-keys", "npm:1.1.1"],\
-          ["object.assign", "npm:4.1.5"],\
-          ["regexp.prototype.flags", "npm:1.5.2"],\
-          ["safe-array-concat", "npm:1.1.2"],\
-          ["safe-regex-test", "npm:1.0.3"],\
-          ["string.prototype.trim", "npm:1.2.9"],\
-          ["string.prototype.trimend", "npm:1.0.8"],\
+          ["object.assign", "npm:4.1.7"],\
+          ["own-keys", "npm:1.0.1"],\
+          ["regexp.prototype.flags", "npm:1.5.4"],\
+          ["safe-array-concat", "npm:1.1.3"],\
+          ["safe-push-apply", "npm:1.0.0"],\
+          ["safe-regex-test", "npm:1.1.0"],\
+          ["set-proto", "npm:1.0.0"],\
+          ["string.prototype.trim", "npm:1.2.10"],\
+          ["string.prototype.trimend", "npm:1.0.9"],\
           ["string.prototype.trimstart", "npm:1.0.8"],\
-          ["typed-array-buffer", "npm:1.0.2"],\
-          ["typed-array-byte-length", "npm:1.0.1"],\
-          ["typed-array-byte-offset", "npm:1.0.2"],\
-          ["typed-array-length", "npm:1.0.6"],\
-          ["unbox-primitive", "npm:1.0.2"],\
-          ["which-typed-array", "npm:1.1.15"]\
+          ["typed-array-buffer", "npm:1.0.3"],\
+          ["typed-array-byte-length", "npm:1.0.3"],\
+          ["typed-array-byte-offset", "npm:1.0.4"],\
+          ["typed-array-length", "npm:1.0.7"],\
+          ["unbox-primitive", "npm:1.1.0"],\
+          ["which-typed-array", "npm:1.1.19"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["es-define-property", [\
-      ["npm:1.0.0", {\
-        "packageLocation": "./.yarn/cache/es-define-property-npm-1.0.0-e23aa9b242-6bf3191feb.zip/node_modules/es-define-property/",\
+      ["npm:1.0.1", {\
+        "packageLocation": "./.yarn/cache/es-define-property-npm-1.0.1-3fc6324f1c-3f54eb49c1.zip/node_modules/es-define-property/",\
         "packageDependencies": [\
-          ["es-define-property", "npm:1.0.0"],\
-          ["get-intrinsic", "npm:1.2.4"]\
+          ["es-define-property", "npm:1.0.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -857,21 +904,22 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["es-object-atoms", [\
-      ["npm:1.0.0", {\
-        "packageLocation": "./.yarn/cache/es-object-atoms-npm-1.0.0-c5cca6d760-1fed3d102e.zip/node_modules/es-object-atoms/",\
+      ["npm:1.1.1", {\
+        "packageLocation": "./.yarn/cache/es-object-atoms-npm-1.1.1-362d8043c2-65364812ca.zip/node_modules/es-object-atoms/",\
         "packageDependencies": [\
-          ["es-object-atoms", "npm:1.0.0"],\
-          ["es-errors", "npm:1.3.0"]\
+          ["es-errors", "npm:1.3.0"],\
+          ["es-object-atoms", "npm:1.1.1"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["es-set-tostringtag", [\
-      ["npm:2.0.3", {\
-        "packageLocation": "./.yarn/cache/es-set-tostringtag-npm-2.0.3-8a191fed13-f22aff1585.zip/node_modules/es-set-tostringtag/",\
+      ["npm:2.1.0", {\
+        "packageLocation": "./.yarn/cache/es-set-tostringtag-npm-2.1.0-4e55705d3f-ef2ca9ce49.zip/node_modules/es-set-tostringtag/",\
         "packageDependencies": [\
-          ["es-set-tostringtag", "npm:2.0.3"],\
-          ["get-intrinsic", "npm:1.2.4"],\
+          ["es-errors", "npm:1.3.0"],\
+          ["es-set-tostringtag", "npm:2.1.0"],\
+          ["get-intrinsic", "npm:1.3.0"],\
           ["has-tostringtag", "npm:1.0.2"],\
           ["hasown", "npm:2.0.2"]\
         ],\
@@ -879,23 +927,23 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["es-shim-unscopables", [\
-      ["npm:1.0.2", {\
-        "packageLocation": "./.yarn/cache/es-shim-unscopables-npm-1.0.2-a3056a4c0d-f495af7b4b.zip/node_modules/es-shim-unscopables/",\
+      ["npm:1.1.0", {\
+        "packageLocation": "./.yarn/cache/es-shim-unscopables-npm-1.1.0-13f1970345-1b9702c8a1.zip/node_modules/es-shim-unscopables/",\
         "packageDependencies": [\
-          ["es-shim-unscopables", "npm:1.0.2"],\
+          ["es-shim-unscopables", "npm:1.1.0"],\
           ["hasown", "npm:2.0.2"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["es-to-primitive", [\
-      ["npm:1.2.1", {\
-        "packageLocation": "./.yarn/cache/es-to-primitive-npm-1.2.1-b7a7eac6c5-0886572b8d.zip/node_modules/es-to-primitive/",\
+      ["npm:1.3.0", {\
+        "packageLocation": "./.yarn/cache/es-to-primitive-npm-1.3.0-470b6d51b6-c7e87467ab.zip/node_modules/es-to-primitive/",\
         "packageDependencies": [\
-          ["es-to-primitive", "npm:1.2.1"],\
+          ["es-to-primitive", "npm:1.3.0"],\
           ["is-callable", "npm:1.2.7"],\
-          ["is-date-object", "npm:1.0.5"],\
-          ["is-symbol", "npm:1.0.4"]\
+          ["is-date-object", "npm:1.1.0"],\
+          ["is-symbol", "npm:1.1.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -928,40 +976,36 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["express", [\
-      ["npm:4.19.2", {\
-        "packageLocation": "./.yarn/cache/express-npm-4.19.2-f81334a22a-e82e2662ea.zip/node_modules/express/",\
+      ["npm:5.1.0", {\
+        "packageLocation": "./.yarn/cache/express-npm-5.1.0-e44442bf7d-80ce7c53c5.zip/node_modules/express/",\
         "packageDependencies": [\
-          ["express", "npm:4.19.2"],\
-          ["accepts", "npm:1.3.8"],\
-          ["array-flatten", "npm:1.1.1"],\
-          ["body-parser", "npm:1.20.2"],\
-          ["content-disposition", "npm:0.5.4"],\
+          ["accepts", "npm:2.0.0"],\
+          ["body-parser", "npm:2.2.0"],\
+          ["content-disposition", "npm:1.0.0"],\
           ["content-type", "npm:1.0.5"],\
-          ["cookie", "npm:0.6.0"],\
-          ["cookie-signature", "npm:1.0.6"],\
-          ["debug", "virtual:44738662cf800ff2863ba9baeabb817b24a959a14f86e20a31680e5dc79a4a738f7ceb7dca32753d579fae475aa061dffad8228a3391f3a9546b122f077e29a5#npm:2.6.9"],\
-          ["depd", "npm:2.0.0"],\
-          ["encodeurl", "npm:1.0.2"],\
+          ["cookie", "npm:0.7.2"],\
+          ["cookie-signature", "npm:1.2.2"],\
+          ["debug", "virtual:b3d2aaf918b7353bd0443ec66626f23848085fec7626c8198deeeb11823698c64a4c04de542c97d383c7d367525cd5f3dbbc5626864e9aab284c22611d9f418b#npm:4.4.0"],\
+          ["encodeurl", "npm:2.0.0"],\
           ["escape-html", "npm:1.0.3"],\
           ["etag", "npm:1.8.1"],\
-          ["finalhandler", "npm:1.2.0"],\
-          ["fresh", "npm:0.5.2"],\
+          ["express", "npm:5.1.0"],\
+          ["finalhandler", "npm:2.1.0"],\
+          ["fresh", "npm:2.0.0"],\
           ["http-errors", "npm:2.0.0"],\
-          ["merge-descriptors", "npm:1.0.1"],\
-          ["methods", "npm:1.1.2"],\
+          ["merge-descriptors", "npm:2.0.0"],\
+          ["mime-types", "npm:3.0.1"],\
           ["on-finished", "npm:2.4.1"],\
+          ["once", "npm:1.4.0"],\
           ["parseurl", "npm:1.3.3"],\
-          ["path-to-regexp", "npm:0.1.7"],\
           ["proxy-addr", "npm:2.0.7"],\
-          ["qs", "npm:6.11.0"],\
+          ["qs", "npm:6.14.0"],\
           ["range-parser", "npm:1.2.1"],\
-          ["safe-buffer", "npm:5.2.1"],\
-          ["send", "npm:0.18.0"],\
-          ["serve-static", "npm:1.15.0"],\
-          ["setprototypeof", "npm:1.2.0"],\
+          ["router", "npm:2.2.0"],\
+          ["send", "npm:1.2.0"],\
+          ["serve-static", "npm:2.2.0"],\
           ["statuses", "npm:2.0.1"],\
-          ["type-is", "npm:1.6.18"],\
-          ["utils-merge", "npm:1.0.1"],\
+          ["type-is", "npm:2.0.1"],\
           ["vary", "npm:1.1.2"]\
         ],\
         "linkType": "HARD"\
@@ -1011,26 +1055,25 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["finalhandler", [\
-      ["npm:1.2.0", {\
-        "packageLocation": "./.yarn/cache/finalhandler-npm-1.2.0-593d001463-64b7e5ff2a.zip/node_modules/finalhandler/",\
+      ["npm:2.1.0", {\
+        "packageLocation": "./.yarn/cache/finalhandler-npm-2.1.0-395f86ed5d-da0bbca6d0.zip/node_modules/finalhandler/",\
         "packageDependencies": [\
-          ["finalhandler", "npm:1.2.0"],\
-          ["debug", "virtual:44738662cf800ff2863ba9baeabb817b24a959a14f86e20a31680e5dc79a4a738f7ceb7dca32753d579fae475aa061dffad8228a3391f3a9546b122f077e29a5#npm:2.6.9"],\
-          ["encodeurl", "npm:1.0.2"],\
+          ["debug", "virtual:b3d2aaf918b7353bd0443ec66626f23848085fec7626c8198deeeb11823698c64a4c04de542c97d383c7d367525cd5f3dbbc5626864e9aab284c22611d9f418b#npm:4.4.0"],\
+          ["encodeurl", "npm:2.0.0"],\
           ["escape-html", "npm:1.0.3"],\
+          ["finalhandler", "npm:2.1.0"],\
           ["on-finished", "npm:2.4.1"],\
           ["parseurl", "npm:1.3.3"],\
-          ["statuses", "npm:2.0.1"],\
-          ["unpipe", "npm:1.0.0"]\
+          ["statuses", "npm:2.0.1"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["for-each", [\
-      ["npm:0.3.3", {\
-        "packageLocation": "./.yarn/cache/for-each-npm-0.3.3-0010ca8cdd-22330d8a2d.zip/node_modules/for-each/",\
+      ["npm:0.3.5", {\
+        "packageLocation": "./.yarn/cache/for-each-npm-0.3.5-b74c5c5ba7-0e0b50f6a8.zip/node_modules/for-each/",\
         "packageDependencies": [\
-          ["for-each", "npm:0.3.3"],\
+          ["for-each", "npm:0.3.5"],\
           ["is-callable", "npm:1.2.7"]\
         ],\
         "linkType": "HARD"\
@@ -1046,12 +1089,13 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["form-data", [\
-      ["npm:2.3.3", {\
-        "packageLocation": "./.yarn/cache/form-data-npm-2.3.3-c016cc11c0-706ef1e564.zip/node_modules/form-data/",\
+      ["npm:4.0.2", {\
+        "packageLocation": "./.yarn/cache/form-data-npm-4.0.2-d2e89057d5-e534b0cf02.zip/node_modules/form-data/",\
         "packageDependencies": [\
-          ["form-data", "npm:2.3.3"],\
           ["asynckit", "npm:0.4.0"],\
           ["combined-stream", "npm:1.0.8"],\
+          ["es-set-tostringtag", "npm:2.1.0"],\
+          ["form-data", "npm:4.0.2"],\
           ["mime-types", "npm:2.1.35"]\
         ],\
         "linkType": "HARD"\
@@ -1067,10 +1111,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["fresh", [\
-      ["npm:0.5.2", {\
-        "packageLocation": "./.yarn/cache/fresh-npm-0.5.2-ad2bb4c0a2-c6d27f3ed8.zip/node_modules/fresh/",\
+      ["npm:2.0.0", {\
+        "packageLocation": "./.yarn/cache/fresh-npm-2.0.0-b0c1795dff-0557548194.zip/node_modules/fresh/",\
         "packageDependencies": [\
-          ["fresh", "npm:0.5.2"]\
+          ["fresh", "npm:2.0.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1085,14 +1129,16 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["function.prototype.name", [\
-      ["npm:1.1.6", {\
-        "packageLocation": "./.yarn/cache/function.prototype.name-npm-1.1.6-fd3a6a5cdd-9eae112949.zip/node_modules/function.prototype.name/",\
+      ["npm:1.1.8", {\
+        "packageLocation": "./.yarn/cache/function.prototype.name-npm-1.1.8-2cf198aac8-e920a2ab52.zip/node_modules/function.prototype.name/",\
         "packageDependencies": [\
-          ["function.prototype.name", "npm:1.1.6"],\
-          ["call-bind", "npm:1.0.7"],\
+          ["call-bind", "npm:1.0.8"],\
+          ["call-bound", "npm:1.0.4"],\
           ["define-properties", "npm:1.2.1"],\
-          ["es-abstract", "npm:1.23.3"],\
-          ["functions-have-names", "npm:1.2.3"]\
+          ["function.prototype.name", "npm:1.1.8"],\
+          ["functions-have-names", "npm:1.2.3"],\
+          ["hasown", "npm:2.0.2"],\
+          ["is-callable", "npm:1.2.7"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1116,27 +1162,43 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["get-intrinsic", [\
-      ["npm:1.2.4", {\
-        "packageLocation": "./.yarn/cache/get-intrinsic-npm-1.2.4-1dad3427b2-0a9b82c166.zip/node_modules/get-intrinsic/",\
+      ["npm:1.3.0", {\
+        "packageLocation": "./.yarn/cache/get-intrinsic-npm-1.3.0-35558f27b6-52c81808af.zip/node_modules/get-intrinsic/",\
         "packageDependencies": [\
-          ["get-intrinsic", "npm:1.2.4"],\
+          ["call-bind-apply-helpers", "npm:1.0.2"],\
+          ["es-define-property", "npm:1.0.1"],\
           ["es-errors", "npm:1.3.0"],\
+          ["es-object-atoms", "npm:1.1.1"],\
           ["function-bind", "npm:1.1.2"],\
-          ["has-proto", "npm:1.0.3"],\
-          ["has-symbols", "npm:1.0.3"],\
-          ["hasown", "npm:2.0.2"]\
+          ["get-intrinsic", "npm:1.3.0"],\
+          ["get-proto", "npm:1.0.1"],\
+          ["gopd", "npm:1.2.0"],\
+          ["has-symbols", "npm:1.1.0"],\
+          ["hasown", "npm:2.0.2"],\
+          ["math-intrinsics", "npm:1.1.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["get-proto", [\
+      ["npm:1.0.1", {\
+        "packageLocation": "./.yarn/cache/get-proto-npm-1.0.1-4d30bac614-9224acb446.zip/node_modules/get-proto/",\
+        "packageDependencies": [\
+          ["dunder-proto", "npm:1.0.1"],\
+          ["es-object-atoms", "npm:1.1.1"],\
+          ["get-proto", "npm:1.0.1"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["get-symbol-description", [\
-      ["npm:1.0.2", {\
-        "packageLocation": "./.yarn/cache/get-symbol-description-npm-1.0.2-f8c332e0b5-867be6d63f.zip/node_modules/get-symbol-description/",\
+      ["npm:1.1.0", {\
+        "packageLocation": "./.yarn/cache/get-symbol-description-npm-1.1.0-7a9e0b1c24-d6a7d6afca.zip/node_modules/get-symbol-description/",\
         "packageDependencies": [\
-          ["get-symbol-description", "npm:1.0.2"],\
-          ["call-bind", "npm:1.0.7"],\
+          ["call-bound", "npm:1.0.4"],\
           ["es-errors", "npm:1.3.0"],\
-          ["get-intrinsic", "npm:1.2.4"]\
+          ["get-intrinsic", "npm:1.3.0"],\
+          ["get-symbol-description", "npm:1.1.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1145,8 +1207,8 @@ const RAW_RUNTIME_STATE =
       ["npm:0.1.7", {\
         "packageLocation": "./.yarn/cache/getpass-npm-0.1.7-519164a3be-c13f8530ec.zip/node_modules/getpass/",\
         "packageDependencies": [\
-          ["getpass", "npm:0.1.7"],\
-          ["assert-plus", "npm:1.0.0"]\
+          ["assert-plus", "npm:1.0.0"],\
+          ["getpass", "npm:0.1.7"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1155,28 +1217,27 @@ const RAW_RUNTIME_STATE =
       ["npm:1.0.4", {\
         "packageLocation": "./.yarn/cache/globalthis-npm-1.0.4-de22ac6193-9d156f313a.zip/node_modules/globalthis/",\
         "packageDependencies": [\
-          ["globalthis", "npm:1.0.4"],\
           ["define-properties", "npm:1.2.1"],\
-          ["gopd", "npm:1.0.1"]\
+          ["globalthis", "npm:1.0.4"],\
+          ["gopd", "npm:1.2.0"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["gopd", [\
-      ["npm:1.0.1", {\
-        "packageLocation": "./.yarn/cache/gopd-npm-1.0.1-10c1d0b534-505c05487f.zip/node_modules/gopd/",\
+      ["npm:1.2.0", {\
+        "packageLocation": "./.yarn/cache/gopd-npm-1.2.0-df89ffa78e-50fff1e04b.zip/node_modules/gopd/",\
         "packageDependencies": [\
-          ["gopd", "npm:1.0.1"],\
-          ["get-intrinsic", "npm:1.2.4"]\
+          ["gopd", "npm:1.2.0"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["has-bigints", [\
-      ["npm:1.0.2", {\
-        "packageLocation": "./.yarn/cache/has-bigints-npm-1.0.2-52732e614d-724eb1485b.zip/node_modules/has-bigints/",\
+      ["npm:1.1.0", {\
+        "packageLocation": "./.yarn/cache/has-bigints-npm-1.1.0-d481f8ed50-2de0cdc4a1.zip/node_modules/has-bigints/",\
         "packageDependencies": [\
-          ["has-bigints", "npm:1.0.2"]\
+          ["has-bigints", "npm:1.1.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1185,26 +1246,27 @@ const RAW_RUNTIME_STATE =
       ["npm:1.0.2", {\
         "packageLocation": "./.yarn/cache/has-property-descriptors-npm-1.0.2-d7077d09f1-253c1f59e8.zip/node_modules/has-property-descriptors/",\
         "packageDependencies": [\
-          ["has-property-descriptors", "npm:1.0.2"],\
-          ["es-define-property", "npm:1.0.0"]\
+          ["es-define-property", "npm:1.0.1"],\
+          ["has-property-descriptors", "npm:1.0.2"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["has-proto", [\
-      ["npm:1.0.3", {\
-        "packageLocation": "./.yarn/cache/has-proto-npm-1.0.3-b598da2961-35a6989f81.zip/node_modules/has-proto/",\
+      ["npm:1.2.0", {\
+        "packageLocation": "./.yarn/cache/has-proto-npm-1.2.0-0108d177d3-46538dddab.zip/node_modules/has-proto/",\
         "packageDependencies": [\
-          ["has-proto", "npm:1.0.3"]\
+          ["dunder-proto", "npm:1.0.1"],\
+          ["has-proto", "npm:1.2.0"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["has-symbols", [\
-      ["npm:1.0.3", {\
-        "packageLocation": "./.yarn/cache/has-symbols-npm-1.0.3-1986bff2c4-e6922b4345.zip/node_modules/has-symbols/",\
+      ["npm:1.1.0", {\
+        "packageLocation": "./.yarn/cache/has-symbols-npm-1.1.0-9aa7dc2ac1-dde0a734b1.zip/node_modules/has-symbols/",\
         "packageDependencies": [\
-          ["has-symbols", "npm:1.0.3"]\
+          ["has-symbols", "npm:1.1.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1213,8 +1275,8 @@ const RAW_RUNTIME_STATE =
       ["npm:1.0.2", {\
         "packageLocation": "./.yarn/cache/has-tostringtag-npm-1.0.2-74a4800369-a8b1664621.zip/node_modules/has-tostringtag/",\
         "packageDependencies": [\
-          ["has-tostringtag", "npm:1.0.2"],\
-          ["has-symbols", "npm:1.0.3"]\
+          ["has-symbols", "npm:1.1.0"],\
+          ["has-tostringtag", "npm:1.0.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1223,8 +1285,8 @@ const RAW_RUNTIME_STATE =
       ["npm:2.0.2", {\
         "packageLocation": "./.yarn/cache/hasown-npm-2.0.2-80fe6c9901-3769d43470.zip/node_modules/hasown/",\
         "packageDependencies": [\
-          ["hasown", "npm:2.0.2"],\
-          ["function-bind", "npm:1.1.2"]\
+          ["function-bind", "npm:1.1.2"],\
+          ["hasown", "npm:2.0.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1233,8 +1295,8 @@ const RAW_RUNTIME_STATE =
       ["npm:2.0.0", {\
         "packageLocation": "./.yarn/cache/http-errors-npm-2.0.0-3f1c503428-fc6f2715fe.zip/node_modules/http-errors/",\
         "packageDependencies": [\
-          ["http-errors", "npm:2.0.0"],\
           ["depd", "npm:2.0.0"],\
+          ["http-errors", "npm:2.0.0"],\
           ["inherits", "npm:2.0.4"],\
           ["setprototypeof", "npm:1.2.0"],\
           ["statuses", "npm:2.0.1"],\
@@ -1244,11 +1306,11 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["http-signature", [\
-      ["npm:1.3.6", {\
-        "packageLocation": "./.yarn/cache/http-signature-npm-1.3.6-5b2eff4373-f8d15d8c91.zip/node_modules/http-signature/",\
+      ["npm:1.4.0", {\
+        "packageLocation": "./.yarn/cache/http-signature-npm-1.4.0-086af1c8e9-b9806f5a9e.zip/node_modules/http-signature/",\
         "packageDependencies": [\
-          ["http-signature", "npm:1.3.6"],\
           ["assert-plus", "npm:1.0.0"],\
+          ["http-signature", "npm:1.4.0"],\
           ["jsprim", "npm:2.0.2"],\
           ["sshpk", "npm:1.18.0"]\
         ],\
@@ -1256,10 +1318,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["iconv-lite", [\
-      ["npm:0.4.24", {\
-        "packageLocation": "./.yarn/cache/iconv-lite-npm-0.4.24-c5c4ac6695-c6886a24cc.zip/node_modules/iconv-lite/",\
+      ["npm:0.6.3", {\
+        "packageLocation": "./.yarn/cache/iconv-lite-npm-0.6.3-24b8aae27e-98102bc66b.zip/node_modules/iconv-lite/",\
         "packageDependencies": [\
-          ["iconv-lite", "npm:0.4.24"],\
+          ["iconv-lite", "npm:0.6.3"],\
           ["safer-buffer", "npm:2.1.2"]\
         ],\
         "linkType": "HARD"\
@@ -1275,13 +1337,13 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["internal-slot", [\
-      ["npm:1.0.7", {\
-        "packageLocation": "./.yarn/cache/internal-slot-npm-1.0.7-6e3758af00-f8b294a4e6.zip/node_modules/internal-slot/",\
+      ["npm:1.1.0", {\
+        "packageLocation": "./.yarn/cache/internal-slot-npm-1.1.0-269ac0e8be-03966f5e25.zip/node_modules/internal-slot/",\
         "packageDependencies": [\
-          ["internal-slot", "npm:1.0.7"],\
           ["es-errors", "npm:1.3.0"],\
           ["hasown", "npm:2.0.2"],\
-          ["side-channel", "npm:1.0.6"]\
+          ["internal-slot", "npm:1.1.0"],\
+          ["side-channel", "npm:1.1.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1296,33 +1358,48 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["is-array-buffer", [\
-      ["npm:3.0.4", {\
-        "packageLocation": "./.yarn/cache/is-array-buffer-npm-3.0.4-c1d4ec5b64-42a49d006c.zip/node_modules/is-array-buffer/",\
+      ["npm:3.0.5", {\
+        "packageLocation": "./.yarn/cache/is-array-buffer-npm-3.0.5-8f0828e156-c5c9f25606.zip/node_modules/is-array-buffer/",\
         "packageDependencies": [\
-          ["is-array-buffer", "npm:3.0.4"],\
-          ["call-bind", "npm:1.0.7"],\
-          ["get-intrinsic", "npm:1.2.4"]\
+          ["call-bind", "npm:1.0.8"],\
+          ["call-bound", "npm:1.0.4"],\
+          ["get-intrinsic", "npm:1.3.0"],\
+          ["is-array-buffer", "npm:3.0.5"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["is-async-function", [\
+      ["npm:2.1.1", {\
+        "packageLocation": "./.yarn/cache/is-async-function-npm-2.1.1-547309fbf2-d70c236a5e.zip/node_modules/is-async-function/",\
+        "packageDependencies": [\
+          ["async-function", "npm:1.0.0"],\
+          ["call-bound", "npm:1.0.4"],\
+          ["get-proto", "npm:1.0.1"],\
+          ["has-tostringtag", "npm:1.0.2"],\
+          ["is-async-function", "npm:2.1.1"],\
+          ["safe-regex-test", "npm:1.1.0"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["is-bigint", [\
-      ["npm:1.0.4", {\
-        "packageLocation": "./.yarn/cache/is-bigint-npm-1.0.4-31c2eecbc9-eb9c88e418.zip/node_modules/is-bigint/",\
+      ["npm:1.1.0", {\
+        "packageLocation": "./.yarn/cache/is-bigint-npm-1.1.0-963b4e89e1-f4f4b905ce.zip/node_modules/is-bigint/",\
         "packageDependencies": [\
-          ["is-bigint", "npm:1.0.4"],\
-          ["has-bigints", "npm:1.0.2"]\
+          ["has-bigints", "npm:1.1.0"],\
+          ["is-bigint", "npm:1.1.0"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["is-boolean-object", [\
-      ["npm:1.1.2", {\
-        "packageLocation": "./.yarn/cache/is-boolean-object-npm-1.1.2-ecbd575e6a-6090587f8a.zip/node_modules/is-boolean-object/",\
+      ["npm:1.2.2", {\
+        "packageLocation": "./.yarn/cache/is-boolean-object-npm-1.2.2-ceb8c82b17-36ff6baf6b.zip/node_modules/is-boolean-object/",\
         "packageDependencies": [\
-          ["is-boolean-object", "npm:1.1.2"],\
-          ["call-bind", "npm:1.0.7"],\
-          ["has-tostringtag", "npm:1.0.2"]\
+          ["call-bound", "npm:1.0.4"],\
+          ["has-tostringtag", "npm:1.0.2"],\
+          ["is-boolean-object", "npm:1.2.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1337,31 +1414,34 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["is-core-module", [\
-      ["npm:2.14.0", {\
-        "packageLocation": "./.yarn/cache/is-core-module-npm-2.14.0-24e925b9e1-ae8dbc82bd.zip/node_modules/is-core-module/",\
+      ["npm:2.16.1", {\
+        "packageLocation": "./.yarn/cache/is-core-module-npm-2.16.1-a54837229e-898443c147.zip/node_modules/is-core-module/",\
         "packageDependencies": [\
-          ["is-core-module", "npm:2.14.0"],\
-          ["hasown", "npm:2.0.2"]\
+          ["hasown", "npm:2.0.2"],\
+          ["is-core-module", "npm:2.16.1"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["is-data-view", [\
-      ["npm:1.0.1", {\
-        "packageLocation": "./.yarn/cache/is-data-view-npm-1.0.1-d6136250e8-a3e6ec84ef.zip/node_modules/is-data-view/",\
+      ["npm:1.0.2", {\
+        "packageLocation": "./.yarn/cache/is-data-view-npm-1.0.2-8a9e34c5e6-ef3548a99d.zip/node_modules/is-data-view/",\
         "packageDependencies": [\
-          ["is-data-view", "npm:1.0.1"],\
-          ["is-typed-array", "npm:1.1.13"]\
+          ["call-bound", "npm:1.0.4"],\
+          ["get-intrinsic", "npm:1.3.0"],\
+          ["is-data-view", "npm:1.0.2"],\
+          ["is-typed-array", "npm:1.1.15"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["is-date-object", [\
-      ["npm:1.0.5", {\
-        "packageLocation": "./.yarn/cache/is-date-object-npm-1.0.5-88f3d08b5e-eed21e5dcc.zip/node_modules/is-date-object/",\
+      ["npm:1.1.0", {\
+        "packageLocation": "./.yarn/cache/is-date-object-npm-1.1.0-c444eba828-1a4d199c8e.zip/node_modules/is-date-object/",\
         "packageDependencies": [\
-          ["is-date-object", "npm:1.0.5"],\
-          ["has-tostringtag", "npm:1.0.2"]\
+          ["call-bound", "npm:1.0.4"],\
+          ["has-tostringtag", "npm:1.0.2"],\
+          ["is-date-object", "npm:1.1.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1370,28 +1450,52 @@ const RAW_RUNTIME_STATE =
       ["npm:4.0.0", {\
         "packageLocation": "./.yarn/cache/is-expression-npm-4.0.0-44cc07c8aa-541831d39d.zip/node_modules/is-expression/",\
         "packageDependencies": [\
-          ["is-expression", "npm:4.0.0"],\
           ["acorn", "npm:7.4.1"],\
+          ["is-expression", "npm:4.0.0"],\
           ["object-assign", "npm:4.1.1"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
-    ["is-negative-zero", [\
-      ["npm:2.0.3", {\
-        "packageLocation": "./.yarn/cache/is-negative-zero-npm-2.0.3-d06b09e322-bcdcf6b8b9.zip/node_modules/is-negative-zero/",\
+    ["is-finalizationregistry", [\
+      ["npm:1.1.1", {\
+        "packageLocation": "./.yarn/cache/is-finalizationregistry-npm-1.1.1-f9cad6c9aa-818dff679b.zip/node_modules/is-finalizationregistry/",\
         "packageDependencies": [\
-          ["is-negative-zero", "npm:2.0.3"]\
+          ["call-bound", "npm:1.0.4"],\
+          ["is-finalizationregistry", "npm:1.1.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["is-generator-function", [\
+      ["npm:1.1.0", {\
+        "packageLocation": "./.yarn/cache/is-generator-function-npm-1.1.0-e96e2ba973-fdfa96c808.zip/node_modules/is-generator-function/",\
+        "packageDependencies": [\
+          ["call-bound", "npm:1.0.4"],\
+          ["get-proto", "npm:1.0.1"],\
+          ["has-tostringtag", "npm:1.0.2"],\
+          ["is-generator-function", "npm:1.1.0"],\
+          ["safe-regex-test", "npm:1.1.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["is-map", [\
+      ["npm:2.0.3", {\
+        "packageLocation": "./.yarn/cache/is-map-npm-2.0.3-9e061e76e3-2c4d431b74.zip/node_modules/is-map/",\
+        "packageDependencies": [\
+          ["is-map", "npm:2.0.3"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["is-number-object", [\
-      ["npm:1.0.7", {\
-        "packageLocation": "./.yarn/cache/is-number-object-npm-1.0.7-539d0e274d-aad266da1e.zip/node_modules/is-number-object/",\
+      ["npm:1.1.1", {\
+        "packageLocation": "./.yarn/cache/is-number-object-npm-1.1.1-010c417fc6-97b451b41f.zip/node_modules/is-number-object/",\
         "packageDependencies": [\
-          ["is-number-object", "npm:1.0.7"],\
-          ["has-tostringtag", "npm:1.0.2"]\
+          ["call-bound", "npm:1.0.4"],\
+          ["has-tostringtag", "npm:1.0.2"],\
+          ["is-number-object", "npm:1.1.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1403,55 +1507,76 @@ const RAW_RUNTIME_STATE =
           ["is-promise", "npm:2.2.2"]\
         ],\
         "linkType": "HARD"\
+      }],\
+      ["npm:4.0.0", {\
+        "packageLocation": "./.yarn/cache/is-promise-npm-4.0.0-1e3c05420c-ebd5c672d7.zip/node_modules/is-promise/",\
+        "packageDependencies": [\
+          ["is-promise", "npm:4.0.0"]\
+        ],\
+        "linkType": "HARD"\
       }]\
     ]],\
     ["is-regex", [\
-      ["npm:1.1.4", {\
-        "packageLocation": "./.yarn/cache/is-regex-npm-1.1.4-cca193ef11-bb72aae604.zip/node_modules/is-regex/",\
+      ["npm:1.2.1", {\
+        "packageLocation": "./.yarn/cache/is-regex-npm-1.2.1-70a484f2c8-1d3715d2b7.zip/node_modules/is-regex/",\
         "packageDependencies": [\
-          ["is-regex", "npm:1.1.4"],\
-          ["call-bind", "npm:1.0.7"],\
-          ["has-tostringtag", "npm:1.0.2"]\
+          ["call-bound", "npm:1.0.4"],\
+          ["gopd", "npm:1.2.0"],\
+          ["has-tostringtag", "npm:1.0.2"],\
+          ["hasown", "npm:2.0.2"],\
+          ["is-regex", "npm:1.2.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["is-set", [\
+      ["npm:2.0.3", {\
+        "packageLocation": "./.yarn/cache/is-set-npm-2.0.3-1b72c9a855-f73732e13f.zip/node_modules/is-set/",\
+        "packageDependencies": [\
+          ["is-set", "npm:2.0.3"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["is-shared-array-buffer", [\
-      ["npm:1.0.3", {\
-        "packageLocation": "./.yarn/cache/is-shared-array-buffer-npm-1.0.3-3b3b3142a6-adc11ab0ac.zip/node_modules/is-shared-array-buffer/",\
+      ["npm:1.0.4", {\
+        "packageLocation": "./.yarn/cache/is-shared-array-buffer-npm-1.0.4-70c977585b-65158c2feb.zip/node_modules/is-shared-array-buffer/",\
         "packageDependencies": [\
-          ["is-shared-array-buffer", "npm:1.0.3"],\
-          ["call-bind", "npm:1.0.7"]\
+          ["call-bound", "npm:1.0.4"],\
+          ["is-shared-array-buffer", "npm:1.0.4"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["is-string", [\
-      ["npm:1.0.7", {\
-        "packageLocation": "./.yarn/cache/is-string-npm-1.0.7-9f7066daed-905f805cbc.zip/node_modules/is-string/",\
+      ["npm:1.1.1", {\
+        "packageLocation": "./.yarn/cache/is-string-npm-1.1.1-d2c4f9f448-2f518b4e47.zip/node_modules/is-string/",\
         "packageDependencies": [\
-          ["is-string", "npm:1.0.7"],\
-          ["has-tostringtag", "npm:1.0.2"]\
+          ["call-bound", "npm:1.0.4"],\
+          ["has-tostringtag", "npm:1.0.2"],\
+          ["is-string", "npm:1.1.1"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["is-symbol", [\
-      ["npm:1.0.4", {\
-        "packageLocation": "./.yarn/cache/is-symbol-npm-1.0.4-eb9baac703-9381dd015f.zip/node_modules/is-symbol/",\
+      ["npm:1.1.1", {\
+        "packageLocation": "./.yarn/cache/is-symbol-npm-1.1.1-f17b666ca9-f08f3e255c.zip/node_modules/is-symbol/",\
         "packageDependencies": [\
-          ["is-symbol", "npm:1.0.4"],\
-          ["has-symbols", "npm:1.0.3"]\
+          ["call-bound", "npm:1.0.4"],\
+          ["has-symbols", "npm:1.1.0"],\
+          ["is-symbol", "npm:1.1.1"],\
+          ["safe-regex-test", "npm:1.1.0"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["is-typed-array", [\
-      ["npm:1.1.13", {\
-        "packageLocation": "./.yarn/cache/is-typed-array-npm-1.1.13-0dce6ee7c2-fa5cb97d4a.zip/node_modules/is-typed-array/",\
+      ["npm:1.1.15", {\
+        "packageLocation": "./.yarn/cache/is-typed-array-npm-1.1.15-33aa18e28f-415511da36.zip/node_modules/is-typed-array/",\
         "packageDependencies": [\
-          ["is-typed-array", "npm:1.1.13"],\
-          ["which-typed-array", "npm:1.1.15"]\
+          ["is-typed-array", "npm:1.1.15"],\
+          ["which-typed-array", "npm:1.1.19"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1465,12 +1590,32 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
-    ["is-weakref", [\
-      ["npm:1.0.2", {\
-        "packageLocation": "./.yarn/cache/is-weakref-npm-1.0.2-ff80e8c314-1545c5d172.zip/node_modules/is-weakref/",\
+    ["is-weakmap", [\
+      ["npm:2.0.2", {\
+        "packageLocation": "./.yarn/cache/is-weakmap-npm-2.0.2-ced3cab2dc-443c35bb86.zip/node_modules/is-weakmap/",\
         "packageDependencies": [\
-          ["is-weakref", "npm:1.0.2"],\
-          ["call-bind", "npm:1.0.7"]\
+          ["is-weakmap", "npm:2.0.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["is-weakref", [\
+      ["npm:1.1.1", {\
+        "packageLocation": "./.yarn/cache/is-weakref-npm-1.1.1-e6458807f4-8e0a9c07b0.zip/node_modules/is-weakref/",\
+        "packageDependencies": [\
+          ["call-bound", "npm:1.0.4"],\
+          ["is-weakref", "npm:1.1.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["is-weakset", [\
+      ["npm:2.0.4", {\
+        "packageLocation": "./.yarn/cache/is-weakset-npm-2.0.4-155b83e84b-6491eba08a.zip/node_modules/is-weakset/",\
+        "packageDependencies": [\
+          ["call-bound", "npm:1.0.4"],\
+          ["get-intrinsic", "npm:1.3.0"],\
+          ["is-weakset", "npm:2.0.4"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1540,10 +1685,10 @@ const RAW_RUNTIME_STATE =
       ["npm:2.0.2", {\
         "packageLocation": "./.yarn/cache/jsprim-npm-2.0.2-8c40f3719c-677be2d41d.zip/node_modules/jsprim/",\
         "packageDependencies": [\
-          ["jsprim", "npm:2.0.2"],\
           ["assert-plus", "npm:1.0.0"],\
           ["extsprintf", "npm:1.3.0"],\
           ["json-schema", "npm:0.4.0"],\
+          ["jsprim", "npm:2.0.2"],\
           ["verror", "npm:1.10.0"]\
         ],\
         "linkType": "HARD"\
@@ -1553,8 +1698,8 @@ const RAW_RUNTIME_STATE =
       ["npm:1.0.0", {\
         "packageLocation": "./.yarn/cache/jstransformer-npm-1.0.0-41a47d180a-11f9b4f368.zip/node_modules/jstransformer/",\
         "packageDependencies": [\
-          ["jstransformer", "npm:1.0.0"],\
           ["is-promise", "npm:2.2.2"],\
+          ["jstransformer", "npm:1.0.0"],\
           ["promise", "npm:7.3.1"]\
         ],\
         "linkType": "HARD"\
@@ -1569,29 +1714,29 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
-    ["media-typer", [\
-      ["npm:0.3.0", {\
-        "packageLocation": "./.yarn/cache/media-typer-npm-0.3.0-8674f8f0f5-d160f31246.zip/node_modules/media-typer/",\
+    ["math-intrinsics", [\
+      ["npm:1.1.0", {\
+        "packageLocation": "./.yarn/cache/math-intrinsics-npm-1.1.0-9204d80e7d-7579ff94e8.zip/node_modules/math-intrinsics/",\
         "packageDependencies": [\
-          ["media-typer", "npm:0.3.0"]\
+          ["math-intrinsics", "npm:1.1.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["media-typer", [\
+      ["npm:1.1.0", {\
+        "packageLocation": "./.yarn/cache/media-typer-npm-1.1.0-eccc8b846d-7b4baa40b2.zip/node_modules/media-typer/",\
+        "packageDependencies": [\
+          ["media-typer", "npm:1.1.0"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["merge-descriptors", [\
-      ["npm:1.0.1", {\
-        "packageLocation": "./.yarn/cache/merge-descriptors-npm-1.0.1-615287aaa8-b67d07bd44.zip/node_modules/merge-descriptors/",\
+      ["npm:2.0.0", {\
+        "packageLocation": "./.yarn/cache/merge-descriptors-npm-2.0.0-abd9f0b061-95389b7ced.zip/node_modules/merge-descriptors/",\
         "packageDependencies": [\
-          ["merge-descriptors", "npm:1.0.1"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["methods", [\
-      ["npm:1.1.2", {\
-        "packageLocation": "./.yarn/cache/methods-npm-1.1.2-92f6fdb39b-bdf7cc72ff.zip/node_modules/methods/",\
-        "packageDependencies": [\
-          ["methods", "npm:1.1.2"]\
+          ["merge-descriptors", "npm:2.0.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1612,14 +1757,29 @@ const RAW_RUNTIME_STATE =
           ["mime-db", "npm:1.52.0"]\
         ],\
         "linkType": "HARD"\
+      }],\
+      ["npm:1.54.0", {\
+        "packageLocation": "./.yarn/cache/mime-db-npm-1.54.0-82cccb9d70-8d907917bc.zip/node_modules/mime-db/",\
+        "packageDependencies": [\
+          ["mime-db", "npm:1.54.0"]\
+        ],\
+        "linkType": "HARD"\
       }]\
     ]],\
     ["mime-types", [\
       ["npm:2.1.35", {\
         "packageLocation": "./.yarn/cache/mime-types-npm-2.1.35-dd9ea9f3e2-82fb07ec56.zip/node_modules/mime-types/",\
         "packageDependencies": [\
-          ["mime-types", "npm:2.1.35"],\
-          ["mime-db", "npm:1.52.0"]\
+          ["mime-db", "npm:1.52.0"],\
+          ["mime-types", "npm:2.1.35"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["npm:3.0.1", {\
+        "packageLocation": "./.yarn/cache/mime-types-npm-3.0.1-20b43499d0-bd8c20d369.zip/node_modules/mime-types/",\
+        "packageDependencies": [\
+          ["mime-db", "npm:1.54.0"],\
+          ["mime-types", "npm:3.0.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1628,10 +1788,10 @@ const RAW_RUNTIME_STATE =
       ["npm:1.10.0", {\
         "packageLocation": "./.yarn/cache/morgan-npm-1.10.0-a0da109b6b-684db061da.zip/node_modules/morgan/",\
         "packageDependencies": [\
-          ["morgan", "npm:1.10.0"],\
           ["basic-auth", "npm:2.0.1"],\
-          ["debug", "virtual:44738662cf800ff2863ba9baeabb817b24a959a14f86e20a31680e5dc79a4a738f7ceb7dca32753d579fae475aa061dffad8228a3391f3a9546b122f077e29a5#npm:2.6.9"],\
+          ["debug", "virtual:a0da109b6bb2221d58f29dc59726c567934008a44a6ba5ff00fb6a418135f3bfbb062d75cc9584275e233f5c2369177667c01f9eb6419553dc7abe081d7542fb#npm:2.6.9"],\
           ["depd", "npm:2.0.0"],\
+          ["morgan", "npm:1.10.0"],\
           ["on-finished", "npm:2.3.0"],\
           ["on-headers", "npm:1.0.2"]\
         ],\
@@ -1655,10 +1815,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["negotiator", [\
-      ["npm:0.6.3", {\
-        "packageLocation": "./.yarn/cache/negotiator-npm-0.6.3-9d50e36171-3ec9fd413e.zip/node_modules/negotiator/",\
+      ["npm:1.0.0", {\
+        "packageLocation": "./.yarn/cache/negotiator-npm-1.0.0-47d727e27e-4c559dd526.zip/node_modules/negotiator/",\
         "packageDependencies": [\
-          ["negotiator", "npm:0.6.3"]\
+          ["negotiator", "npm:1.0.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1667,15 +1827,15 @@ const RAW_RUNTIME_STATE =
       ["npm:0.66.0", {\
         "packageLocation": "./.yarn/cache/node-telegram-bot-api-npm-0.66.0-e139786553-8e1ec1b5e6.zip/node_modules/node-telegram-bot-api/",\
         "packageDependencies": [\
-          ["node-telegram-bot-api", "npm:0.66.0"],\
-          ["@cypress/request", "npm:3.0.1"],\
+          ["@cypress/request", "npm:3.0.8"],\
           ["@cypress/request-promise", "virtual:e13978655384f892c9628a4691ca5628e2dea4aeea20da844adf813d3cea9cf0e9de3fb79ab3307043282b300a7c583d9d06e33bba1a509a8fcbff871fced3f6#npm:5.0.0"],\
-          ["array.prototype.findindex", "npm:2.2.3"],\
+          ["array.prototype.findindex", "npm:2.2.4"],\
           ["bl", "npm:1.2.3"],\
           ["debug", "virtual:e13978655384f892c9628a4691ca5628e2dea4aeea20da844adf813d3cea9cf0e9de3fb79ab3307043282b300a7c583d9d06e33bba1a509a8fcbff871fced3f6#npm:3.2.7"],\
           ["eventemitter3", "npm:3.1.2"],\
           ["file-type", "npm:3.9.0"],\
           ["mime", "npm:1.6.0"],\
+          ["node-telegram-bot-api", "npm:0.66.0"],\
           ["pump", "npm:2.0.1"]\
         ],\
         "linkType": "HARD"\
@@ -1691,10 +1851,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["object-inspect", [\
-      ["npm:1.13.2", {\
-        "packageLocation": "./.yarn/cache/object-inspect-npm-1.13.2-3c6e11a536-b97835b4c9.zip/node_modules/object-inspect/",\
+      ["npm:1.13.4", {\
+        "packageLocation": "./.yarn/cache/object-inspect-npm-1.13.4-4e741f9806-d7f8711e80.zip/node_modules/object-inspect/",\
         "packageDependencies": [\
-          ["object-inspect", "npm:1.13.2"]\
+          ["object-inspect", "npm:1.13.4"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1709,14 +1869,16 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["object.assign", [\
-      ["npm:4.1.5", {\
-        "packageLocation": "./.yarn/cache/object.assign-npm-4.1.5-aa3b2260ba-60108e1fa2.zip/node_modules/object.assign/",\
+      ["npm:4.1.7", {\
+        "packageLocation": "./.yarn/cache/object.assign-npm-4.1.7-a3464be41b-3b2732bd86.zip/node_modules/object.assign/",\
         "packageDependencies": [\
-          ["object.assign", "npm:4.1.5"],\
-          ["call-bind", "npm:1.0.7"],\
+          ["call-bind", "npm:1.0.8"],\
+          ["call-bound", "npm:1.0.4"],\
           ["define-properties", "npm:1.2.1"],\
-          ["has-symbols", "npm:1.0.3"],\
-          ["object-keys", "npm:1.1.1"]\
+          ["es-object-atoms", "npm:1.1.1"],\
+          ["has-symbols", "npm:1.1.0"],\
+          ["object-keys", "npm:1.1.1"],\
+          ["object.assign", "npm:4.1.7"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1725,16 +1887,16 @@ const RAW_RUNTIME_STATE =
       ["npm:2.3.0", {\
         "packageLocation": "./.yarn/cache/on-finished-npm-2.3.0-4ce92f72c6-c904f9e518.zip/node_modules/on-finished/",\
         "packageDependencies": [\
-          ["on-finished", "npm:2.3.0"],\
-          ["ee-first", "npm:1.1.1"]\
+          ["ee-first", "npm:1.1.1"],\
+          ["on-finished", "npm:2.3.0"]\
         ],\
         "linkType": "HARD"\
       }],\
       ["npm:2.4.1", {\
         "packageLocation": "./.yarn/cache/on-finished-npm-2.4.1-907af70f88-46fb11b906.zip/node_modules/on-finished/",\
         "packageDependencies": [\
-          ["on-finished", "npm:2.4.1"],\
-          ["ee-first", "npm:1.1.1"]\
+          ["ee-first", "npm:1.1.1"],\
+          ["on-finished", "npm:2.4.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1758,6 +1920,18 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["own-keys", [\
+      ["npm:1.0.1", {\
+        "packageLocation": "./.yarn/cache/own-keys-npm-1.0.1-1253f9b344-6dfeb3455b.zip/node_modules/own-keys/",\
+        "packageDependencies": [\
+          ["get-intrinsic", "npm:1.3.0"],\
+          ["object-keys", "npm:1.1.1"],\
+          ["own-keys", "npm:1.0.1"],\
+          ["safe-push-apply", "npm:1.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["parseurl", [\
       ["npm:1.3.3", {\
         "packageLocation": "./.yarn/cache/parseurl-npm-1.3.3-1542397e00-90dd4760d6.zip/node_modules/parseurl/",\
@@ -1777,10 +1951,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["path-to-regexp", [\
-      ["npm:0.1.7", {\
-        "packageLocation": "./.yarn/cache/path-to-regexp-npm-0.1.7-2605347373-50a1ddb1af.zip/node_modules/path-to-regexp/",\
+      ["npm:8.2.0", {\
+        "packageLocation": "./.yarn/cache/path-to-regexp-npm-8.2.0-71c92fc0c6-ef7d0a887b.zip/node_modules/path-to-regexp/",\
         "packageDependencies": [\
-          ["path-to-regexp", "npm:0.1.7"]\
+          ["path-to-regexp", "npm:8.2.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1795,10 +1969,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["possible-typed-array-names", [\
-      ["npm:1.0.0", {\
-        "packageLocation": "./.yarn/cache/possible-typed-array-names-npm-1.0.0-3a8176348a-d9aa22d31f.zip/node_modules/possible-typed-array-names/",\
+      ["npm:1.1.0", {\
+        "packageLocation": "./.yarn/cache/possible-typed-array-names-npm-1.1.0-ce60ca4401-c810983414.zip/node_modules/possible-typed-array-names/",\
         "packageDependencies": [\
-          ["possible-typed-array-names", "npm:1.0.0"]\
+          ["possible-typed-array-names", "npm:1.1.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1816,8 +1990,8 @@ const RAW_RUNTIME_STATE =
       ["npm:7.3.1", {\
         "packageLocation": "./.yarn/cache/promise-npm-7.3.1-5d81d474c0-742e5c0cc6.zip/node_modules/promise/",\
         "packageDependencies": [\
-          ["promise", "npm:7.3.1"],\
-          ["asap", "npm:2.0.6"]\
+          ["asap", "npm:2.0.6"],\
+          ["promise", "npm:7.3.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1826,18 +2000,19 @@ const RAW_RUNTIME_STATE =
       ["npm:2.0.7", {\
         "packageLocation": "./.yarn/cache/proxy-addr-npm-2.0.7-dae6552872-c3eed99978.zip/node_modules/proxy-addr/",\
         "packageDependencies": [\
-          ["proxy-addr", "npm:2.0.7"],\
           ["forwarded", "npm:0.2.0"],\
-          ["ipaddr.js", "npm:1.9.1"]\
+          ["ipaddr.js", "npm:1.9.1"],\
+          ["proxy-addr", "npm:2.0.7"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["psl", [\
-      ["npm:1.9.0", {\
-        "packageLocation": "./.yarn/cache/psl-npm-1.9.0-a546edad1a-6a3f805fda.zip/node_modules/psl/",\
+      ["npm:1.15.0", {\
+        "packageLocation": "./.yarn/cache/psl-npm-1.15.0-410584ca6b-d8d45a99e4.zip/node_modules/psl/",\
         "packageDependencies": [\
-          ["psl", "npm:1.9.0"]\
+          ["psl", "npm:1.15.0"],\
+          ["punycode", "npm:2.3.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1863,9 +2038,9 @@ const RAW_RUNTIME_STATE =
       ["npm:3.0.0", {\
         "packageLocation": "./.yarn/cache/pug-attrs-npm-3.0.0-31b331fe79-28178e91c0.zip/node_modules/pug-attrs/",\
         "packageDependencies": [\
-          ["pug-attrs", "npm:3.0.0"],\
           ["constantinople", "npm:4.0.1"],\
           ["js-stringify", "npm:1.0.2"],\
+          ["pug-attrs", "npm:3.0.0"],\
           ["pug-runtime", "npm:3.0.1"]\
         ],\
         "linkType": "HARD"\
@@ -1875,11 +2050,11 @@ const RAW_RUNTIME_STATE =
       ["npm:3.0.3", {\
         "packageLocation": "./.yarn/cache/pug-code-gen-npm-3.0.3-0785c45aa8-517a93930d.zip/node_modules/pug-code-gen/",\
         "packageDependencies": [\
-          ["pug-code-gen", "npm:3.0.3"],\
           ["constantinople", "npm:4.0.1"],\
           ["doctypes", "npm:1.1.0"],\
           ["js-stringify", "npm:1.0.2"],\
           ["pug-attrs", "npm:3.0.0"],\
+          ["pug-code-gen", "npm:3.0.3"],\
           ["pug-error", "npm:2.1.0"],\
           ["pug-runtime", "npm:3.0.1"],\
           ["void-elements", "npm:3.1.0"],\
@@ -1901,12 +2076,12 @@ const RAW_RUNTIME_STATE =
       ["npm:4.0.0", {\
         "packageLocation": "./.yarn/cache/pug-filters-npm-4.0.0-d2cf0196e7-7ddd62f5eb.zip/node_modules/pug-filters/",\
         "packageDependencies": [\
-          ["pug-filters", "npm:4.0.0"],\
           ["constantinople", "npm:4.0.1"],\
           ["jstransformer", "npm:1.0.0"],\
           ["pug-error", "npm:2.1.0"],\
+          ["pug-filters", "npm:4.0.0"],\
           ["pug-walk", "npm:2.0.0"],\
-          ["resolve", "patch:resolve@npm%3A1.22.8#optional!builtin<compat/resolve>::version=1.22.8&hash=c3c19d"]\
+          ["resolve", "patch:resolve@npm%3A1.22.10#optional!builtin<compat/resolve>::version=1.22.10&hash=c3c19d"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1915,10 +2090,10 @@ const RAW_RUNTIME_STATE =
       ["npm:5.0.1", {\
         "packageLocation": "./.yarn/cache/pug-lexer-npm-5.0.1-3bdff5fe60-24195a5681.zip/node_modules/pug-lexer/",\
         "packageDependencies": [\
-          ["pug-lexer", "npm:5.0.1"],\
           ["character-parser", "npm:2.2.0"],\
           ["is-expression", "npm:4.0.0"],\
-          ["pug-error", "npm:2.1.0"]\
+          ["pug-error", "npm:2.1.0"],\
+          ["pug-lexer", "npm:5.0.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1927,8 +2102,8 @@ const RAW_RUNTIME_STATE =
       ["npm:4.0.0", {\
         "packageLocation": "./.yarn/cache/pug-linker-npm-4.0.0-b140c7e607-db754ff34c.zip/node_modules/pug-linker/",\
         "packageDependencies": [\
-          ["pug-linker", "npm:4.0.0"],\
           ["pug-error", "npm:2.1.0"],\
+          ["pug-linker", "npm:4.0.0"],\
           ["pug-walk", "npm:2.0.0"]\
         ],\
         "linkType": "HARD"\
@@ -1938,8 +2113,8 @@ const RAW_RUNTIME_STATE =
       ["npm:3.0.0", {\
         "packageLocation": "./.yarn/cache/pug-load-npm-3.0.0-dc9f2273d3-2a7659dfaf.zip/node_modules/pug-load/",\
         "packageDependencies": [\
-          ["pug-load", "npm:3.0.0"],\
           ["object-assign", "npm:4.1.1"],\
+          ["pug-load", "npm:3.0.0"],\
           ["pug-walk", "npm:2.0.0"]\
         ],\
         "linkType": "HARD"\
@@ -1949,8 +2124,8 @@ const RAW_RUNTIME_STATE =
       ["npm:6.0.0", {\
         "packageLocation": "./.yarn/cache/pug-parser-npm-6.0.0-87b7dc8a83-faa6cec43a.zip/node_modules/pug-parser/",\
         "packageDependencies": [\
-          ["pug-parser", "npm:6.0.0"],\
           ["pug-error", "npm:2.1.0"],\
+          ["pug-parser", "npm:6.0.0"],\
           ["token-stream", "npm:1.0.0"]\
         ],\
         "linkType": "HARD"\
@@ -1969,8 +2144,8 @@ const RAW_RUNTIME_STATE =
       ["npm:2.0.0", {\
         "packageLocation": "./.yarn/cache/pug-strip-comments-npm-2.0.0-7baa7bca2f-ca498adeda.zip/node_modules/pug-strip-comments/",\
         "packageDependencies": [\
-          ["pug-strip-comments", "npm:2.0.0"],\
-          ["pug-error", "npm:2.1.0"]\
+          ["pug-error", "npm:2.1.0"],\
+          ["pug-strip-comments", "npm:2.0.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1988,9 +2163,9 @@ const RAW_RUNTIME_STATE =
       ["npm:2.0.1", {\
         "packageLocation": "./.yarn/cache/pump-npm-2.0.1-05afac7fc4-f1fe8960f4.zip/node_modules/pump/",\
         "packageDependencies": [\
-          ["pump", "npm:2.0.1"],\
           ["end-of-stream", "npm:1.4.4"],\
-          ["once", "npm:1.4.0"]\
+          ["once", "npm:1.4.0"],\
+          ["pump", "npm:2.0.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2005,19 +2180,11 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["qs", [\
-      ["npm:6.10.4", {\
-        "packageLocation": "./.yarn/cache/qs-npm-6.10.4-9b6a538d57-7a8c9d7796.zip/node_modules/qs/",\
+      ["npm:6.14.0", {\
+        "packageLocation": "./.yarn/cache/qs-npm-6.14.0-6b298311eb-8ea5d91bf3.zip/node_modules/qs/",\
         "packageDependencies": [\
-          ["qs", "npm:6.10.4"],\
-          ["side-channel", "npm:1.0.6"]\
-        ],\
-        "linkType": "HARD"\
-      }],\
-      ["npm:6.11.0", {\
-        "packageLocation": "./.yarn/cache/qs-npm-6.11.0-caf1bc9dea-4e4875e4d7.zip/node_modules/qs/",\
-        "packageDependencies": [\
-          ["qs", "npm:6.11.0"],\
-          ["side-channel", "npm:1.0.6"]\
+          ["qs", "npm:6.14.0"],\
+          ["side-channel", "npm:1.1.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2041,13 +2208,13 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["raw-body", [\
-      ["npm:2.5.2", {\
-        "packageLocation": "./.yarn/cache/raw-body-npm-2.5.2-5cb9dfebc1-b201c4b660.zip/node_modules/raw-body/",\
+      ["npm:3.0.0", {\
+        "packageLocation": "./.yarn/cache/raw-body-npm-3.0.0-cd8403b401-f8daf4b724.zip/node_modules/raw-body/",\
         "packageDependencies": [\
-          ["raw-body", "npm:2.5.2"],\
           ["bytes", "npm:3.1.2"],\
           ["http-errors", "npm:2.0.0"],\
-          ["iconv-lite", "npm:0.4.24"],\
+          ["iconv-lite", "npm:0.6.3"],\
+          ["raw-body", "npm:3.0.0"],\
           ["unpipe", "npm:1.0.0"]\
         ],\
         "linkType": "HARD"\
@@ -2057,11 +2224,11 @@ const RAW_RUNTIME_STATE =
       ["npm:2.3.8", {\
         "packageLocation": "./.yarn/cache/readable-stream-npm-2.3.8-67a94c2cb1-7efdb01f38.zip/node_modules/readable-stream/",\
         "packageDependencies": [\
-          ["readable-stream", "npm:2.3.8"],\
           ["core-util-is", "npm:1.0.3"],\
           ["inherits", "npm:2.0.4"],\
           ["isarray", "npm:1.0.0"],\
           ["process-nextick-args", "npm:2.0.1"],\
+          ["readable-stream", "npm:2.3.8"],\
           ["safe-buffer", "npm:5.1.2"],\
           ["string_decoder", "npm:1.1.1"],\
           ["util-deprecate", "npm:1.0.2"]\
@@ -2070,28 +2237,47 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["redis", [\
-      ["npm:4.6.14", {\
-        "packageLocation": "./.yarn/cache/redis-npm-4.6.14-5a48a93824-b031399a55.zip/node_modules/redis/",\
+      ["npm:4.7.0", {\
+        "packageLocation": "./.yarn/cache/redis-npm-4.7.0-3130248fc5-a05632a58a.zip/node_modules/redis/",\
         "packageDependencies": [\
-          ["redis", "npm:4.6.14"],\
-          ["@redis/bloom", "virtual:5a48a938248ad7064ab3f0fe9b0d3afb5044609fd8d757cbaf1b9e226f4267dfabfc9ce1ead3f6cde73341bf3ba35ff907bc6e04a066936cd597d8a59ff08879#npm:1.2.0"],\
-          ["@redis/client", "npm:1.5.16"],\
-          ["@redis/graph", "virtual:5a48a938248ad7064ab3f0fe9b0d3afb5044609fd8d757cbaf1b9e226f4267dfabfc9ce1ead3f6cde73341bf3ba35ff907bc6e04a066936cd597d8a59ff08879#npm:1.1.1"],\
-          ["@redis/json", "virtual:5a48a938248ad7064ab3f0fe9b0d3afb5044609fd8d757cbaf1b9e226f4267dfabfc9ce1ead3f6cde73341bf3ba35ff907bc6e04a066936cd597d8a59ff08879#npm:1.0.6"],\
-          ["@redis/search", "virtual:5a48a938248ad7064ab3f0fe9b0d3afb5044609fd8d757cbaf1b9e226f4267dfabfc9ce1ead3f6cde73341bf3ba35ff907bc6e04a066936cd597d8a59ff08879#npm:1.1.6"],\
-          ["@redis/time-series", "virtual:5a48a938248ad7064ab3f0fe9b0d3afb5044609fd8d757cbaf1b9e226f4267dfabfc9ce1ead3f6cde73341bf3ba35ff907bc6e04a066936cd597d8a59ff08879#npm:1.0.5"]\
+          ["@redis/bloom", "virtual:3130248fc5502cf3dd14bad540ab1605f1f63708ab04c1e61b91cfb9b96e73e7240a14374fe4caeca2c1be28fc1392f81548c96ba640b645d40b7e043177e16d#npm:1.2.0"],\
+          ["@redis/client", "npm:1.6.0"],\
+          ["@redis/graph", "virtual:3130248fc5502cf3dd14bad540ab1605f1f63708ab04c1e61b91cfb9b96e73e7240a14374fe4caeca2c1be28fc1392f81548c96ba640b645d40b7e043177e16d#npm:1.1.1"],\
+          ["@redis/json", "virtual:3130248fc5502cf3dd14bad540ab1605f1f63708ab04c1e61b91cfb9b96e73e7240a14374fe4caeca2c1be28fc1392f81548c96ba640b645d40b7e043177e16d#npm:1.0.7"],\
+          ["@redis/search", "virtual:3130248fc5502cf3dd14bad540ab1605f1f63708ab04c1e61b91cfb9b96e73e7240a14374fe4caeca2c1be28fc1392f81548c96ba640b645d40b7e043177e16d#npm:1.2.0"],\
+          ["@redis/time-series", "virtual:3130248fc5502cf3dd14bad540ab1605f1f63708ab04c1e61b91cfb9b96e73e7240a14374fe4caeca2c1be28fc1392f81548c96ba640b645d40b7e043177e16d#npm:1.1.0"],\
+          ["redis", "npm:4.7.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["reflect.getprototypeof", [\
+      ["npm:1.0.10", {\
+        "packageLocation": "./.yarn/cache/reflect.getprototypeof-npm-1.0.10-8c3ce862a2-7facec28c8.zip/node_modules/reflect.getprototypeof/",\
+        "packageDependencies": [\
+          ["call-bind", "npm:1.0.8"],\
+          ["define-properties", "npm:1.2.1"],\
+          ["es-abstract", "npm:1.23.9"],\
+          ["es-errors", "npm:1.3.0"],\
+          ["es-object-atoms", "npm:1.1.1"],\
+          ["get-intrinsic", "npm:1.3.0"],\
+          ["get-proto", "npm:1.0.1"],\
+          ["reflect.getprototypeof", "npm:1.0.10"],\
+          ["which-builtin-type", "npm:1.2.1"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["regexp.prototype.flags", [\
-      ["npm:1.5.2", {\
-        "packageLocation": "./.yarn/cache/regexp.prototype.flags-npm-1.5.2-a44e05d7d9-0f3fc4f580.zip/node_modules/regexp.prototype.flags/",\
+      ["npm:1.5.4", {\
+        "packageLocation": "./.yarn/cache/regexp.prototype.flags-npm-1.5.4-39008ab64c-83b88e6115.zip/node_modules/regexp.prototype.flags/",\
         "packageDependencies": [\
-          ["regexp.prototype.flags", "npm:1.5.2"],\
-          ["call-bind", "npm:1.0.7"],\
+          ["call-bind", "npm:1.0.8"],\
           ["define-properties", "npm:1.2.1"],\
           ["es-errors", "npm:1.3.0"],\
+          ["get-proto", "npm:1.0.1"],\
+          ["gopd", "npm:1.2.0"],\
+          ["regexp.prototype.flags", "npm:1.5.4"],\
           ["set-function-name", "npm:2.0.2"]\
         ],\
         "linkType": "HARD"\
@@ -2108,10 +2294,10 @@ const RAW_RUNTIME_STATE =
       ["virtual:ddbf3e160f41d2f8606724ce72d18f5bb5c369377fc2ec65909f6089071972a2ed4395606a66f0632bc900e9103096aab02f355bb7eb3301ed0fa27df91cb4b0#npm:1.1.3", {\
         "packageLocation": "./.yarn/__virtual__/request-promise-core-virtual-13ccad9212/0/cache/request-promise-core-npm-1.1.3-1b898b5c44-87a9418288.zip/node_modules/request-promise-core/",\
         "packageDependencies": [\
-          ["request-promise-core", "virtual:ddbf3e160f41d2f8606724ce72d18f5bb5c369377fc2ec65909f6089071972a2ed4395606a66f0632bc900e9103096aab02f355bb7eb3301ed0fa27df91cb4b0#npm:1.1.3"],\
           ["@types/request", null],\
           ["lodash", "npm:4.17.21"],\
-          ["request", null]\
+          ["request", null],\
+          ["request-promise-core", "virtual:ddbf3e160f41d2f8606724ce72d18f5bb5c369377fc2ec65909f6089071972a2ed4395606a66f0632bc900e9103096aab02f355bb7eb3301ed0fa27df91cb4b0#npm:1.1.3"]\
         ],\
         "packagePeers": [\
           "@types/request",\
@@ -2130,26 +2316,41 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["resolve", [\
-      ["patch:resolve@npm%3A1.22.8#optional!builtin<compat/resolve>::version=1.22.8&hash=c3c19d", {\
-        "packageLocation": "./.yarn/cache/resolve-patch-4254c24959-0446f02443.zip/node_modules/resolve/",\
+      ["patch:resolve@npm%3A1.22.10#optional!builtin<compat/resolve>::version=1.22.10&hash=c3c19d", {\
+        "packageLocation": "./.yarn/cache/resolve-patch-b5982cfa8c-52a4e505bb.zip/node_modules/resolve/",\
         "packageDependencies": [\
-          ["resolve", "patch:resolve@npm%3A1.22.8#optional!builtin<compat/resolve>::version=1.22.8&hash=c3c19d"],\
-          ["is-core-module", "npm:2.14.0"],\
+          ["is-core-module", "npm:2.16.1"],\
           ["path-parse", "npm:1.0.7"],\
+          ["resolve", "patch:resolve@npm%3A1.22.10#optional!builtin<compat/resolve>::version=1.22.10&hash=c3c19d"],\
           ["supports-preserve-symlinks-flag", "npm:1.0.0"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
-    ["safe-array-concat", [\
-      ["npm:1.1.2", {\
-        "packageLocation": "./.yarn/cache/safe-array-concat-npm-1.1.2-f9c09c1a31-12f9fdb01c.zip/node_modules/safe-array-concat/",\
+    ["router", [\
+      ["npm:2.2.0", {\
+        "packageLocation": "./.yarn/cache/router-npm-2.2.0-745100319e-3279de7450.zip/node_modules/router/",\
         "packageDependencies": [\
-          ["safe-array-concat", "npm:1.1.2"],\
-          ["call-bind", "npm:1.0.7"],\
-          ["get-intrinsic", "npm:1.2.4"],\
-          ["has-symbols", "npm:1.0.3"],\
-          ["isarray", "npm:2.0.5"]\
+          ["debug", "virtual:b3d2aaf918b7353bd0443ec66626f23848085fec7626c8198deeeb11823698c64a4c04de542c97d383c7d367525cd5f3dbbc5626864e9aab284c22611d9f418b#npm:4.4.0"],\
+          ["depd", "npm:2.0.0"],\
+          ["is-promise", "npm:4.0.0"],\
+          ["parseurl", "npm:1.3.3"],\
+          ["path-to-regexp", "npm:8.2.0"],\
+          ["router", "npm:2.2.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["safe-array-concat", [\
+      ["npm:1.1.3", {\
+        "packageLocation": "./.yarn/cache/safe-array-concat-npm-1.1.3-dab0384e54-43c86ffddd.zip/node_modules/safe-array-concat/",\
+        "packageDependencies": [\
+          ["call-bind", "npm:1.0.8"],\
+          ["call-bound", "npm:1.0.4"],\
+          ["get-intrinsic", "npm:1.3.0"],\
+          ["has-symbols", "npm:1.1.0"],\
+          ["isarray", "npm:2.0.5"],\
+          ["safe-array-concat", "npm:1.1.3"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2170,14 +2371,25 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
-    ["safe-regex-test", [\
-      ["npm:1.0.3", {\
-        "packageLocation": "./.yarn/cache/safe-regex-test-npm-1.0.3-97fe5cc608-900bf7c98d.zip/node_modules/safe-regex-test/",\
+    ["safe-push-apply", [\
+      ["npm:1.0.0", {\
+        "packageLocation": "./.yarn/cache/safe-push-apply-npm-1.0.0-51a0a42944-831f1c9aae.zip/node_modules/safe-push-apply/",\
         "packageDependencies": [\
-          ["safe-regex-test", "npm:1.0.3"],\
-          ["call-bind", "npm:1.0.7"],\
           ["es-errors", "npm:1.3.0"],\
-          ["is-regex", "npm:1.1.4"]\
+          ["isarray", "npm:2.0.5"],\
+          ["safe-push-apply", "npm:1.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["safe-regex-test", [\
+      ["npm:1.1.0", {\
+        "packageLocation": "./.yarn/cache/safe-regex-test-npm-1.1.0-453eb81b83-f2c25281bb.zip/node_modules/safe-regex-test/",\
+        "packageDependencies": [\
+          ["call-bound", "npm:1.0.4"],\
+          ["es-errors", "npm:1.3.0"],\
+          ["is-regex", "npm:1.2.1"],\
+          ["safe-regex-test", "npm:1.1.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2192,36 +2404,34 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["send", [\
-      ["npm:0.18.0", {\
-        "packageLocation": "./.yarn/cache/send-npm-0.18.0-faadf6353f-0eb134d6a5.zip/node_modules/send/",\
+      ["npm:1.2.0", {\
+        "packageLocation": "./.yarn/cache/send-npm-1.2.0-6a1006154e-531bcfb561.zip/node_modules/send/",\
         "packageDependencies": [\
-          ["send", "npm:0.18.0"],\
-          ["debug", "virtual:44738662cf800ff2863ba9baeabb817b24a959a14f86e20a31680e5dc79a4a738f7ceb7dca32753d579fae475aa061dffad8228a3391f3a9546b122f077e29a5#npm:2.6.9"],\
-          ["depd", "npm:2.0.0"],\
-          ["destroy", "npm:1.2.0"],\
-          ["encodeurl", "npm:1.0.2"],\
+          ["debug", "virtual:b3d2aaf918b7353bd0443ec66626f23848085fec7626c8198deeeb11823698c64a4c04de542c97d383c7d367525cd5f3dbbc5626864e9aab284c22611d9f418b#npm:4.4.0"],\
+          ["encodeurl", "npm:2.0.0"],\
           ["escape-html", "npm:1.0.3"],\
           ["etag", "npm:1.8.1"],\
-          ["fresh", "npm:0.5.2"],\
+          ["fresh", "npm:2.0.0"],\
           ["http-errors", "npm:2.0.0"],\
-          ["mime", "npm:1.6.0"],\
+          ["mime-types", "npm:3.0.1"],\
           ["ms", "npm:2.1.3"],\
           ["on-finished", "npm:2.4.1"],\
           ["range-parser", "npm:1.2.1"],\
+          ["send", "npm:1.2.0"],\
           ["statuses", "npm:2.0.1"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["serve-static", [\
-      ["npm:1.15.0", {\
-        "packageLocation": "./.yarn/cache/serve-static-npm-1.15.0-86c81879f5-fa9f0e21a5.zip/node_modules/serve-static/",\
+      ["npm:2.2.0", {\
+        "packageLocation": "./.yarn/cache/serve-static-npm-2.2.0-a71bf524e0-30e2ed1dbf.zip/node_modules/serve-static/",\
         "packageDependencies": [\
-          ["serve-static", "npm:1.15.0"],\
-          ["encodeurl", "npm:1.0.2"],\
+          ["encodeurl", "npm:2.0.0"],\
           ["escape-html", "npm:1.0.3"],\
           ["parseurl", "npm:1.3.3"],\
-          ["send", "npm:0.18.0"]\
+          ["send", "npm:1.2.0"],\
+          ["serve-static", "npm:2.2.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2230,13 +2440,13 @@ const RAW_RUNTIME_STATE =
       ["npm:1.2.2", {\
         "packageLocation": "./.yarn/cache/set-function-length-npm-1.2.2-243073748b-82850e62f4.zip/node_modules/set-function-length/",\
         "packageDependencies": [\
-          ["set-function-length", "npm:1.2.2"],\
           ["define-data-property", "npm:1.1.4"],\
           ["es-errors", "npm:1.3.0"],\
           ["function-bind", "npm:1.1.2"],\
-          ["get-intrinsic", "npm:1.2.4"],\
-          ["gopd", "npm:1.0.1"],\
-          ["has-property-descriptors", "npm:1.0.2"]\
+          ["get-intrinsic", "npm:1.3.0"],\
+          ["gopd", "npm:1.2.0"],\
+          ["has-property-descriptors", "npm:1.0.2"],\
+          ["set-function-length", "npm:1.2.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2245,11 +2455,23 @@ const RAW_RUNTIME_STATE =
       ["npm:2.0.2", {\
         "packageLocation": "./.yarn/cache/set-function-name-npm-2.0.2-3d9a2d8899-fce59f9069.zip/node_modules/set-function-name/",\
         "packageDependencies": [\
-          ["set-function-name", "npm:2.0.2"],\
           ["define-data-property", "npm:1.1.4"],\
           ["es-errors", "npm:1.3.0"],\
           ["functions-have-names", "npm:1.2.3"],\
-          ["has-property-descriptors", "npm:1.0.2"]\
+          ["has-property-descriptors", "npm:1.0.2"],\
+          ["set-function-name", "npm:2.0.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["set-proto", [\
+      ["npm:1.0.0", {\
+        "packageLocation": "./.yarn/cache/set-proto-npm-1.0.0-68d7485485-ca5c3ccbba.zip/node_modules/set-proto/",\
+        "packageDependencies": [\
+          ["dunder-proto", "npm:1.0.1"],\
+          ["es-errors", "npm:1.3.0"],\
+          ["es-object-atoms", "npm:1.1.1"],\
+          ["set-proto", "npm:1.0.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2264,14 +2486,53 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["side-channel", [\
-      ["npm:1.0.6", {\
-        "packageLocation": "./.yarn/cache/side-channel-npm-1.0.6-511657386f-d2afd163dc.zip/node_modules/side-channel/",\
+      ["npm:1.1.0", {\
+        "packageLocation": "./.yarn/cache/side-channel-npm-1.1.0-4993930974-cb20dad41e.zip/node_modules/side-channel/",\
         "packageDependencies": [\
-          ["side-channel", "npm:1.0.6"],\
-          ["call-bind", "npm:1.0.7"],\
           ["es-errors", "npm:1.3.0"],\
-          ["get-intrinsic", "npm:1.2.4"],\
-          ["object-inspect", "npm:1.13.2"]\
+          ["object-inspect", "npm:1.13.4"],\
+          ["side-channel", "npm:1.1.0"],\
+          ["side-channel-list", "npm:1.0.0"],\
+          ["side-channel-map", "npm:1.0.1"],\
+          ["side-channel-weakmap", "npm:1.0.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["side-channel-list", [\
+      ["npm:1.0.0", {\
+        "packageLocation": "./.yarn/cache/side-channel-list-npm-1.0.0-14f74146d1-644f4ac893.zip/node_modules/side-channel-list/",\
+        "packageDependencies": [\
+          ["es-errors", "npm:1.3.0"],\
+          ["object-inspect", "npm:1.13.4"],\
+          ["side-channel-list", "npm:1.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["side-channel-map", [\
+      ["npm:1.0.1", {\
+        "packageLocation": "./.yarn/cache/side-channel-map-npm-1.0.1-5903573b3c-010584e644.zip/node_modules/side-channel-map/",\
+        "packageDependencies": [\
+          ["call-bound", "npm:1.0.4"],\
+          ["es-errors", "npm:1.3.0"],\
+          ["get-intrinsic", "npm:1.3.0"],\
+          ["object-inspect", "npm:1.13.4"],\
+          ["side-channel-map", "npm:1.0.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["side-channel-weakmap", [\
+      ["npm:1.0.2", {\
+        "packageLocation": "./.yarn/cache/side-channel-weakmap-npm-1.0.2-027acaf499-71362709ac.zip/node_modules/side-channel-weakmap/",\
+        "packageDependencies": [\
+          ["call-bound", "npm:1.0.4"],\
+          ["es-errors", "npm:1.3.0"],\
+          ["get-intrinsic", "npm:1.3.0"],\
+          ["object-inspect", "npm:1.13.4"],\
+          ["side-channel-map", "npm:1.0.1"],\
+          ["side-channel-weakmap", "npm:1.0.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2280,7 +2541,6 @@ const RAW_RUNTIME_STATE =
       ["npm:1.18.0", {\
         "packageLocation": "./.yarn/cache/sshpk-npm-1.18.0-e75427668c-e516e34fa9.zip/node_modules/sshpk/",\
         "packageDependencies": [\
-          ["sshpk", "npm:1.18.0"],\
           ["asn1", "npm:0.2.6"],\
           ["assert-plus", "npm:1.0.0"],\
           ["bcrypt-pbkdf", "npm:1.0.2"],\
@@ -2289,6 +2549,7 @@ const RAW_RUNTIME_STATE =
           ["getpass", "npm:0.1.7"],\
           ["jsbn", "npm:0.1.1"],\
           ["safer-buffer", "npm:2.1.2"],\
+          ["sshpk", "npm:1.18.0"],\
           ["tweetnacl", "npm:0.14.5"]\
         ],\
         "linkType": "HARD"\
@@ -2313,26 +2574,30 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["string.prototype.trim", [\
-      ["npm:1.2.9", {\
-        "packageLocation": "./.yarn/cache/string.prototype.trim-npm-1.2.9-7b24b35971-dcef1a0fb6.zip/node_modules/string.prototype.trim/",\
+      ["npm:1.2.10", {\
+        "packageLocation": "./.yarn/cache/string.prototype.trim-npm-1.2.10-40a44bc719-8a8854241c.zip/node_modules/string.prototype.trim/",\
         "packageDependencies": [\
-          ["string.prototype.trim", "npm:1.2.9"],\
-          ["call-bind", "npm:1.0.7"],\
+          ["call-bind", "npm:1.0.8"],\
+          ["call-bound", "npm:1.0.4"],\
+          ["define-data-property", "npm:1.1.4"],\
           ["define-properties", "npm:1.2.1"],\
-          ["es-abstract", "npm:1.23.3"],\
-          ["es-object-atoms", "npm:1.0.0"]\
+          ["es-abstract", "npm:1.23.9"],\
+          ["es-object-atoms", "npm:1.1.1"],\
+          ["has-property-descriptors", "npm:1.0.2"],\
+          ["string.prototype.trim", "npm:1.2.10"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["string.prototype.trimend", [\
-      ["npm:1.0.8", {\
-        "packageLocation": "./.yarn/cache/string.prototype.trimend-npm-1.0.8-9c0ed19266-0a0b54c17c.zip/node_modules/string.prototype.trimend/",\
+      ["npm:1.0.9", {\
+        "packageLocation": "./.yarn/cache/string.prototype.trimend-npm-1.0.9-e8729528fb-59e1a70bf9.zip/node_modules/string.prototype.trimend/",\
         "packageDependencies": [\
-          ["string.prototype.trimend", "npm:1.0.8"],\
-          ["call-bind", "npm:1.0.7"],\
+          ["call-bind", "npm:1.0.8"],\
+          ["call-bound", "npm:1.0.4"],\
           ["define-properties", "npm:1.2.1"],\
-          ["es-object-atoms", "npm:1.0.0"]\
+          ["es-object-atoms", "npm:1.1.1"],\
+          ["string.prototype.trimend", "npm:1.0.9"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2341,10 +2606,10 @@ const RAW_RUNTIME_STATE =
       ["npm:1.0.8", {\
         "packageLocation": "./.yarn/cache/string.prototype.trimstart-npm-1.0.8-8c6b16ba6e-d53af18999.zip/node_modules/string.prototype.trimstart/",\
         "packageDependencies": [\
-          ["string.prototype.trimstart", "npm:1.0.8"],\
-          ["call-bind", "npm:1.0.7"],\
+          ["call-bind", "npm:1.0.8"],\
           ["define-properties", "npm:1.2.1"],\
-          ["es-object-atoms", "npm:1.0.0"]\
+          ["es-object-atoms", "npm:1.1.1"],\
+          ["string.prototype.trimstart", "npm:1.0.8"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2353,8 +2618,8 @@ const RAW_RUNTIME_STATE =
       ["npm:1.1.1", {\
         "packageLocation": "./.yarn/cache/string_decoder-npm-1.1.1-e46a6c1353-b4f89f3a92.zip/node_modules/string_decoder/",\
         "packageDependencies": [\
-          ["string_decoder", "npm:1.1.1"],\
-          ["safe-buffer", "npm:5.1.2"]\
+          ["safe-buffer", "npm:5.1.2"],\
+          ["string_decoder", "npm:1.1.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2372,22 +2637,32 @@ const RAW_RUNTIME_STATE =
       ["workspace:.", {\
         "packageLocation": "./",\
         "packageDependencies": [\
-          ["tg-recaptcha", "workspace:."],\
-          ["express", "npm:4.19.2"],\
+          ["express", "npm:5.1.0"],\
           ["express-recaptcha", "npm:5.1.0"],\
           ["morgan", "npm:1.10.0"],\
           ["node-telegram-bot-api", "npm:0.66.0"],\
           ["pug", "npm:3.0.3"],\
-          ["redis", "npm:4.6.14"]\
+          ["redis", "npm:4.7.0"],\
+          ["tg-recaptcha", "workspace:."]\
         ],\
         "linkType": "SOFT"\
       }]\
     ]],\
-    ["to-fast-properties", [\
-      ["npm:2.0.0", {\
-        "packageLocation": "./.yarn/cache/to-fast-properties-npm-2.0.0-0dc60cc481-b214d21dbf.zip/node_modules/to-fast-properties/",\
+    ["tldts", [\
+      ["npm:6.1.86", {\
+        "packageLocation": "./.yarn/cache/tldts-npm-6.1.86-45627de9ca-27ae7526d9.zip/node_modules/tldts/",\
         "packageDependencies": [\
-          ["to-fast-properties", "npm:2.0.0"]\
+          ["tldts", "npm:6.1.86"],\
+          ["tldts-core", "npm:6.1.86"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["tldts-core", [\
+      ["npm:6.1.86", {\
+        "packageLocation": "./.yarn/cache/tldts-core-npm-6.1.86-540def5eb4-8133c29375.zip/node_modules/tldts-core/",\
+        "packageDependencies": [\
+          ["tldts-core", "npm:6.1.86"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2414,11 +2689,19 @@ const RAW_RUNTIME_STATE =
       ["npm:4.1.4", {\
         "packageLocation": "./.yarn/cache/tough-cookie-npm-4.1.4-8293cc8bd5-aca7ff9605.zip/node_modules/tough-cookie/",\
         "packageDependencies": [\
-          ["tough-cookie", "npm:4.1.4"],\
-          ["psl", "npm:1.9.0"],\
+          ["psl", "npm:1.15.0"],\
           ["punycode", "npm:2.3.1"],\
+          ["tough-cookie", "npm:4.1.4"],\
           ["universalify", "npm:0.2.0"],\
           ["url-parse", "npm:1.5.10"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["npm:5.1.2", {\
+        "packageLocation": "./.yarn/cache/tough-cookie-npm-5.1.2-bb11a20ec3-5f95023a47.zip/node_modules/tough-cookie/",\
+        "packageDependencies": [\
+          ["tldts", "npm:6.1.86"],\
+          ["tough-cookie", "npm:5.1.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2427,8 +2710,8 @@ const RAW_RUNTIME_STATE =
       ["npm:0.6.0", {\
         "packageLocation": "./.yarn/cache/tunnel-agent-npm-0.6.0-64345ab7eb-4c7a1b813e.zip/node_modules/tunnel-agent/",\
         "packageDependencies": [\
-          ["tunnel-agent", "npm:0.6.0"],\
-          ["safe-buffer", "npm:5.2.1"]\
+          ["safe-buffer", "npm:5.2.1"],\
+          ["tunnel-agent", "npm:0.6.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2443,81 +2726,83 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["type-is", [\
-      ["npm:1.6.18", {\
-        "packageLocation": "./.yarn/cache/type-is-npm-1.6.18-6dee4d4961-a23daeb538.zip/node_modules/type-is/",\
+      ["npm:2.0.1", {\
+        "packageLocation": "./.yarn/cache/type-is-npm-2.0.1-8ef194d26e-7f7ec0a060.zip/node_modules/type-is/",\
         "packageDependencies": [\
-          ["type-is", "npm:1.6.18"],\
-          ["media-typer", "npm:0.3.0"],\
-          ["mime-types", "npm:2.1.35"]\
+          ["content-type", "npm:1.0.5"],\
+          ["media-typer", "npm:1.1.0"],\
+          ["mime-types", "npm:3.0.1"],\
+          ["type-is", "npm:2.0.1"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["typed-array-buffer", [\
-      ["npm:1.0.2", {\
-        "packageLocation": "./.yarn/cache/typed-array-buffer-npm-1.0.2-31e458f38d-9e043eb38e.zip/node_modules/typed-array-buffer/",\
+      ["npm:1.0.3", {\
+        "packageLocation": "./.yarn/cache/typed-array-buffer-npm-1.0.3-bddcba0c25-1105071756.zip/node_modules/typed-array-buffer/",\
         "packageDependencies": [\
-          ["typed-array-buffer", "npm:1.0.2"],\
-          ["call-bind", "npm:1.0.7"],\
+          ["call-bound", "npm:1.0.4"],\
           ["es-errors", "npm:1.3.0"],\
-          ["is-typed-array", "npm:1.1.13"]\
+          ["is-typed-array", "npm:1.1.15"],\
+          ["typed-array-buffer", "npm:1.0.3"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["typed-array-byte-length", [\
-      ["npm:1.0.1", {\
-        "packageLocation": "./.yarn/cache/typed-array-byte-length-npm-1.0.1-9ab0891fb8-fcebeffb24.zip/node_modules/typed-array-byte-length/",\
+      ["npm:1.0.3", {\
+        "packageLocation": "./.yarn/cache/typed-array-byte-length-npm-1.0.3-0769937080-6ae083c6f0.zip/node_modules/typed-array-byte-length/",\
         "packageDependencies": [\
-          ["typed-array-byte-length", "npm:1.0.1"],\
-          ["call-bind", "npm:1.0.7"],\
-          ["for-each", "npm:0.3.3"],\
-          ["gopd", "npm:1.0.1"],\
-          ["has-proto", "npm:1.0.3"],\
-          ["is-typed-array", "npm:1.1.13"]\
+          ["call-bind", "npm:1.0.8"],\
+          ["for-each", "npm:0.3.5"],\
+          ["gopd", "npm:1.2.0"],\
+          ["has-proto", "npm:1.2.0"],\
+          ["is-typed-array", "npm:1.1.15"],\
+          ["typed-array-byte-length", "npm:1.0.3"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["typed-array-byte-offset", [\
-      ["npm:1.0.2", {\
-        "packageLocation": "./.yarn/cache/typed-array-byte-offset-npm-1.0.2-14b64ee0e1-d2628bc739.zip/node_modules/typed-array-byte-offset/",\
+      ["npm:1.0.4", {\
+        "packageLocation": "./.yarn/cache/typed-array-byte-offset-npm-1.0.4-12f60e4553-3d805b050c.zip/node_modules/typed-array-byte-offset/",\
         "packageDependencies": [\
-          ["typed-array-byte-offset", "npm:1.0.2"],\
           ["available-typed-arrays", "npm:1.0.7"],\
-          ["call-bind", "npm:1.0.7"],\
-          ["for-each", "npm:0.3.3"],\
-          ["gopd", "npm:1.0.1"],\
-          ["has-proto", "npm:1.0.3"],\
-          ["is-typed-array", "npm:1.1.13"]\
+          ["call-bind", "npm:1.0.8"],\
+          ["for-each", "npm:0.3.5"],\
+          ["gopd", "npm:1.2.0"],\
+          ["has-proto", "npm:1.2.0"],\
+          ["is-typed-array", "npm:1.1.15"],\
+          ["reflect.getprototypeof", "npm:1.0.10"],\
+          ["typed-array-byte-offset", "npm:1.0.4"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["typed-array-length", [\
-      ["npm:1.0.6", {\
-        "packageLocation": "./.yarn/cache/typed-array-length-npm-1.0.6-867a36a1ac-74253d7dc4.zip/node_modules/typed-array-length/",\
+      ["npm:1.0.7", {\
+        "packageLocation": "./.yarn/cache/typed-array-length-npm-1.0.7-ac6ef772a7-e38f2ae377.zip/node_modules/typed-array-length/",\
         "packageDependencies": [\
-          ["typed-array-length", "npm:1.0.6"],\
-          ["call-bind", "npm:1.0.7"],\
-          ["for-each", "npm:0.3.3"],\
-          ["gopd", "npm:1.0.1"],\
-          ["has-proto", "npm:1.0.3"],\
-          ["is-typed-array", "npm:1.1.13"],\
-          ["possible-typed-array-names", "npm:1.0.0"]\
+          ["call-bind", "npm:1.0.8"],\
+          ["for-each", "npm:0.3.5"],\
+          ["gopd", "npm:1.2.0"],\
+          ["is-typed-array", "npm:1.1.15"],\
+          ["possible-typed-array-names", "npm:1.1.0"],\
+          ["reflect.getprototypeof", "npm:1.0.10"],\
+          ["typed-array-length", "npm:1.0.7"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["unbox-primitive", [\
-      ["npm:1.0.2", {\
-        "packageLocation": "./.yarn/cache/unbox-primitive-npm-1.0.2-cb56a05066-81ca2e8113.zip/node_modules/unbox-primitive/",\
+      ["npm:1.1.0", {\
+        "packageLocation": "./.yarn/cache/unbox-primitive-npm-1.1.0-269638c590-7dbd35ab02.zip/node_modules/unbox-primitive/",\
         "packageDependencies": [\
-          ["unbox-primitive", "npm:1.0.2"],\
-          ["call-bind", "npm:1.0.7"],\
-          ["has-bigints", "npm:1.0.2"],\
-          ["has-symbols", "npm:1.0.3"],\
-          ["which-boxed-primitive", "npm:1.0.2"]\
+          ["call-bound", "npm:1.0.4"],\
+          ["has-bigints", "npm:1.1.0"],\
+          ["has-symbols", "npm:1.1.0"],\
+          ["unbox-primitive", "npm:1.1.0"],\
+          ["which-boxed-primitive", "npm:1.1.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2544,9 +2829,9 @@ const RAW_RUNTIME_STATE =
       ["npm:1.5.10", {\
         "packageLocation": "./.yarn/cache/url-parse-npm-1.5.10-64fa2bcd6d-bd5aa9389f.zip/node_modules/url-parse/",\
         "packageDependencies": [\
-          ["url-parse", "npm:1.5.10"],\
           ["querystringify", "npm:2.2.0"],\
-          ["requires-port", "npm:1.0.0"]\
+          ["requires-port", "npm:1.0.0"],\
+          ["url-parse", "npm:1.5.10"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2556,15 +2841,6 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/util-deprecate-npm-1.0.2-e3fe1a219c-41a5bdd214.zip/node_modules/util-deprecate/",\
         "packageDependencies": [\
           ["util-deprecate", "npm:1.0.2"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["utils-merge", [\
-      ["npm:1.0.1", {\
-        "packageLocation": "./.yarn/cache/utils-merge-npm-1.0.1-363bbdfbca-02ba649de1.zip/node_modules/utils-merge/",\
-        "packageDependencies": [\
-          ["utils-merge", "npm:1.0.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2591,10 +2867,10 @@ const RAW_RUNTIME_STATE =
       ["npm:1.10.0", {\
         "packageLocation": "./.yarn/cache/verror-npm-1.10.0-c3f839c579-37ccdf8542.zip/node_modules/verror/",\
         "packageDependencies": [\
-          ["verror", "npm:1.10.0"],\
           ["assert-plus", "npm:1.0.0"],\
           ["core-util-is", "npm:1.0.2"],\
-          ["extsprintf", "npm:1.4.1"]\
+          ["extsprintf", "npm:1.4.1"],\
+          ["verror", "npm:1.10.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2609,29 +2885,66 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["which-boxed-primitive", [\
-      ["npm:1.0.2", {\
-        "packageLocation": "./.yarn/cache/which-boxed-primitive-npm-1.0.2-e214f9ae5a-0a62a03c00.zip/node_modules/which-boxed-primitive/",\
+      ["npm:1.1.1", {\
+        "packageLocation": "./.yarn/cache/which-boxed-primitive-npm-1.1.1-80ca20c912-aceea8ede3.zip/node_modules/which-boxed-primitive/",\
         "packageDependencies": [\
-          ["which-boxed-primitive", "npm:1.0.2"],\
-          ["is-bigint", "npm:1.0.4"],\
-          ["is-boolean-object", "npm:1.1.2"],\
-          ["is-number-object", "npm:1.0.7"],\
-          ["is-string", "npm:1.0.7"],\
-          ["is-symbol", "npm:1.0.4"]\
+          ["is-bigint", "npm:1.1.0"],\
+          ["is-boolean-object", "npm:1.2.2"],\
+          ["is-number-object", "npm:1.1.1"],\
+          ["is-string", "npm:1.1.1"],\
+          ["is-symbol", "npm:1.1.1"],\
+          ["which-boxed-primitive", "npm:1.1.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["which-builtin-type", [\
+      ["npm:1.2.1", {\
+        "packageLocation": "./.yarn/cache/which-builtin-type-npm-1.2.1-bbbdf9137f-8dcf323c45.zip/node_modules/which-builtin-type/",\
+        "packageDependencies": [\
+          ["call-bound", "npm:1.0.4"],\
+          ["function.prototype.name", "npm:1.1.8"],\
+          ["has-tostringtag", "npm:1.0.2"],\
+          ["is-async-function", "npm:2.1.1"],\
+          ["is-date-object", "npm:1.1.0"],\
+          ["is-finalizationregistry", "npm:1.1.1"],\
+          ["is-generator-function", "npm:1.1.0"],\
+          ["is-regex", "npm:1.2.1"],\
+          ["is-weakref", "npm:1.1.1"],\
+          ["isarray", "npm:2.0.5"],\
+          ["which-boxed-primitive", "npm:1.1.1"],\
+          ["which-builtin-type", "npm:1.2.1"],\
+          ["which-collection", "npm:1.0.2"],\
+          ["which-typed-array", "npm:1.1.19"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["which-collection", [\
+      ["npm:1.0.2", {\
+        "packageLocation": "./.yarn/cache/which-collection-npm-1.0.2-0d6277e921-3345fde209.zip/node_modules/which-collection/",\
+        "packageDependencies": [\
+          ["is-map", "npm:2.0.3"],\
+          ["is-set", "npm:2.0.3"],\
+          ["is-weakmap", "npm:2.0.2"],\
+          ["is-weakset", "npm:2.0.4"],\
+          ["which-collection", "npm:1.0.2"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["which-typed-array", [\
-      ["npm:1.1.15", {\
-        "packageLocation": "./.yarn/cache/which-typed-array-npm-1.1.15-91410874a2-4465d5348c.zip/node_modules/which-typed-array/",\
+      ["npm:1.1.19", {\
+        "packageLocation": "./.yarn/cache/which-typed-array-npm-1.1.19-e664d1e89c-702b5dc878.zip/node_modules/which-typed-array/",\
         "packageDependencies": [\
-          ["which-typed-array", "npm:1.1.15"],\
           ["available-typed-arrays", "npm:1.0.7"],\
-          ["call-bind", "npm:1.0.7"],\
-          ["for-each", "npm:0.3.3"],\
-          ["gopd", "npm:1.0.1"],\
-          ["has-tostringtag", "npm:1.0.2"]\
+          ["call-bind", "npm:1.0.8"],\
+          ["call-bound", "npm:1.0.4"],\
+          ["for-each", "npm:0.3.5"],\
+          ["get-proto", "npm:1.0.1"],\
+          ["gopd", "npm:1.2.0"],\
+          ["has-tostringtag", "npm:1.0.2"],\
+          ["which-typed-array", "npm:1.1.19"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2640,11 +2953,11 @@ const RAW_RUNTIME_STATE =
       ["npm:7.0.2", {\
         "packageLocation": "./.yarn/cache/with-npm-7.0.2-135a242adb-99289e49af.zip/node_modules/with/",\
         "packageDependencies": [\
-          ["with", "npm:7.0.2"],\
-          ["@babel/parser", "npm:7.24.7"],\
-          ["@babel/types", "npm:7.24.7"],\
-          ["assert-never", "npm:1.2.1"],\
-          ["babel-walk", "npm:3.0.0-canary-5"]\
+          ["@babel/parser", "npm:7.27.0"],\
+          ["@babel/types", "npm:7.27.0"],\
+          ["assert-never", "npm:1.4.0"],\
+          ["babel-walk", "npm:3.0.0-canary-5"],\
+          ["with", "npm:7.0.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2766,26 +3079,24 @@ function ERR_DIR_CLOSED() {
 
 const DEFAULT_MODE = S_IFREG | 420;
 class StatEntry {
-  constructor() {
-    this.uid = 0;
-    this.gid = 0;
-    this.size = 0;
-    this.blksize = 0;
-    this.atimeMs = 0;
-    this.mtimeMs = 0;
-    this.ctimeMs = 0;
-    this.birthtimeMs = 0;
-    this.atime = new Date(0);
-    this.mtime = new Date(0);
-    this.ctime = new Date(0);
-    this.birthtime = new Date(0);
-    this.dev = 0;
-    this.ino = 0;
-    this.mode = DEFAULT_MODE;
-    this.nlink = 1;
-    this.rdev = 0;
-    this.blocks = 1;
-  }
+  uid = 0;
+  gid = 0;
+  size = 0;
+  blksize = 0;
+  atimeMs = 0;
+  mtimeMs = 0;
+  ctimeMs = 0;
+  birthtimeMs = 0;
+  atime = /* @__PURE__ */ new Date(0);
+  mtime = /* @__PURE__ */ new Date(0);
+  ctime = /* @__PURE__ */ new Date(0);
+  birthtime = /* @__PURE__ */ new Date(0);
+  dev = 0;
+  ino = 0;
+  mode = DEFAULT_MODE;
+  nlink = 1;
+  rdev = 0;
+  blocks = 1;
   isBlockDevice() {
     return false;
   }
@@ -2809,30 +3120,28 @@ class StatEntry {
   }
 }
 class BigIntStatsEntry {
-  constructor() {
-    this.uid = BigInt(0);
-    this.gid = BigInt(0);
-    this.size = BigInt(0);
-    this.blksize = BigInt(0);
-    this.atimeMs = BigInt(0);
-    this.mtimeMs = BigInt(0);
-    this.ctimeMs = BigInt(0);
-    this.birthtimeMs = BigInt(0);
-    this.atimeNs = BigInt(0);
-    this.mtimeNs = BigInt(0);
-    this.ctimeNs = BigInt(0);
-    this.birthtimeNs = BigInt(0);
-    this.atime = new Date(0);
-    this.mtime = new Date(0);
-    this.ctime = new Date(0);
-    this.birthtime = new Date(0);
-    this.dev = BigInt(0);
-    this.ino = BigInt(0);
-    this.mode = BigInt(DEFAULT_MODE);
-    this.nlink = BigInt(1);
-    this.rdev = BigInt(0);
-    this.blocks = BigInt(1);
-  }
+  uid = BigInt(0);
+  gid = BigInt(0);
+  size = BigInt(0);
+  blksize = BigInt(0);
+  atimeMs = BigInt(0);
+  mtimeMs = BigInt(0);
+  ctimeMs = BigInt(0);
+  birthtimeMs = BigInt(0);
+  atimeNs = BigInt(0);
+  mtimeNs = BigInt(0);
+  ctimeNs = BigInt(0);
+  birthtimeNs = BigInt(0);
+  atime = /* @__PURE__ */ new Date(0);
+  mtime = /* @__PURE__ */ new Date(0);
+  ctime = /* @__PURE__ */ new Date(0);
+  birthtime = /* @__PURE__ */ new Date(0);
+  dev = BigInt(0);
+  ino = BigInt(0);
+  mode = BigInt(DEFAULT_MODE);
+  nlink = BigInt(1);
+  rdev = BigInt(0);
+  blocks = BigInt(1);
   isBlockDevice() {
     return false;
   }
@@ -2867,7 +3176,7 @@ function clearStats(stats) {
       } else if (typeof element === `bigint`) {
         stats[key] = BigInt(0);
       } else if (nodeUtils__namespace.types.isDate(element)) {
-        stats[key] = new Date(0);
+        stats[key] = /* @__PURE__ */ new Date(0);
       }
     }
   }
@@ -2958,6 +3267,9 @@ const Filename = {
   manifest: `package.json`,
   lockfile: `yarn.lock`,
   virtual: `__virtual__`,
+  /**
+   * @deprecated
+   */
   pnpJs: `.pnp.js`,
   pnpCjs: `.pnp.cjs`,
   pnpData: `.pnp.data.json`,
@@ -3080,7 +3392,7 @@ async function copyImpl(prelayout, postlayout, destinationFs, destination, sourc
 async function maybeLStat(baseFs, p) {
   try {
     return await baseFs.lstatPromise(p);
-  } catch (e) {
+  } catch {
     return null;
   }
 }
@@ -3239,8 +3551,8 @@ class CustomDir {
     this.path = path;
     this.nextDirent = nextDirent;
     this.opts = opts;
-    this.closed = false;
   }
+  closed = false;
   throwIfClosed() {
     if (this.closed) {
       throw ERR_DIR_CLOSED();
@@ -3298,20 +3610,24 @@ function assertStatus(current, expected) {
   }
 }
 class CustomStatWatcher extends events.EventEmitter {
-  constructor(fakeFs, path, { bigint = false } = {}) {
-    super();
-    this.status = "ready" /* Ready */;
-    this.changeListeners = /* @__PURE__ */ new Map();
-    this.startTimeout = null;
-    this.fakeFs = fakeFs;
-    this.path = path;
-    this.bigint = bigint;
-    this.lastStats = this.stat();
-  }
+  fakeFs;
+  path;
+  bigint;
+  status = "ready" /* Ready */;
+  changeListeners = /* @__PURE__ */ new Map();
+  lastStats;
+  startTimeout = null;
   static create(fakeFs, path, opts) {
     const statWatcher = new CustomStatWatcher(fakeFs, path, opts);
     statWatcher.start();
     return statWatcher;
+  }
+  constructor(fakeFs, path, { bigint = false } = {}) {
+    super();
+    this.fakeFs = fakeFs;
+    this.path = path;
+    this.bigint = bigint;
+    this.lastStats = this.stat();
   }
   start() {
     assertStatus(this.status, "ready" /* Ready */);
@@ -3335,11 +3651,16 @@ class CustomStatWatcher extends events.EventEmitter {
   stat() {
     try {
       return this.fakeFs.statSync(this.path, { bigint: this.bigint });
-    } catch (error) {
+    } catch {
       const statInstance = this.bigint ? new BigIntStatsEntry() : new StatEntry();
       return clearStats(statInstance);
     }
   }
+  /**
+   * Creates an interval whose callback compares the current stats with the previous stats and notifies all listeners in case of changes.
+   *
+   * @param opts.persistent Decides whether the interval should be immediately unref-ed.
+   */
   makeInterval(opts) {
     const interval = setInterval(() => {
       const currentStats = this.stat();
@@ -3351,10 +3672,16 @@ class CustomStatWatcher extends events.EventEmitter {
     }, opts.interval);
     return opts.persistent ? interval : interval.unref();
   }
+  /**
+   * Registers a listener and assigns it an interval.
+   */
   registerChangeListener(listener, opts) {
     this.addListener("change" /* Change */, listener);
     this.changeListeners.set(listener, this.makeInterval(opts));
   }
+  /**
+   * Unregisters the listener and clears the assigned interval.
+   */
   unregisterChangeListener(listener) {
     this.removeListener("change" /* Change */, listener);
     const interval = this.changeListeners.get(listener);
@@ -3362,6 +3689,9 @@ class CustomStatWatcher extends events.EventEmitter {
       clearInterval(interval);
     this.changeListeners.delete(listener);
   }
+  /**
+   * Unregisters all listeners and clears all assigned intervals.
+   */
   unregisterAllChangeListeners() {
     for (const listener of this.changeListeners.keys()) {
       this.unregisterChangeListener(listener);
@@ -3370,11 +3700,17 @@ class CustomStatWatcher extends events.EventEmitter {
   hasChangeListeners() {
     return this.changeListeners.size > 0;
   }
+  /**
+   * Refs all stored intervals.
+   */
   ref() {
     for (const interval of this.changeListeners.values())
       interval.ref();
     return this;
   }
+  /**
+   * Unrefs all stored intervals.
+   */
   unref() {
     for (const interval of this.changeListeners.values())
       interval.unref();
@@ -3445,6 +3781,7 @@ function unwatchAllFiles(fakeFs) {
 }
 
 class FakeFS {
+  pathUtils;
   constructor(pathUtils) {
     this.pathUtils = pathUtils;
   }
@@ -3640,7 +3977,7 @@ class FakeFS {
     let current = Buffer.alloc(0);
     try {
       current = await this.readFilePromise(p);
-    } catch (error) {
+    } catch {
     }
     if (Buffer.compare(current, content) === 0)
       return;
@@ -3650,7 +3987,7 @@ class FakeFS {
     let current = ``;
     try {
       current = await this.readFilePromise(p, `utf8`);
-    } catch (error) {
+    } catch {
     }
     const normalizedContent = automaticNewlines ? normalizeLineEndings(current, content) : content;
     if (current === normalizedContent)
@@ -3668,7 +4005,7 @@ class FakeFS {
     let current = Buffer.alloc(0);
     try {
       current = this.readFileSync(p);
-    } catch (error) {
+    } catch {
     }
     if (Buffer.compare(current, content) === 0)
       return;
@@ -3678,7 +4015,7 @@ class FakeFS {
     let current = ``;
     try {
       current = this.readFileSync(p, `utf8`);
-    } catch (error) {
+    } catch {
     }
     const normalizedContent = automaticNewlines ? normalizeLineEndings(current, content) : content;
     if (current === normalizedContent)
@@ -3718,13 +4055,13 @@ class FakeFS {
       let pid;
       try {
         [pid] = await this.readJsonPromise(lockPath);
-      } catch (error) {
+      } catch {
         return Date.now() - startTime < 500;
       }
       try {
         process.kill(pid, 0);
         return true;
-      } catch (error) {
+      } catch {
         return false;
       }
     };
@@ -3737,7 +4074,7 @@ class FakeFS {
             try {
               await this.unlinkPromise(lockPath);
               continue;
-            } catch (error2) {
+            } catch {
             }
           }
           if (Date.now() - startTime < 60 * 1e3) {
@@ -3757,7 +4094,7 @@ class FakeFS {
       try {
         await this.closePromise(fd);
         await this.unlinkPromise(lockPath);
-      } catch (error) {
+      } catch {
       }
     }
   }
@@ -4053,6 +4390,7 @@ class ProxiedFS extends FakeFS {
   watch(p, a, b) {
     return this.baseFs.watch(
       this.mapToBase(p),
+      // @ts-expect-error - reason TBS
       a,
       b
     );
@@ -4060,6 +4398,7 @@ class ProxiedFS extends FakeFS {
   watchFile(p, a, b) {
     return this.baseFs.watchFile(
       this.mapToBase(p),
+      // @ts-expect-error - reason TBS
       a,
       b
     );
@@ -4083,6 +4422,7 @@ function direntToPortable(dirent) {
   return portableDirent;
 }
 class NodeFS extends BasePortableFakeFS {
+  realFs;
   constructor(realFs = fs__default.default) {
     super();
     this.realFs = realFs;
@@ -4478,6 +4818,7 @@ class NodeFS extends BasePortableFakeFS {
   watch(p, a, b) {
     return this.realFs.watch(
       npath.fromPortablePath(p),
+      // @ts-expect-error - reason TBS
       a,
       b
     );
@@ -4485,6 +4826,7 @@ class NodeFS extends BasePortableFakeFS {
   watchFile(p, a, b) {
     return this.realFs.watchFile(
       npath.fromPortablePath(p),
+      // @ts-expect-error - reason TBS
       a,
       b
     );
@@ -4505,16 +4847,25 @@ class NodeFS extends BasePortableFakeFS {
 
 const MOUNT_MASK = 4278190080;
 class MountFS extends BasePortableFakeFS {
+  baseFs;
+  mountInstances;
+  fdMap = /* @__PURE__ */ new Map();
+  nextFd = 3;
+  factoryPromise;
+  factorySync;
+  filter;
+  getMountPoint;
+  magic;
+  maxAge;
+  maxOpenFiles;
+  typeCheck;
+  isMount = /* @__PURE__ */ new Set();
+  notMount = /* @__PURE__ */ new Set();
+  realPaths = /* @__PURE__ */ new Map();
   constructor({ baseFs = new NodeFS(), filter = null, magicByte = 42, maxOpenFiles = Infinity, useCache = true, maxAge = 5e3, typeCheck = fs.constants.S_IFREG, getMountPoint, factoryPromise, factorySync }) {
     if (Math.floor(magicByte) !== magicByte || !(magicByte > 1 && magicByte <= 127))
       throw new Error(`The magic byte must be set to a round value between 1 and 127 included`);
     super();
-    this.fdMap = /* @__PURE__ */ new Map();
-    this.nextFd = 3;
-    this.isMount = /* @__PURE__ */ new Set();
-    this.notMount = /* @__PURE__ */ new Set();
-    this.realPaths = /* @__PURE__ */ new Map();
-    this.limitOpenFilesTimeout = null;
     this.baseFs = baseFs;
     this.mountInstances = useCache ? /* @__PURE__ */ new Map() : null;
     this.factoryPromise = factoryPromise;
@@ -4893,7 +5244,7 @@ class MountFS extends BasePortableFakeFS {
       let content;
       try {
         content = await sourceFs.readFilePromise(sourceP2);
-      } catch (error) {
+      } catch {
         throw Object.assign(new Error(`EINVAL: invalid argument, copyfile '${sourceP2}' -> '${destP2}'`), { code: `EINVAL` });
       }
       await destFs.writeFilePromise(destP2, content);
@@ -4925,7 +5276,7 @@ class MountFS extends BasePortableFakeFS {
       let content;
       try {
         content = sourceFs.readFileSync(sourceP2);
-      } catch (error) {
+      } catch {
         throw Object.assign(new Error(`EINVAL: invalid argument, copyfile '${sourceP2}' -> '${destP2}'`), { code: `EINVAL` });
       }
       destFs.writeFileSync(destP2, content);
@@ -5170,12 +5521,14 @@ class MountFS extends BasePortableFakeFS {
     return this.makeCallSync(p, () => {
       return this.baseFs.watch(
         p,
+        // @ts-expect-error - reason TBS
         a,
         b
       );
     }, (mountFs, { subPath }) => {
       return mountFs.watch(
         subPath,
+        // @ts-expect-error - reason TBS
         a,
         b
       );
@@ -5185,6 +5538,7 @@ class MountFS extends BasePortableFakeFS {
     return this.makeCallSync(p, () => {
       return this.baseFs.watchFile(
         p,
+        // @ts-expect-error - reason TBS
         a,
         b
       );
@@ -5235,7 +5589,7 @@ class MountFS extends BasePortableFakeFS {
         if (this.notMount.has(filePath))
           continue;
         try {
-          if (this.typeCheck !== null && (this.baseFs.lstatSync(filePath).mode & fs.constants.S_IFMT) !== this.typeCheck) {
+          if (this.typeCheck !== null && (this.baseFs.statSync(filePath).mode & fs.constants.S_IFMT) !== this.typeCheck) {
             this.notMount.add(filePath);
             continue;
           }
@@ -5250,6 +5604,7 @@ class MountFS extends BasePortableFakeFS {
       };
     }
   }
+  limitOpenFilesTimeout = null;
   limitOpenFiles(max) {
     if (this.mountInstances === null)
       return;
@@ -5339,6 +5694,7 @@ class MountFS extends BasePortableFakeFS {
 }
 
 class PosixFS extends ProxiedFS {
+  baseFs;
   constructor(baseFs) {
     super(npath);
     this.baseFs = baseFs;
@@ -5355,10 +5711,7 @@ const NUMBER_REGEXP = /^[0-9]+$/;
 const VIRTUAL_REGEXP = /^(\/(?:[^/]+\/)*?(?:\$\$virtual|__virtual__))((?:\/((?:[^/]+-)?[a-f0-9]+)(?:\/([^/]+))?)?((?:\/.*)?))$/;
 const VALID_COMPONENT = /^([^/]+-)?[a-f0-9]+$/;
 class VirtualFS extends ProxiedFS {
-  constructor({ baseFs = new NodeFS() } = {}) {
-    super(ppath);
-    this.baseFs = baseFs;
-  }
+  baseFs;
   static makeVirtualPath(base, component, to) {
     if (ppath.basename(base) !== `__virtual__`)
       throw new Error(`Assertion failed: Virtual folders must be named "__virtual__"`);
@@ -5387,6 +5740,10 @@ class VirtualFS extends ProxiedFS {
     const backstep = `../`.repeat(depth);
     const subpath = match[5] || `.`;
     return VirtualFS.resolveVirtual(ppath.join(target, backstep, subpath));
+  }
+  constructor({ baseFs = new NodeFS() } = {}) {
+    super(ppath);
+    this.baseFs = baseFs;
   }
   getExtractHint(hints) {
     return this.baseFs.getExtractHint(hints);
@@ -5429,6 +5786,7 @@ class VirtualFS extends ProxiedFS {
 const URL = Number(process.versions.node.split('.', 1)[0]) < 20 ? url.URL : globalThis.URL;
 
 class NodePathFS extends ProxiedFS {
+  baseFs;
   constructor(baseFs) {
     super(npath);
     this.baseFs = baseFs;
@@ -5456,7 +5814,6 @@ function isUtf8(buf, str) {
   return Buffer.byteLength(str) === buf.byteLength;
 }
 
-var _a, _b, _c, _d;
 const kBaseFs = Symbol(`kBaseFs`);
 const kFd = Symbol(`kFd`);
 const kClosePromise = Symbol(`kClosePromise`);
@@ -5466,11 +5823,13 @@ const kRefs = Symbol(`kRefs`);
 const kRef = Symbol(`kRef`);
 const kUnref = Symbol(`kUnref`);
 class FileHandle {
+  [kBaseFs];
+  [kFd];
+  [kRefs] = 1;
+  [kClosePromise] = void 0;
+  [kCloseResolve] = void 0;
+  [kCloseReject] = void 0;
   constructor(fd, baseFs) {
-    this[_a] = 1;
-    this[_b] = void 0;
-    this[_c] = void 0;
-    this[_d] = void 0;
     this[kBaseFs] = baseFs;
     this[kFd] = fd;
   }
@@ -5508,9 +5867,11 @@ class FileHandle {
   createWriteStream(options) {
     return this[kBaseFs].createWriteStream(null, { ...options, fd: this.fd });
   }
+  // FIXME: Missing FakeFS version
   datasync() {
     throw new Error(`Method not implemented.`);
   }
+  // FIXME: Missing FakeFS version
   sync() {
     throw new Error(`Method not implemented.`);
   }
@@ -5575,6 +5936,7 @@ class FileHandle {
       this[kUnref]();
     }
   }
+  // FIXME: Missing FakeFS version
   utimes(atime, mtime) {
     throw new Error(`Method not implemented.`);
   }
@@ -5603,6 +5965,7 @@ class FileHandle {
       this[kUnref]();
     }
   }
+  // TODO: Use writev from FakeFS when that is implemented
   async writev(buffers, position) {
     try {
       this[kRef](this.writev);
@@ -5627,14 +5990,13 @@ class FileHandle {
       this[kUnref]();
     }
   }
+  // FIXME: Missing FakeFS version
   readv(buffers, position) {
     throw new Error(`Method not implemented.`);
   }
   close() {
-    if (this[kFd] === -1)
-      return Promise.resolve();
-    if (this[kClosePromise])
-      return this[kClosePromise];
+    if (this[kFd] === -1) return Promise.resolve();
+    if (this[kClosePromise]) return this[kClosePromise];
     this[kRefs]--;
     if (this[kRefs] === 0) {
       const fd = this[kFd];
@@ -5654,7 +6016,7 @@ class FileHandle {
     }
     return this[kClosePromise];
   }
-  [(_a = kRefs, _b = kClosePromise, _c = kCloseResolve, _d = kCloseReject, kRef)](caller) {
+  [kRef](caller) {
     if (this[kFd] === -1) {
       const err = new Error(`file closed`);
       err.code = `EBADF`;
@@ -5829,7 +6191,7 @@ function patchFs(patchedFs, fakeFs) {
     setupFn(patchedFs, `existsSync`, (p) => {
       try {
         return fakeFs.existsSync(p);
-      } catch (error) {
+      } catch {
         return false;
       }
     });
@@ -5914,8 +6276,7 @@ var libzipSync = {exports: {}};
 var frozenFs = Object.assign({}, fs__default.default);
 var createModule = function() {
   var _scriptDir = void 0;
-  if (typeof __filename !== "undefined")
-    _scriptDir = _scriptDir || __filename;
+  if (typeof __filename !== "undefined") _scriptDir = _scriptDir || __filename;
   return function(createModule2) {
     createModule2 = createModule2 || {};
     var Module = typeof createModule2 !== "undefined" ? createModule2 : {};
@@ -5950,10 +6311,8 @@ var createModule = function() {
         if (ret) {
           return binary ? ret : ret.toString();
         }
-        if (!nodeFS)
-          nodeFS = frozenFs;
-        if (!nodePath)
-          nodePath = path__default.default;
+        if (!nodeFS) nodeFS = frozenFs;
+        if (!nodePath) nodePath = path__default.default;
         filename = nodePath["normalize"](filename);
         return nodeFS["readFileSync"](filename, binary ? null : "utf8");
       };
@@ -5981,23 +6340,18 @@ var createModule = function() {
       }
     }
     moduleOverrides = null;
-    if (Module["arguments"])
-      ;
-    if (Module["thisProgram"])
-      ;
-    if (Module["quit"])
-      ;
+    if (Module["arguments"]) ;
+    if (Module["thisProgram"]) ;
+    if (Module["quit"]) ;
     var wasmBinary;
-    if (Module["wasmBinary"])
-      wasmBinary = Module["wasmBinary"];
+    if (Module["wasmBinary"]) wasmBinary = Module["wasmBinary"];
     Module["noExitRuntime"] || true;
     if (typeof WebAssembly !== "object") {
       abort("no native wasm support detected");
     }
     function getValue(ptr, type, noSafe) {
       type = type || "i8";
-      if (type.charAt(type.length - 1) === "*")
-        type = "i32";
+      if (type.charAt(type.length - 1) === "*") type = "i32";
       switch (type) {
         case "i1":
           return HEAP8[ptr >> 0];
@@ -6051,10 +6405,8 @@ var createModule = function() {
         }
       };
       function convertReturnValue(ret2) {
-        if (returnType === "string")
-          return UTF8ToString(ret2);
-        if (returnType === "boolean")
-          return Boolean(ret2);
+        if (returnType === "string") return UTF8ToString(ret2);
+        if (returnType === "boolean") return Boolean(ret2);
         return ret2;
       }
       var func = getCFunc(ident);
@@ -6064,8 +6416,7 @@ var createModule = function() {
         for (var i = 0; i < args.length; i++) {
           var converter = toC[argTypes[i]];
           if (converter) {
-            if (stack === 0)
-              stack = stackSave();
+            if (stack === 0) stack = stackSave();
             cArgs[i] = converter(args[i]);
           } else {
             cArgs[i] = args[i];
@@ -6074,8 +6425,7 @@ var createModule = function() {
       }
       var ret = func.apply(null, cArgs);
       ret = convertReturnValue(ret);
-      if (stack !== 0)
-        stackRestore(stack);
+      if (stack !== 0) stackRestore(stack);
       return ret;
     }
     function cwrap(ident, returnType, argTypes, opts) {
@@ -6093,16 +6443,13 @@ var createModule = function() {
     }
     var UTF8Decoder = new TextDecoder("utf8");
     function UTF8ToString(ptr, maxBytesToRead) {
-      if (!ptr)
-        return "";
+      if (!ptr) return "";
       var maxPtr = ptr + maxBytesToRead;
-      for (var end = ptr; !(end >= maxPtr) && HEAPU8[end]; )
-        ++end;
+      for (var end = ptr; !(end >= maxPtr) && HEAPU8[end]; ) ++end;
       return UTF8Decoder.decode(HEAPU8.subarray(ptr, end));
     }
     function stringToUTF8Array(str, heap, outIdx, maxBytesToWrite) {
-      if (!(maxBytesToWrite > 0))
-        return 0;
+      if (!(maxBytesToWrite > 0)) return 0;
       var startIdx = outIdx;
       var endIdx = outIdx + maxBytesToWrite - 1;
       for (var i = 0; i < str.length; ++i) {
@@ -6112,23 +6459,19 @@ var createModule = function() {
           u = 65536 + ((u & 1023) << 10) | u1 & 1023;
         }
         if (u <= 127) {
-          if (outIdx >= endIdx)
-            break;
+          if (outIdx >= endIdx) break;
           heap[outIdx++] = u;
         } else if (u <= 2047) {
-          if (outIdx + 1 >= endIdx)
-            break;
+          if (outIdx + 1 >= endIdx) break;
           heap[outIdx++] = 192 | u >> 6;
           heap[outIdx++] = 128 | u & 63;
         } else if (u <= 65535) {
-          if (outIdx + 2 >= endIdx)
-            break;
+          if (outIdx + 2 >= endIdx) break;
           heap[outIdx++] = 224 | u >> 12;
           heap[outIdx++] = 128 | u >> 6 & 63;
           heap[outIdx++] = 128 | u & 63;
         } else {
-          if (outIdx + 3 >= endIdx)
-            break;
+          if (outIdx + 3 >= endIdx) break;
           heap[outIdx++] = 240 | u >> 18;
           heap[outIdx++] = 128 | u >> 12 & 63;
           heap[outIdx++] = 128 | u >> 6 & 63;
@@ -6147,22 +6490,17 @@ var createModule = function() {
         var u = str.charCodeAt(i);
         if (u >= 55296 && u <= 57343)
           u = 65536 + ((u & 1023) << 10) | str.charCodeAt(++i) & 1023;
-        if (u <= 127)
-          ++len;
-        else if (u <= 2047)
-          len += 2;
-        else if (u <= 65535)
-          len += 3;
-        else
-          len += 4;
+        if (u <= 127) ++len;
+        else if (u <= 2047) len += 2;
+        else if (u <= 65535) len += 3;
+        else len += 4;
       }
       return len;
     }
     function allocateUTF8(str) {
       var size = lengthBytesUTF8(str) + 1;
       var ret = _malloc(size);
-      if (ret)
-        stringToUTF8Array(str, HEAP8, ret, size);
+      if (ret) stringToUTF8Array(str, HEAP8, ret, size);
       return ret;
     }
     function writeArrayToMemory(array, buffer2) {
@@ -6379,8 +6717,7 @@ var createModule = function() {
       var start = Date.UTC(date.getUTCFullYear(), 0, 1, 0, 0, 0, 0);
       var yday = (date.getTime() - start) / (1e3 * 60 * 60 * 24) | 0;
       LE_HEAP_STORE_I32((tmPtr + 28 >> 2) * 4, yday);
-      if (!_gmtime_r.GMTString)
-        _gmtime_r.GMTString = allocateUTF8("GMT");
+      if (!_gmtime_r.GMTString) _gmtime_r.GMTString = allocateUTF8("GMT");
       LE_HEAP_STORE_I32((tmPtr + 40 >> 2) * 4, _gmtime_r.GMTString);
       return tmPtr;
     }
@@ -6432,10 +6769,9 @@ var createModule = function() {
       return ret;
     }
     function _tzset() {
-      if (_tzset.called)
-        return;
+      if (_tzset.called) return;
       _tzset.called = true;
-      var currentYear = new Date().getFullYear();
+      var currentYear = (/* @__PURE__ */ new Date()).getFullYear();
       var winter = new Date(currentYear, 0, 1);
       var summer = new Date(currentYear, 6, 1);
       var winterOffset = winter.getTimezoneOffset();
@@ -6563,10 +6899,8 @@ var createModule = function() {
     Module["getValue"] = getValue;
     var calledRun;
     dependenciesFulfilled = function runCaller() {
-      if (!calledRun)
-        run();
-      if (!calledRun)
-        dependenciesFulfilled = runCaller;
+      if (!calledRun) run();
+      if (!calledRun) dependenciesFulfilled = runCaller;
     };
     function run(args) {
       if (runDependencies > 0) {
@@ -6577,16 +6911,13 @@ var createModule = function() {
         return;
       }
       function doRun() {
-        if (calledRun)
-          return;
+        if (calledRun) return;
         calledRun = true;
         Module["calledRun"] = true;
-        if (ABORT)
-          return;
+        if (ABORT) return;
         initRuntime();
         readyPromiseResolve(Module);
-        if (Module["onRuntimeInitialized"])
-          Module["onRuntimeInitialized"]();
+        if (Module["onRuntimeInitialized"]) Module["onRuntimeInitialized"]();
         postRun();
       }
       if (Module["setStatus"]) {
@@ -6620,7 +6951,9 @@ const createModule = libzipSync.exports;
 
 const number64 = [
   `number`,
+  // low
   `number`
+  // high
 ];
 var Errors = /* @__PURE__ */ ((Errors2) => {
   Errors2[Errors2["ZIP_ER_OK"] = 0] = "ZIP_ER_OK";
@@ -6658,6 +6991,7 @@ var Errors = /* @__PURE__ */ ((Errors2) => {
   return Errors2;
 })(Errors || {});
 const makeInterface = (emZip) => ({
+  // Those are getters because they can change after memory growth
   get HEAPU8() {
     return emZip.HEAPU8;
   },
@@ -6796,14 +7130,16 @@ class ZipOpenFS extends MountFS {
       return new ZipFS(p, {
         baseFs,
         readOnly: readOnlyArchives,
-        stats: baseFs.statSync(p)
+        stats: baseFs.statSync(p),
+        customZipImplementation: opts.customZipImplementation
       });
     };
     const factoryPromise = async (baseFs, p) => {
       const zipOptions = {
         baseFs,
         readOnly: readOnlyArchives,
-        stats: await baseFs.statPromise(p)
+        stats: await baseFs.statPromise(p),
+        customZipImplementation: opts.customZipImplementation
       };
       return () => {
         return new ZipFS(p, zipOptions);
@@ -6818,6 +7154,236 @@ class ZipOpenFS extends MountFS {
   }
 }
 
+class LibzipError extends Error {
+  code;
+  constructor(message, code) {
+    super(message);
+    this.name = `Libzip Error`;
+    this.code = code;
+  }
+}
+class LibZipImpl {
+  libzip;
+  lzSource;
+  zip;
+  listings;
+  symlinkCount;
+  filesShouldBeCached = true;
+  constructor(opts) {
+    const buffer = `buffer` in opts ? opts.buffer : opts.baseFs.readFileSync(opts.path);
+    this.libzip = getInstance();
+    const errPtr = this.libzip.malloc(4);
+    try {
+      let flags = 0;
+      if (opts.readOnly)
+        flags |= this.libzip.ZIP_RDONLY;
+      const lzSource = this.allocateUnattachedSource(buffer);
+      try {
+        this.zip = this.libzip.openFromSource(lzSource, flags, errPtr);
+        this.lzSource = lzSource;
+      } catch (error) {
+        this.libzip.source.free(lzSource);
+        throw error;
+      }
+      if (this.zip === 0) {
+        const error = this.libzip.struct.errorS();
+        this.libzip.error.initWithCode(error, this.libzip.getValue(errPtr, `i32`));
+        throw this.makeLibzipError(error);
+      }
+    } finally {
+      this.libzip.free(errPtr);
+    }
+    const entryCount = this.libzip.getNumEntries(this.zip, 0);
+    const listings = new Array(entryCount);
+    for (let t = 0; t < entryCount; ++t)
+      listings[t] = this.libzip.getName(this.zip, t, 0);
+    this.listings = listings;
+    this.symlinkCount = this.libzip.ext.countSymlinks(this.zip);
+    if (this.symlinkCount === -1) {
+      throw this.makeLibzipError(this.libzip.getError(this.zip));
+    }
+  }
+  getSymlinkCount() {
+    return this.symlinkCount;
+  }
+  getListings() {
+    return this.listings;
+  }
+  stat(entry) {
+    const stat = this.libzip.struct.statS();
+    const rc = this.libzip.statIndex(this.zip, entry, 0, 0, stat);
+    if (rc === -1)
+      throw this.makeLibzipError(this.libzip.getError(this.zip));
+    const size = this.libzip.struct.statSize(stat) >>> 0;
+    const mtime = this.libzip.struct.statMtime(stat) >>> 0;
+    const crc = this.libzip.struct.statCrc(stat) >>> 0;
+    return { size, mtime, crc };
+  }
+  makeLibzipError(error) {
+    const errorCode = this.libzip.struct.errorCodeZip(error);
+    const strerror = this.libzip.error.strerror(error);
+    const libzipError = new LibzipError(strerror, this.libzip.errors[errorCode]);
+    if (errorCode === this.libzip.errors.ZIP_ER_CHANGED)
+      throw new Error(`Assertion failed: Unexpected libzip error: ${libzipError.message}`);
+    return libzipError;
+  }
+  setFileSource(target, compression, buffer) {
+    const lzSource = this.allocateSource(buffer);
+    try {
+      const newIndex = this.libzip.file.add(this.zip, target, lzSource, this.libzip.ZIP_FL_OVERWRITE);
+      if (newIndex === -1)
+        throw this.makeLibzipError(this.libzip.getError(this.zip));
+      if (compression !== null) {
+        const rc = this.libzip.file.setCompression(this.zip, newIndex, 0, compression[0], compression[1]);
+        if (rc === -1) {
+          throw this.makeLibzipError(this.libzip.getError(this.zip));
+        }
+      }
+      return newIndex;
+    } catch (error) {
+      this.libzip.source.free(lzSource);
+      throw error;
+    }
+  }
+  setMtime(entry, mtime) {
+    const rc = this.libzip.file.setMtime(this.zip, entry, 0, mtime, 0);
+    if (rc === -1) {
+      throw this.makeLibzipError(this.libzip.getError(this.zip));
+    }
+  }
+  getExternalAttributes(index) {
+    const attrs = this.libzip.file.getExternalAttributes(this.zip, index, 0, 0, this.libzip.uint08S, this.libzip.uint32S);
+    if (attrs === -1)
+      throw this.makeLibzipError(this.libzip.getError(this.zip));
+    const opsys = this.libzip.getValue(this.libzip.uint08S, `i8`) >>> 0;
+    const attributes = this.libzip.getValue(this.libzip.uint32S, `i32`) >>> 0;
+    return [opsys, attributes];
+  }
+  setExternalAttributes(index, opsys, attributes) {
+    const rc = this.libzip.file.setExternalAttributes(this.zip, index, 0, 0, opsys, attributes);
+    if (rc === -1) {
+      throw this.makeLibzipError(this.libzip.getError(this.zip));
+    }
+  }
+  locate(name) {
+    return this.libzip.name.locate(this.zip, name, 0);
+  }
+  getFileSource(index) {
+    const stat = this.libzip.struct.statS();
+    const rc = this.libzip.statIndex(this.zip, index, 0, 0, stat);
+    if (rc === -1)
+      throw this.makeLibzipError(this.libzip.getError(this.zip));
+    const size = this.libzip.struct.statCompSize(stat);
+    const compressionMethod = this.libzip.struct.statCompMethod(stat);
+    const buffer = this.libzip.malloc(size);
+    try {
+      const file = this.libzip.fopenIndex(this.zip, index, 0, this.libzip.ZIP_FL_COMPRESSED);
+      if (file === 0)
+        throw this.makeLibzipError(this.libzip.getError(this.zip));
+      try {
+        const rc2 = this.libzip.fread(file, buffer, size, 0);
+        if (rc2 === -1)
+          throw this.makeLibzipError(this.libzip.file.getError(file));
+        else if (rc2 < size)
+          throw new Error(`Incomplete read`);
+        else if (rc2 > size)
+          throw new Error(`Overread`);
+        const memory = this.libzip.HEAPU8.subarray(buffer, buffer + size);
+        const data = Buffer.from(memory);
+        return { data, compressionMethod };
+      } finally {
+        this.libzip.fclose(file);
+      }
+    } finally {
+      this.libzip.free(buffer);
+    }
+  }
+  deleteEntry(index) {
+    const rc = this.libzip.delete(this.zip, index);
+    if (rc === -1) {
+      throw this.makeLibzipError(this.libzip.getError(this.zip));
+    }
+  }
+  addDirectory(path) {
+    const index = this.libzip.dir.add(this.zip, path);
+    if (index === -1)
+      throw this.makeLibzipError(this.libzip.getError(this.zip));
+    return index;
+  }
+  getBufferAndClose() {
+    try {
+      this.libzip.source.keep(this.lzSource);
+      if (this.libzip.close(this.zip) === -1)
+        throw this.makeLibzipError(this.libzip.getError(this.zip));
+      if (this.libzip.source.open(this.lzSource) === -1)
+        throw this.makeLibzipError(this.libzip.source.error(this.lzSource));
+      if (this.libzip.source.seek(this.lzSource, 0, 0, this.libzip.SEEK_END) === -1)
+        throw this.makeLibzipError(this.libzip.source.error(this.lzSource));
+      const size = this.libzip.source.tell(this.lzSource);
+      if (size === -1)
+        throw this.makeLibzipError(this.libzip.source.error(this.lzSource));
+      if (this.libzip.source.seek(this.lzSource, 0, 0, this.libzip.SEEK_SET) === -1)
+        throw this.makeLibzipError(this.libzip.source.error(this.lzSource));
+      const buffer = this.libzip.malloc(size);
+      if (!buffer)
+        throw new Error(`Couldn't allocate enough memory`);
+      try {
+        const rc = this.libzip.source.read(this.lzSource, buffer, size);
+        if (rc === -1)
+          throw this.makeLibzipError(this.libzip.source.error(this.lzSource));
+        else if (rc < size)
+          throw new Error(`Incomplete read`);
+        else if (rc > size)
+          throw new Error(`Overread`);
+        let result = Buffer.from(this.libzip.HEAPU8.subarray(buffer, buffer + size));
+        if (process.env.YARN_IS_TEST_ENV && process.env.YARN_ZIP_DATA_EPILOGUE)
+          result = Buffer.concat([result, Buffer.from(process.env.YARN_ZIP_DATA_EPILOGUE)]);
+        return result;
+      } finally {
+        this.libzip.free(buffer);
+      }
+    } finally {
+      this.libzip.source.close(this.lzSource);
+      this.libzip.source.free(this.lzSource);
+    }
+  }
+  allocateBuffer(content) {
+    if (!Buffer.isBuffer(content))
+      content = Buffer.from(content);
+    const buffer = this.libzip.malloc(content.byteLength);
+    if (!buffer)
+      throw new Error(`Couldn't allocate enough memory`);
+    const heap = new Uint8Array(this.libzip.HEAPU8.buffer, buffer, content.byteLength);
+    heap.set(content);
+    return { buffer, byteLength: content.byteLength };
+  }
+  allocateUnattachedSource(content) {
+    const error = this.libzip.struct.errorS();
+    const { buffer, byteLength } = this.allocateBuffer(content);
+    const source = this.libzip.source.fromUnattachedBuffer(buffer, byteLength, 0, 1, error);
+    if (source === 0) {
+      this.libzip.free(error);
+      throw this.makeLibzipError(error);
+    }
+    return source;
+  }
+  allocateSource(content) {
+    const { buffer, byteLength } = this.allocateBuffer(content);
+    const source = this.libzip.source.fromBuffer(this.zip, buffer, byteLength, 0, 1);
+    if (source === 0) {
+      this.libzip.free(buffer);
+      throw this.makeLibzipError(this.libzip.getError(this.zip));
+    }
+    return source;
+  }
+  discard() {
+    this.libzip.discard(this.zip);
+  }
+}
+
+const ZIP_UNIX = 3;
+const STORE = 0;
+const DEFLATE = 8;
 const DEFAULT_COMPRESSION_LEVEL = `mixed`;
 function toUnixTimestamp(time) {
   if (typeof time === `string` && String(+time) === time)
@@ -6859,26 +7425,32 @@ function makeEmptyArchive() {
     0
   ]);
 }
-class LibzipError extends Error {
-  constructor(message, code) {
-    super(message);
-    this.name = `Libzip Error`;
-    this.code = code;
-  }
-}
 class ZipFS extends BasePortableFakeFS {
+  baseFs;
+  path;
+  stats;
+  level;
+  zipImpl;
+  listings = /* @__PURE__ */ new Map();
+  entries = /* @__PURE__ */ new Map();
+  /**
+   * A cache of indices mapped to file sources.
+   * Populated by `setFileSource` calls.
+   * Required for supporting read after write.
+   */
+  fileSources = /* @__PURE__ */ new Map();
+  symlinkCount;
+  fds = /* @__PURE__ */ new Map();
+  nextFd = 0;
+  ready = false;
+  readOnly = false;
   constructor(source, opts = {}) {
     super();
-    this.listings = /* @__PURE__ */ new Map();
-    this.entries = /* @__PURE__ */ new Map();
-    this.fileSources = /* @__PURE__ */ new Map();
-    this.fds = /* @__PURE__ */ new Map();
-    this.nextFd = 0;
-    this.ready = false;
-    this.readOnly = false;
+    if (opts.readOnly)
+      this.readOnly = true;
     const pathOptions = opts;
     this.level = typeof pathOptions.level !== `undefined` ? pathOptions.level : DEFAULT_COMPRESSION_LEVEL;
-    source ??= makeEmptyArchive();
+    const ZipImplCls = opts.customZipImplementation ?? LibZipImpl;
     if (typeof source === `string`) {
       const { baseFs = new NodeFS() } = pathOptions;
       this.baseFs = baseFs;
@@ -6904,36 +7476,19 @@ class ZipFS extends BasePortableFakeFS {
         this.stats = makeDefaultStats();
       }
     }
-    this.libzip = getInstance();
-    const errPtr = this.libzip.malloc(4);
-    try {
-      let flags = 0;
-      if (opts.readOnly) {
-        flags |= this.libzip.ZIP_RDONLY;
-        this.readOnly = true;
+    if (typeof source === `string`) {
+      if (opts.create) {
+        this.zipImpl = new ZipImplCls({ buffer: makeEmptyArchive(), readOnly: this.readOnly });
+      } else {
+        this.zipImpl = new ZipImplCls({ path: source, baseFs: this.baseFs, readOnly: this.readOnly, size: this.stats.size });
       }
-      if (typeof source === `string`)
-        source = pathOptions.create ? makeEmptyArchive() : this.baseFs.readFileSync(source);
-      const lzSource = this.allocateUnattachedSource(source);
-      try {
-        this.zip = this.libzip.openFromSource(lzSource, flags, errPtr);
-        this.lzSource = lzSource;
-      } catch (error) {
-        this.libzip.source.free(lzSource);
-        throw error;
-      }
-      if (this.zip === 0) {
-        const error = this.libzip.struct.errorS();
-        this.libzip.error.initWithCode(error, this.libzip.getValue(errPtr, `i32`));
-        throw this.makeLibzipError(error);
-      }
-    } finally {
-      this.libzip.free(errPtr);
+    } else {
+      this.zipImpl = new ZipImplCls({ buffer: source ?? makeEmptyArchive(), readOnly: this.readOnly });
     }
     this.listings.set(PortablePath.root, /* @__PURE__ */ new Set());
-    const entryCount = this.libzip.getNumEntries(this.zip, 0);
-    for (let t = 0; t < entryCount; ++t) {
-      const raw = this.libzip.getName(this.zip, t, 0);
+    const listings = this.zipImpl.getListings();
+    for (let t = 0; t < listings.length; t++) {
+      const raw = listings[t];
       if (ppath.isAbsolute(raw))
         continue;
       const p = ppath.resolve(PortablePath.root, raw);
@@ -6942,18 +7497,8 @@ class ZipFS extends BasePortableFakeFS {
         this.registerListing(p);
       }
     }
-    this.symlinkCount = this.libzip.ext.countSymlinks(this.zip);
-    if (this.symlinkCount === -1)
-      throw this.makeLibzipError(this.libzip.getError(this.zip));
+    this.symlinkCount = this.zipImpl.getSymlinkCount();
     this.ready = true;
-  }
-  makeLibzipError(error) {
-    const errorCode = this.libzip.struct.errorCodeZip(error);
-    const strerror = this.libzip.error.strerror(error);
-    const libzipError = new LibzipError(strerror, this.libzip.errors[errorCode]);
-    if (errorCode === this.libzip.errors.ZIP_ER_CHANGED)
-      throw new Error(`Assertion failed: Unexpected libzip error: ${libzipError.message}`);
-    return libzipError;
   }
   getExtractHint(hints) {
     for (const fileName of this.entries.keys()) {
@@ -6984,45 +7529,14 @@ class ZipFS extends BasePortableFakeFS {
       return makeEmptyArchive();
     }
     try {
-      this.libzip.source.keep(this.lzSource);
-      if (this.libzip.close(this.zip) === -1)
-        throw this.makeLibzipError(this.libzip.getError(this.zip));
-      if (this.libzip.source.open(this.lzSource) === -1)
-        throw this.makeLibzipError(this.libzip.source.error(this.lzSource));
-      if (this.libzip.source.seek(this.lzSource, 0, 0, this.libzip.SEEK_END) === -1)
-        throw this.makeLibzipError(this.libzip.source.error(this.lzSource));
-      const size = this.libzip.source.tell(this.lzSource);
-      if (size === -1)
-        throw this.makeLibzipError(this.libzip.source.error(this.lzSource));
-      if (this.libzip.source.seek(this.lzSource, 0, 0, this.libzip.SEEK_SET) === -1)
-        throw this.makeLibzipError(this.libzip.source.error(this.lzSource));
-      const buffer = this.libzip.malloc(size);
-      if (!buffer)
-        throw new Error(`Couldn't allocate enough memory`);
-      try {
-        const rc = this.libzip.source.read(this.lzSource, buffer, size);
-        if (rc === -1)
-          throw this.makeLibzipError(this.libzip.source.error(this.lzSource));
-        else if (rc < size)
-          throw new Error(`Incomplete read`);
-        else if (rc > size)
-          throw new Error(`Overread`);
-        let result = Buffer.from(this.libzip.HEAPU8.subarray(buffer, buffer + size));
-        if (process.env.YARN_IS_TEST_ENV && process.env.YARN_ZIP_DATA_EPILOGUE)
-          result = Buffer.concat([result, Buffer.from(process.env.YARN_ZIP_DATA_EPILOGUE)]);
-        return result;
-      } finally {
-        this.libzip.free(buffer);
-      }
+      return this.zipImpl.getBufferAndClose();
     } finally {
-      this.libzip.source.close(this.lzSource);
-      this.libzip.source.free(this.lzSource);
       this.ready = false;
     }
   }
   discardAndClose() {
     this.prepareClose();
-    this.libzip.discard(this.zip);
+    this.zipImpl.discard();
     this.ready = false;
   }
   saveAndClose() {
@@ -7124,6 +7638,7 @@ class ZipFS extends BasePortableFakeFS {
         },
         bytesRead: 0,
         path: p,
+        // "This property is `true` if the underlying file has not been opened yet"
         pending: false
       }
     );
@@ -7170,6 +7685,7 @@ class ZipFS extends BasePortableFakeFS {
         },
         bytesWritten: 0,
         path: p,
+        // "This property is `true` if the underlying file has not been opened yet"
         pending: false
       }
     );
@@ -7202,7 +7718,7 @@ class ZipFS extends BasePortableFakeFS {
     let resolvedP;
     try {
       resolvedP = this.resolveFilename(`stat '${p}'`, p, void 0, false);
-    } catch (error) {
+    } catch {
       return false;
     }
     if (resolvedP === void 0)
@@ -7274,16 +7790,14 @@ class ZipFS extends BasePortableFakeFS {
   statImpl(reason, p, opts = {}) {
     const entry = this.entries.get(p);
     if (typeof entry !== `undefined`) {
-      const stat = this.libzip.struct.statS();
-      const rc = this.libzip.statIndex(this.zip, entry, 0, 0, stat);
-      if (rc === -1)
-        throw this.makeLibzipError(this.libzip.getError(this.zip));
+      const stat = this.zipImpl.stat(entry);
+      const crc = stat.crc;
+      const size = stat.size;
+      const mtimeMs = stat.mtime * 1e3;
       const uid = this.stats.uid;
       const gid = this.stats.gid;
-      const size = this.libzip.struct.statSize(stat) >>> 0;
       const blksize = 512;
-      const blocks = Math.ceil(size / blksize);
-      const mtimeMs = (this.libzip.struct.statMtime(stat) >>> 0) * 1e3;
+      const blocks = Math.ceil(stat.size / blksize);
       const atimeMs = mtimeMs;
       const birthtimeMs = mtimeMs;
       const ctimeMs = mtimeMs;
@@ -7294,7 +7808,6 @@ class ZipFS extends BasePortableFakeFS {
       const type = this.listings.has(p) ? fs.constants.S_IFDIR : this.isSymbolicLink(entry) ? fs.constants.S_IFLNK : fs.constants.S_IFREG;
       const defaultMode = type === fs.constants.S_IFDIR ? 493 : 420;
       const mode = type | this.getUnixMode(entry, defaultMode) & 511;
-      const crc = this.libzip.struct.statCrc(stat);
       const statInstance = Object.assign(new StatEntry(), { uid, gid, size, blksize, blocks, atime, birthtime, ctime, mtime, atimeMs, birthtimeMs, ctimeMs, mtimeMs, mode, crc });
       return opts.bigint === true ? convertToBigIntStats(statInstance) : statInstance;
     }
@@ -7320,13 +7833,10 @@ class ZipFS extends BasePortableFakeFS {
     throw new Error(`Unreachable`);
   }
   getUnixMode(index, defaultMode) {
-    const rc = this.libzip.file.getExternalAttributes(this.zip, index, 0, 0, this.libzip.uint08S, this.libzip.uint32S);
-    if (rc === -1)
-      throw this.makeLibzipError(this.libzip.getError(this.zip));
-    const opsys = this.libzip.getValue(this.libzip.uint08S, `i8`) >>> 0;
-    if (opsys !== this.libzip.ZIP_OPSYS_UNIX)
+    const [opsys, attributes] = this.zipImpl.getExternalAttributes(index);
+    if (opsys !== ZIP_UNIX)
       return defaultMode;
-    return this.libzip.getValue(this.libzip.uint32S, `i32`) >>> 16;
+    return attributes >>> 16;
   }
   registerListing(p) {
     const existingListing = this.listings.get(p);
@@ -7361,10 +7871,7 @@ class ZipFS extends BasePortableFakeFS {
   }
   deleteEntry(p, index) {
     this.unregisterEntry(p);
-    const rc = this.libzip.delete(this.zip, index);
-    if (rc === -1) {
-      throw this.makeLibzipError(this.libzip.getError(this.zip));
-    }
+    this.zipImpl.deleteEntry(index);
   }
   resolveFilename(reason, p, resolveLastComponent = true, throwIfNoEntry = true) {
     if (!this.ready)
@@ -7397,7 +7904,7 @@ class ZipFS extends BasePortableFakeFS {
       resolvedP = ppath.resolve(parentP, ppath.basename(resolvedP));
       if (!resolveLastComponent || this.symlinkCount === 0)
         break;
-      const index = this.libzip.name.locate(this.zip, resolvedP.slice(1), 0);
+      const index = this.zipImpl.locate(resolvedP.slice(1));
       if (index === -1)
         break;
       if (this.isSymbolicLink(index)) {
@@ -7409,118 +7916,57 @@ class ZipFS extends BasePortableFakeFS {
     }
     return resolvedP;
   }
-  allocateBuffer(content) {
-    if (!Buffer.isBuffer(content))
-      content = Buffer.from(content);
-    const buffer = this.libzip.malloc(content.byteLength);
-    if (!buffer)
-      throw new Error(`Couldn't allocate enough memory`);
-    const heap = new Uint8Array(this.libzip.HEAPU8.buffer, buffer, content.byteLength);
-    heap.set(content);
-    return { buffer, byteLength: content.byteLength };
-  }
-  allocateUnattachedSource(content) {
-    const error = this.libzip.struct.errorS();
-    const { buffer, byteLength } = this.allocateBuffer(content);
-    const source = this.libzip.source.fromUnattachedBuffer(buffer, byteLength, 0, 1, error);
-    if (source === 0) {
-      this.libzip.free(error);
-      throw this.makeLibzipError(error);
-    }
-    return source;
-  }
-  allocateSource(content) {
-    const { buffer, byteLength } = this.allocateBuffer(content);
-    const source = this.libzip.source.fromBuffer(this.zip, buffer, byteLength, 0, 1);
-    if (source === 0) {
-      this.libzip.free(buffer);
-      throw this.makeLibzipError(this.libzip.getError(this.zip));
-    }
-    return source;
-  }
   setFileSource(p, content) {
     const buffer = Buffer.isBuffer(content) ? content : Buffer.from(content);
     const target = ppath.relative(PortablePath.root, p);
-    const lzSource = this.allocateSource(content);
-    try {
-      const newIndex = this.libzip.file.add(this.zip, target, lzSource, this.libzip.ZIP_FL_OVERWRITE);
-      if (newIndex === -1)
-        throw this.makeLibzipError(this.libzip.getError(this.zip));
-      if (this.level !== `mixed`) {
-        const method = this.level === 0 ? this.libzip.ZIP_CM_STORE : this.libzip.ZIP_CM_DEFLATE;
-        const rc = this.libzip.file.setCompression(this.zip, newIndex, 0, method, this.level);
-        if (rc === -1) {
-          throw this.makeLibzipError(this.libzip.getError(this.zip));
-        }
-      }
-      this.fileSources.set(newIndex, buffer);
-      return newIndex;
-    } catch (error) {
-      this.libzip.source.free(lzSource);
-      throw error;
+    let compression = null;
+    if (this.level !== `mixed`) {
+      const method = this.level === 0 ? STORE : DEFLATE;
+      compression = [method, this.level];
     }
+    const newIndex = this.zipImpl.setFileSource(target, compression, buffer);
+    this.fileSources.set(newIndex, buffer);
+    return newIndex;
   }
   isSymbolicLink(index) {
     if (this.symlinkCount === 0)
       return false;
-    const attrs = this.libzip.file.getExternalAttributes(this.zip, index, 0, 0, this.libzip.uint08S, this.libzip.uint32S);
-    if (attrs === -1)
-      throw this.makeLibzipError(this.libzip.getError(this.zip));
-    const opsys = this.libzip.getValue(this.libzip.uint08S, `i8`) >>> 0;
-    if (opsys !== this.libzip.ZIP_OPSYS_UNIX)
+    const [opsys, attrs] = this.zipImpl.getExternalAttributes(index);
+    if (opsys !== ZIP_UNIX)
       return false;
-    const attributes = this.libzip.getValue(this.libzip.uint32S, `i32`) >>> 16;
+    const attributes = attrs >>> 16;
     return (attributes & fs.constants.S_IFMT) === fs.constants.S_IFLNK;
   }
   getFileSource(index, opts = { asyncDecompress: false }) {
     const cachedFileSource = this.fileSources.get(index);
     if (typeof cachedFileSource !== `undefined`)
       return cachedFileSource;
-    const stat = this.libzip.struct.statS();
-    const rc = this.libzip.statIndex(this.zip, index, 0, 0, stat);
-    if (rc === -1)
-      throw this.makeLibzipError(this.libzip.getError(this.zip));
-    const size = this.libzip.struct.statCompSize(stat);
-    const compressionMethod = this.libzip.struct.statCompMethod(stat);
-    const buffer = this.libzip.malloc(size);
-    try {
-      const file = this.libzip.fopenIndex(this.zip, index, 0, this.libzip.ZIP_FL_COMPRESSED);
-      if (file === 0)
-        throw this.makeLibzipError(this.libzip.getError(this.zip));
-      try {
-        const rc2 = this.libzip.fread(file, buffer, size, 0);
-        if (rc2 === -1)
-          throw this.makeLibzipError(this.libzip.file.getError(file));
-        else if (rc2 < size)
-          throw new Error(`Incomplete read`);
-        else if (rc2 > size)
-          throw new Error(`Overread`);
-        const memory = this.libzip.HEAPU8.subarray(buffer, buffer + size);
-        const data = Buffer.from(memory);
-        if (compressionMethod === 0) {
-          this.fileSources.set(index, data);
-          return data;
-        } else if (opts.asyncDecompress) {
-          return new Promise((resolve, reject) => {
-            zlib__default.default.inflateRaw(data, (error, result) => {
-              if (error) {
-                reject(error);
-              } else {
+    const { data, compressionMethod } = this.zipImpl.getFileSource(index);
+    if (compressionMethod === STORE) {
+      if (this.zipImpl.filesShouldBeCached)
+        this.fileSources.set(index, data);
+      return data;
+    } else if (compressionMethod === DEFLATE) {
+      if (opts.asyncDecompress) {
+        return new Promise((resolve, reject) => {
+          zlib__default.default.inflateRaw(data, (error, result) => {
+            if (error) {
+              reject(error);
+            } else {
+              if (this.zipImpl.filesShouldBeCached)
                 this.fileSources.set(index, result);
-                resolve(result);
-              }
-            });
+              resolve(result);
+            }
           });
-        } else {
-          const decompressedData = zlib__default.default.inflateRawSync(data);
+        });
+      } else {
+        const decompressedData = zlib__default.default.inflateRawSync(data);
+        if (this.zipImpl.filesShouldBeCached)
           this.fileSources.set(index, decompressedData);
-          return decompressedData;
-        }
-      } finally {
-        this.libzip.fclose(file);
+        return decompressedData;
       }
-    } finally {
-      this.libzip.free(buffer);
+    } else {
+      throw new Error(`Unsupported compression method: ${compressionMethod}`);
     }
   }
   async fchmodPromise(fd, mask) {
@@ -7542,10 +7988,7 @@ class ZipFS extends BasePortableFakeFS {
       throw new Error(`Assertion failed: The entry should have been registered (${resolvedP})`);
     const oldMod = this.getUnixMode(entry, fs.constants.S_IFREG | 0);
     const newMod = oldMod & ~511 | mask;
-    const rc = this.libzip.file.setExternalAttributes(this.zip, entry, 0, 0, this.libzip.ZIP_OPSYS_UNIX, newMod << 16);
-    if (rc === -1) {
-      throw this.makeLibzipError(this.libzip.getError(this.zip));
-    }
+    this.zipImpl.setExternalAttributes(entry, ZIP_UNIX, newMod << 16);
   }
   async fchownPromise(fd, uid, gid) {
     return this.chownPromise(this.fdToPath(fd, `fchown`), uid, gid);
@@ -7719,10 +8162,7 @@ class ZipFS extends BasePortableFakeFS {
     const entry = this.entries.get(resolvedP);
     if (entry === void 0)
       throw new Error(`Unreachable`);
-    const rc = this.libzip.file.setMtime(this.zip, entry, 0, toUnixTimestamp(mtime), 0);
-    if (rc === -1) {
-      throw this.makeLibzipError(this.libzip.getError(this.zip));
-    }
+    this.zipImpl.setMtime(entry, toUnixTimestamp(mtime));
   }
   async mkdirPromise(p, opts) {
     return this.mkdirSync(p, opts);
@@ -7782,9 +8222,7 @@ class ZipFS extends BasePortableFakeFS {
     this.deleteEntry(p, index);
   }
   hydrateDirectory(resolvedP) {
-    const index = this.libzip.dir.add(this.zip, ppath.relative(PortablePath.root, resolvedP));
-    if (index === -1)
-      throw this.makeLibzipError(this.libzip.getError(this.zip));
+    const index = this.zipImpl.addDirectory(ppath.relative(PortablePath.root, resolvedP));
     this.registerListing(resolvedP);
     this.registerEntry(resolvedP, index);
     return index;
@@ -7808,9 +8246,7 @@ class ZipFS extends BasePortableFakeFS {
       throw EEXIST(`symlink '${target}' -> '${p}'`);
     const index = this.setFileSource(resolvedP, target);
     this.registerEntry(resolvedP, index);
-    const rc = this.libzip.file.setExternalAttributes(this.zip, index, 0, 0, this.libzip.ZIP_OPSYS_UNIX, (fs.constants.S_IFLNK | 511) << 16);
-    if (rc === -1)
-      throw this.makeLibzipError(this.libzip.getError(this.zip));
+    this.zipImpl.setExternalAttributes(index, ZIP_UNIX, (fs.constants.S_IFLNK | 511) << 16);
     this.symlinkCount += 1;
   }
   async readFilePromise(p, encoding) {
@@ -7965,10 +8401,13 @@ class ZipFS extends BasePortableFakeFS {
       } };
     const interval = setInterval(() => {
     }, 24 * 60 * 60 * 1e3);
-    return { on: () => {
-    }, close: () => {
-      clearInterval(interval);
-    } };
+    return {
+      on: () => {
+      },
+      close: () => {
+        clearInterval(interval);
+      }
+    };
   }
   watchFile(p, a, b) {
     const resolvedP = ppath.resolve(PortablePath.root, p);
@@ -7977,6 +8416,201 @@ class ZipFS extends BasePortableFakeFS {
   unwatchFile(p, cb) {
     const resolvedP = ppath.resolve(PortablePath.root, p);
     return unwatchFile(this, resolvedP, cb);
+  }
+}
+
+const SIGNATURE = {
+  CENTRAL_DIRECTORY: 33639248,
+  END_OF_CENTRAL_DIRECTORY: 101010256
+};
+const noCommentCDSize = 22;
+class JsZipImpl {
+  fd;
+  baseFs;
+  entries;
+  filesShouldBeCached = false;
+  constructor(opts) {
+    if (`buffer` in opts)
+      throw new Error(`Buffer based zip archives are not supported`);
+    if (!opts.readOnly)
+      throw new Error(`Writable zip archives are not supported`);
+    this.baseFs = opts.baseFs;
+    this.fd = this.baseFs.openSync(opts.path, `r`);
+    try {
+      this.entries = JsZipImpl.readZipSync(this.fd, this.baseFs, opts.size);
+    } catch (error) {
+      this.baseFs.closeSync(this.fd);
+      this.fd = `closed`;
+      throw error;
+    }
+  }
+  static readZipSync(fd, baseFs, fileSize) {
+    if (fileSize < noCommentCDSize)
+      throw new Error(`Invalid ZIP file: EOCD not found`);
+    let eocdOffset = -1;
+    let eocdBuffer = Buffer.alloc(noCommentCDSize);
+    baseFs.readSync(
+      fd,
+      eocdBuffer,
+      0,
+      noCommentCDSize,
+      fileSize - noCommentCDSize
+    );
+    if (eocdBuffer.readUInt32LE(0) === SIGNATURE.END_OF_CENTRAL_DIRECTORY) {
+      eocdOffset = 0;
+    } else {
+      const bufferSize = Math.min(65557, fileSize);
+      eocdBuffer = Buffer.alloc(bufferSize);
+      baseFs.readSync(
+        fd,
+        eocdBuffer,
+        0,
+        bufferSize,
+        Math.max(0, fileSize - bufferSize)
+      );
+      for (let i = eocdBuffer.length - 4; i >= 0; i--) {
+        if (eocdBuffer.readUInt32LE(i) === SIGNATURE.END_OF_CENTRAL_DIRECTORY) {
+          eocdOffset = i;
+          break;
+        }
+      }
+      if (eocdOffset === -1) {
+        throw new Error(`Not a zip archive`);
+      }
+    }
+    const totalEntries = eocdBuffer.readUInt16LE(eocdOffset + 10);
+    const centralDirSize = eocdBuffer.readUInt32LE(eocdOffset + 12);
+    const centralDirOffset = eocdBuffer.readUInt32LE(eocdOffset + 16);
+    const commentLength = eocdBuffer.readUInt16LE(eocdOffset + 20);
+    if (eocdOffset + commentLength + noCommentCDSize > eocdBuffer.length)
+      throw new Error(`Zip archive inconsistent`);
+    if (totalEntries == 65535 || centralDirSize == 4294967295 || centralDirOffset == 4294967295)
+      throw new Error(`Zip 64 is not supported`);
+    if (centralDirSize > fileSize)
+      throw new Error(`Zip archive inconsistent`);
+    if (totalEntries > centralDirSize / 46)
+      throw new Error(`Zip archive inconsistent`);
+    const cdBuffer = Buffer.alloc(centralDirSize);
+    if (baseFs.readSync(fd, cdBuffer, 0, cdBuffer.length, centralDirOffset) !== cdBuffer.length)
+      throw new Error(`Zip archive inconsistent`);
+    const entries = [];
+    let offset = 0;
+    let index = 0;
+    let sumCompressedSize = 0;
+    while (index < totalEntries) {
+      if (offset + 46 > cdBuffer.length)
+        throw new Error(`Zip archive inconsistent`);
+      if (cdBuffer.readUInt32LE(offset) !== SIGNATURE.CENTRAL_DIRECTORY)
+        throw new Error(`Zip archive inconsistent`);
+      const versionMadeBy = cdBuffer.readUInt16LE(offset + 4);
+      const os = versionMadeBy >>> 8;
+      const flags = cdBuffer.readUInt16LE(offset + 8);
+      if ((flags & 1) !== 0)
+        throw new Error(`Encrypted zip files are not supported`);
+      const compressionMethod = cdBuffer.readUInt16LE(offset + 10);
+      const crc = cdBuffer.readUInt32LE(offset + 16);
+      const nameLength = cdBuffer.readUInt16LE(offset + 28);
+      const extraLength = cdBuffer.readUInt16LE(offset + 30);
+      const commentLength2 = cdBuffer.readUInt16LE(offset + 32);
+      const localHeaderOffset = cdBuffer.readUInt32LE(offset + 42);
+      const name = cdBuffer.toString(`utf8`, offset + 46, offset + 46 + nameLength).replaceAll(`\0`, ` `);
+      if (name.includes(`\0`))
+        throw new Error(`Invalid ZIP file`);
+      const compressedSize = cdBuffer.readUInt32LE(offset + 20);
+      const externalAttributes = cdBuffer.readUInt32LE(offset + 38);
+      entries.push({
+        name,
+        os,
+        mtime: SAFE_TIME,
+        //we dont care,
+        crc,
+        compressionMethod,
+        isSymbolicLink: os === ZIP_UNIX && (externalAttributes >>> 16 & S_IFMT) === S_IFLNK,
+        size: cdBuffer.readUInt32LE(offset + 24),
+        compressedSize,
+        externalAttributes,
+        localHeaderOffset
+      });
+      sumCompressedSize += compressedSize;
+      index += 1;
+      offset += 46 + nameLength + extraLength + commentLength2;
+    }
+    if (sumCompressedSize > fileSize)
+      throw new Error(`Zip archive inconsistent`);
+    if (offset !== cdBuffer.length)
+      throw new Error(`Zip archive inconsistent`);
+    return entries;
+  }
+  getExternalAttributes(index) {
+    const entry = this.entries[index];
+    return [entry.os, entry.externalAttributes];
+  }
+  getListings() {
+    return this.entries.map((e) => e.name);
+  }
+  getSymlinkCount() {
+    let count = 0;
+    for (const entry of this.entries)
+      if (entry.isSymbolicLink)
+        count += 1;
+    return count;
+  }
+  stat(index) {
+    const entry = this.entries[index];
+    return {
+      crc: entry.crc,
+      mtime: entry.mtime,
+      size: entry.size
+    };
+  }
+  locate(name) {
+    for (let ind = 0; ind < this.entries.length; ind++)
+      if (this.entries[ind].name === name)
+        return ind;
+    return -1;
+  }
+  getFileSource(index) {
+    if (this.fd === `closed`)
+      throw new Error(`ZIP file is closed`);
+    const entry = this.entries[index];
+    const localHeaderBuf = Buffer.alloc(30);
+    this.baseFs.readSync(
+      this.fd,
+      localHeaderBuf,
+      0,
+      localHeaderBuf.length,
+      entry.localHeaderOffset
+    );
+    const nameLength = localHeaderBuf.readUInt16LE(26);
+    const extraLength = localHeaderBuf.readUInt16LE(28);
+    const buffer = Buffer.alloc(entry.compressedSize);
+    if (this.baseFs.readSync(this.fd, buffer, 0, entry.compressedSize, entry.localHeaderOffset + 30 + nameLength + extraLength) !== entry.compressedSize)
+      throw new Error(`Invalid ZIP file`);
+    return { data: buffer, compressionMethod: entry.compressionMethod };
+  }
+  discard() {
+    if (this.fd !== `closed`) {
+      this.baseFs.closeSync(this.fd);
+      this.fd = `closed`;
+    }
+  }
+  addDirectory(path) {
+    throw new Error(`Not implemented`);
+  }
+  deleteEntry(index) {
+    throw new Error(`Not implemented`);
+  }
+  setMtime(index, mtime) {
+    throw new Error(`Not implemented`);
+  }
+  getBufferAndClose() {
+    throw new Error(`Not implemented`);
+  }
+  setFileSource(target, compression, buffer) {
+    throw new Error(`Not implemented`);
+  }
+  setExternalAttributes(index, opsys, attributes) {
+    throw new Error(`Not implemented`);
   }
 }
 
@@ -8243,7 +8877,7 @@ Require stack:
         } else {
           resolution = originalFindPath.call(require$$0.Module, request, [path], isMain);
         }
-      } catch (error) {
+      } catch {
         continue;
       }
       if (resolution) {
@@ -8252,18 +8886,20 @@ Require stack:
     }
     return false;
   };
-  const originalExtensionJSFunction = require$$0.Module._extensions[`.js`];
-  require$$0.Module._extensions[`.js`] = function(module, filename) {
-    if (filename.endsWith(`.js`)) {
-      const pkg = readPackageScope(filename);
-      if (pkg && pkg.data?.type === `module`) {
-        const err = ERR_REQUIRE_ESM(filename, module.parent?.filename);
-        Error.captureStackTrace(err);
-        throw err;
+  if (!process.features.require_module) {
+    const originalExtensionJSFunction = require$$0.Module._extensions[`.js`];
+    require$$0.Module._extensions[`.js`] = function(module, filename) {
+      if (filename.endsWith(`.js`)) {
+        const pkg = readPackageScope(filename);
+        if (pkg && pkg.data?.type === `module`) {
+          const err = ERR_REQUIRE_ESM(filename, module.parent?.filename);
+          Error.captureStackTrace(err);
+          throw err;
+        }
       }
-    }
-    originalExtensionJSFunction.call(this, module, filename);
-  };
+      originalExtensionJSFunction.call(this, module, filename);
+    };
+  }
   const originalDlopen = process.dlopen;
   process.dlopen = function(...args) {
     const [module, filename, ...rest] = args;
@@ -8309,6 +8945,8 @@ function hydrateRuntimeState(data, { basePath }) {
         packagePeers: new Set(packageInformationData.packagePeers),
         linkType: packageInformationData.linkType,
         discardFromLookup,
+        // we only need this for packages that are used by the currently running script
+        // this is a lazy getter because `ppath.join` has some overhead
         get packageLocation() {
           return resolvedPackageLocation || (resolvedPackageLocation = ppath.join(absolutePortablePath, packageInformationData.packageLocation));
         }
@@ -8326,6 +8964,7 @@ function hydrateRuntimeState(data, { basePath }) {
     dependencyTreeRoots,
     enableTopLevelFallback,
     fallbackExclusionList,
+    pnpZipBackend: data.pnpZipBackend,
     fallbackPool,
     ignorePattern,
     packageLocatorsByLocations,
@@ -8570,8 +9209,7 @@ function resolvePackageTargetString(target, subpath, match, packageJSONUrl, base
   const packagePath = new URL(".", packageJSONUrl).pathname;
   if (!StringPrototypeStartsWith(resolvedPath, packagePath))
     throwInvalidPackageTarget(match, target, packageJSONUrl, internal, base);
-  if (subpath === "")
-    return resolved;
+  if (subpath === "") return resolved;
   if (RegExpPrototypeExec(invalidSegmentRegEx, subpath) !== null) {
     const request = pattern ? StringPrototypeReplace(match, "*", () => subpath) : match + subpath;
     throwInvalidSubpath(request, packageJSONUrl, internal, base);
@@ -8585,8 +9223,7 @@ function resolvePackageTargetString(target, subpath, match, packageJSONUrl, base
 }
 function isArrayIndex(key) {
   const keyNum = +key;
-  if (`${keyNum}` !== key)
-    return false;
+  if (`${keyNum}` !== key) return false;
   return keyNum >= 0 && keyNum < 4294967295;
 }
 function resolvePackageTarget(packageJSONUrl, target, subpath, packageSubpath, base, pattern, internal, conditions) {
@@ -8663,8 +9300,7 @@ function resolvePackageTarget(packageJSONUrl, target, subpath, packageSubpath, b
           internal,
           conditions
         );
-        if (resolveResult === void 0)
-          continue;
+        if (resolveResult === void 0) continue;
         return resolveResult;
       }
     }
@@ -8685,25 +9321,17 @@ function patternKeyCompare(a, b) {
   const bPatternIndex = StringPrototypeIndexOf(b, "*");
   const baseLenA = aPatternIndex === -1 ? a.length : aPatternIndex + 1;
   const baseLenB = bPatternIndex === -1 ? b.length : bPatternIndex + 1;
-  if (baseLenA > baseLenB)
-    return -1;
-  if (baseLenB > baseLenA)
-    return 1;
-  if (aPatternIndex === -1)
-    return 1;
-  if (bPatternIndex === -1)
-    return -1;
-  if (a.length > b.length)
-    return -1;
-  if (b.length > a.length)
-    return 1;
+  if (baseLenA > baseLenB) return -1;
+  if (baseLenB > baseLenA) return 1;
+  if (aPatternIndex === -1) return 1;
+  if (bPatternIndex === -1) return -1;
+  if (a.length > b.length) return -1;
+  if (b.length > a.length) return 1;
   return 0;
 }
 function isConditionalExportsMainSugar(exports, packageJSONUrl, base) {
-  if (typeof exports === "string" || ArrayIsArray(exports))
-    return true;
-  if (typeof exports !== "object" || exports === null)
-    return false;
+  if (typeof exports === "string" || ArrayIsArray(exports)) return true;
+  if (typeof exports !== "object" || exports === null) return false;
   const keys = ObjectGetOwnPropertyNames(exports);
   let isConditionalSugar = false;
   let i = 0;
@@ -8732,8 +9360,7 @@ function throwExportsNotFound(subpath, packageJSONUrl, base) {
 const emittedPackageWarnings = /* @__PURE__ */ new Set();
 function emitTrailingSlashPatternDeprecation(match, pjsonUrl, base) {
   const pjsonPath = url.fileURLToPath(pjsonUrl);
-  if (emittedPackageWarnings.has(pjsonPath + "|" + match))
-    return;
+  if (emittedPackageWarnings.has(pjsonPath + "|" + match)) return;
   emittedPackageWarnings.add(pjsonPath + "|" + match);
   process.emitWarning(
     `Use of deprecated trailing slash pattern mapping "${match}" in the "exports" field module resolution of the package at ${pjsonPath}${base ? ` imported from ${url.fileURLToPath(base)}` : ""}. Mapping specifiers ending in "/" is no longer supported.`,
@@ -9334,7 +9961,7 @@ function makeApi(runtimeState, opts) {
     try {
       candidates.push(unqualifiedPath);
       stat = opts.fakeFs.statSync(unqualifiedPath);
-    } catch (error) {
+    } catch {
     }
     if (stat && !stat.isDirectory())
       return opts.fakeFs.realpathSync(unqualifiedPath);
@@ -9342,7 +9969,7 @@ function makeApi(runtimeState, opts) {
       let pkgJson;
       try {
         pkgJson = JSON.parse(opts.fakeFs.readFileSync(ppath.join(unqualifiedPath, Filename.manifest), `utf8`));
-      } catch (error) {
+      } catch {
       }
       let nextUnqualifiedPath;
       if (pkgJson && pkgJson.main)
@@ -9994,17 +10621,19 @@ const localFs = { ...fs__default.default };
 const nodeFs = new NodeFS(localFs);
 const defaultRuntimeState = $$SETUP_STATE(hydrateRuntimeState);
 const defaultPnpapiResolution = __filename;
+const customZipImplementation = defaultRuntimeState.pnpZipBackend === `js` ? JsZipImpl : void 0;
 const defaultFsLayer = new VirtualFS({
   baseFs: new ZipOpenFS({
+    customZipImplementation,
     baseFs: nodeFs,
     maxOpenFiles: 80,
     readOnlyArchives: true
   })
 });
 class DynamicFS extends ProxiedFS {
+  baseFs = defaultFsLayer;
   constructor() {
     super(ppath);
-    this.baseFs = defaultFsLayer;
   }
   mapToBase(p) {
     return p;
@@ -10019,6 +10648,11 @@ const defaultApi = Object.assign(makeApi(defaultRuntimeState, {
   fakeFs: dynamicFsLayer,
   pnpapiResolution: defaultPnpapiResolution
 }), {
+  /**
+   * Can be used to generate a different API than the default one (for example
+   * to map it on `/` rather than the local directory path, or to use a
+   * different FS layer than the default one).
+   */
   makeApi: ({
     basePath = void 0,
     fakeFs = dynamicFsLayer,
@@ -10032,6 +10666,10 @@ const defaultApi = Object.assign(makeApi(defaultRuntimeState, {
       ...rest
     });
   },
+  /**
+   * Will inject the specified API into the environment, monkey-patching FS. Is
+   * automatically called when the hook is loaded through `--require`.
+   */
   setup: (api) => {
     applyPatch(api || defaultApi, {
       fakeFs: defaultFsLayer,
