@@ -107,7 +107,11 @@ app.post('/verify/:token', recaptcha.middleware.verify, (req, res) => {
       }
 
       // unban & response
-      bot.restrictChatMember(data.chat, req.query.id, unban).catch(e => console.trace("[Pass] Unban failed.", e.stack))
+      bot.getChatMember(data.chat, req.query.id).then(member => {
+        if (member.status === "restricted") {
+          bot.restrictChatMember(data.chat, req.query.id, unban).catch(e => console.trace("[Pass] Unban failed.", e.stack))
+        }
+      }).catch(e => console.trace("[Pass] Get chat member failed.", e.stack))
       res.send()
 
       // Remove timeout countdown & Update or delete message
