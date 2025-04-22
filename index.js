@@ -198,7 +198,7 @@ bot.on('chat_member', async event => {
 
 // Delete join message
 bot.on('new_chat_members', async msg => {
-  bot.deleteMessage(msg.chat.id, msg.message_id)
+  bot.deleteMessage(msg.chat.id, msg.message_id).catch(e => { })
 })
 
 // Delete kick message
