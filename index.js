@@ -10,7 +10,7 @@ const config = require('./config.json')
 const secretKey = crypto.createHash('sha256').update(config.token).digest()
 const pollingOption = {
   interval: 0,
-  params: { timeout: 60, allowed_updates: JSON.stringify(["message", "callback_query", "chat_member"]) }
+  params: { timeout: 60, allowed_updates: JSON.stringify(["message", "callback_query", "chat_member", "chat_join_request"]) }
 }
 const unban = {
   can_send_messages: true,
@@ -107,18 +107,23 @@ app.post('/verify/:token', recaptcha.middleware.verify, (req, res) => {
         return
       }
 
-      // unban & response
-      bot.getChatMember(data.chat, req.query.id).then(member => {
-        if (member.status === "restricted") {
-          bot.restrictChatMember(data.chat, req.query.id, unban).catch(e => console.trace("[Pass] Unban failed.", e.stack))
-        }
-      }).catch(e => console.trace("[Pass] Get chat member failed.", e.stack))
+      if (data.user_chat) {
+        // Join request
+        bot.approveChatJoinRequest(data.chat, req.query.id).catch(e => console.trace("[Pass] Approve chat join request failed.", e.stack))
+      } else {
+        // Unban
+        bot.getChatMember(data.chat, req.query.id).then(member => {
+          if (member.status === "restricted") {
+            bot.restrictChatMember(data.chat, req.query.id, unban).catch(e => console.trace("[Pass] Unban failed.", e.stack))
+          }
+        }).catch(e => console.trace("[Pass] Get chat member failed.", e.stack))
+      }
       res.send()
 
       // Remove timeout countdown & Update or delete message
       removeTimeout(data.time, parseInt(req.query.id)).then(users => {
         if (users.length === 0) {
-          bot.deleteMessage(data.chat, data.id).catch(e => console.trace("[Pass] delete message failed.", e.stack))
+          bot.deleteMessage(data.user_chat || data.chat, data.id).catch(e => console.trace("[Pass] delete message failed.", e.stack))
         } else {
           retryCooldown(() => bot.editMessageReplyMarkup(genKeyboard(genToken(data.time, data.chat, data.id, users)), { chat_id: data.chat, message_id: data.id }))
             .catch(e => console.trace("[Pass] Update message failed.", e.stack))
@@ -141,6 +146,9 @@ bot.onText(/^\/privacy/, async msg => {
 })
 
 bot.on('chat_member', async event => {
+  // Skip join request
+  if (event.via_join_request || event.from.id === me || (event.invite_link && event.invite_link.creates_join_request)) return
+
   // Only trigger on join
   const oldStatus = event.old_chat_member
   const newStatus = event.new_chat_member
@@ -148,11 +156,7 @@ bot.on('chat_member', async event => {
   if (newStatus.status === "member" && ["left", "kicked"].includes(oldStatus.status)) {
     muteJoin = await bot.restrictChatMember(event.chat.id, newStatus.user.id, { can_send_messages: false }).catch(() => false)
   } else return
-
-  // Only send message with user if not join message
-  let chatInfo = bot.getChat(event.chat.id);
-  let memberCount = bot.getChatMemberCount(event.chat.id);
-  if (!muteJoin || !(await chatInfo).has_hidden_members && (await memberCount) < 10000) return
+  if (!muteJoin) return
 
   // Send message
   let message
@@ -192,33 +196,9 @@ bot.on('chat_member', async event => {
   addTimeout(time, { chat: event.chat.id, users: [newStatus.user.id], id: message.message_id })
 })
 
+// Delete join message
 bot.on('new_chat_members', async msg => {
-  const members = msg.new_chat_members.filter(i => !i.is_bot)
-
-  if (members.length === 0) return
-
-  // This will mute member double time, just check bot has permission
-  const muteJoin = await Promise.allSettled(members.map(i => bot.restrictChatMember(msg.chat.id, i.id, { can_send_messages: false })))
-  if (muteJoin.every(i => i.status === "rejected")) return
-
-  let message
-  try {
-    message = await retryCooldown(() => bot.sendMessage(msg.chat.id, 'Generating token...', { reply_to_message_id: msg.message_id }))
-  } catch (e) {
-    console.trace("[Join] Send message failed.", e.stack)
-    return
-  }
-
-  await sleep(1000) // Wait client sync...
-
-  const time = getUnixtime()
-  retryCooldown(() => bot.editMessageText("Are you a robot?", {
-    chat_id: message.chat.id,
-    message_id: message.message_id,
-    reply_markup: genKeyboard(genToken(time, msg.chat.id, message.message_id, members.map(i => i.id)))
-  })).catch(e => console.trace("[Join] Edit message failed.", e.stack))
-
-  addTimeout(time, { chat: msg.chat.id, users: members.map(i => i.id), id: message.message_id, msg: msg.message_id })
+  bot.deleteMessage(msg.chat.id, msg.message_id)
 })
 
 // Delete kick message
@@ -226,10 +206,48 @@ bot.on('left_chat_member', async msg => {
   if (msg.from.id === me) bot.deleteMessage(msg.chat.id, msg.message_id)
 })
 
+bot.on('chat_join_request', async event => {
+  // Send message
+  let message
+  try {
+    message = await retryCooldown(() => bot.sendMessage(event.user_chat_id,
+      `You requested to join ${event.chat.title}, are you a robot?\n\nGenerating token...`,
+      { protect_content: true }
+    ))
+  } catch (e) {
+    console.trace("[Join request] Send message failed.", e.stack)
+    return
+  }
+
+  await sleep(1000) // Wait client sync...
+
+  const time = getUnixtime()
+  retryCooldown(() => bot.editMessageText(`You requested to join ${event.chat.title}, are you a robot?`, {
+    chat_id: message.chat.id,
+    message_id: message.message_id,
+    reply_markup: genKeyboard(genToken(time, event.chat.id, message.message_id, [event.from.id], event.user_chat_id))
+  })).catch(e => console.trace("[Join request] Edit message failed.", e.stack))
+
+  addTimeout(time, { chat: event.chat.id, users: [event.from.id], id: message.message_id, user_chat: event.user_chat_id })
+})
+
 bot.on('callback_query', async callback => {
   const data = parserToken(callback.message.reply_markup.inline_keyboard[0][0].url.split('/').pop())
 
   const users = await Promise.all(data.users.map(i => bot.getChatMember(data.chat, i)))
+
+  // Always refresh on join request
+  if (data.user_chat) {
+    if (users[0].status === 'member') {
+      bot.deleteMessage(data.user_chat, data.id).catch(e => console.trace("[Callback] Delete message failed.", e.stack))
+    } else {
+      const token = genToken(data.time, data.chat, data.id, data.users, data.user_chat)
+      bot.editMessageReplyMarkup(genKeyboard(token), { chat_id: data.user_chat, message_id: data.id })
+        .catch(e => console.trace("[Callback] Edit message failed.", e.stack))
+      bot.answerCallbackQuery(callback.id, { cache_time: 30, text: 'Token updated' })
+    }
+    return
+  }
 
   const unvailedUsers = users.filter(i => i.status === 'restricted').map(i => i.user.id)
   if (unvailedUsers.length === 0) {
@@ -259,6 +277,21 @@ function checkVaild(input) {
   return input.hash === crypto.createHmac('sha256', secretKey).update(data).digest('hex')
 }
 
+/**
+ * @typedef {Object} TokenData
+ * @property {Number} chat - Chat ID
+ * @property {Number} id - Verify message ID
+ * @property {Array<Number>} users - User IDs
+ * @property {Number} time - Data timestamp
+ * @property {Number} ts - Token generated timestamp
+ * @property {?Number} user_chat - Private chat ID
+ */
+
+/**
+ * Parse token
+ * @param {String} input - Base64 URL encoded token
+ * @returns {TokenData} Parsed token data
+ */
 function parserToken(input) {
   const rawdata = Buffer.from(input, 'base64url')
   const hash = rawdata.subarray(0, 32)
@@ -269,10 +302,21 @@ function parserToken(input) {
   }
 }
 
-function genToken(time, chat, id, users) {
-  const data = JSON.stringify({ chat, id, users, time, ts: getUnixtime() })
-  const hash = crypto.createHmac('sha256', secretKey).update(data).digest()
-  return Buffer.concat([hash, Buffer.from(data, 'latin1')]).toString('base64url')
+/**
+ * Generate token
+ * @param {Number} time - Timestamp
+ * @param {Number} chat - Chat ID
+ * @param {Number} id - Verify message ID
+ * @param {Array<Number>} users - User IDs
+ * @param {?Number} user_chat - Private chat ID
+ * @returns {String} base64url encoded string of {@link TokenData}
+ */
+function genToken(time, chat, id, users, user_chat) {
+  let data = { chat, id, users, time, ts: getUnixtime() }
+  if (user_chat) data.user_chat = user_chat
+  const json = JSON.stringify(data)
+  const hash = crypto.createHmac('sha256', secretKey).update(json).digest()
+  return Buffer.concat([hash, Buffer.from(json, 'latin1')]).toString('base64url')
 }
 
 function getUnixtime() {
@@ -288,6 +332,18 @@ function genKeyboard(token) {
   }
 }
 
+/** 
+ * @typedef {Object} TimeoutData
+ * @property {Number} chat - Chat ID
+ * @property {Array<Number>} users - User IDs
+ * @property {Number} id - Verify message ID
+ * @property {?Number} user_chat - Private chat ID
+ */
+
+/**
+ * @param {Number} time timestamp
+ * @param {TimeoutData} data
+ */
 function addTimeout(time, data) {
   if (redisClient) {
     redisClient.zAdd("timeout", { score: time, value: JSON.stringify(data) })
@@ -298,14 +354,15 @@ function addTimeout(time, data) {
 
 /**
  * 
- * @param {Number} time
- * @param {Number} user
- * @returns {Promise<Array<Number>>}
+ * @param {Number} time - Timestamp
+ * @param {Number} user - Passed user
+ * @returns {Promise<Array<Number>>} - Unvailed users
  */
 async function removeTimeout(time, user) {
   let pending = []
   if (redisClient) {
     for (const value of (await redisClient.zRangeByScore("timeout", time, time))) {
+      /** @type {TokenData} */
       const data = JSON.parse(value)
 
       const index = data.users.indexOf(user);
@@ -356,10 +413,20 @@ async function doTimeout() {
   }
 }
 
+/**
+ * @param {TimeoutData} value
+ * @returns {Promise<void>}
+ */
 async function cleanTimeout(value) {
   let deleteJoin = false
   for (const user of value.users) {
     try {
+      // Decline join request
+      if (value.user_chat) {
+        bot.declineChatJoinRequest(value.chat, user).catch(e => { })
+        continue
+      }
+
       const member = await bot.getChatMember(value.chat, user)
       if (member.status === "restricted") {
         deleteJoin = true
@@ -378,7 +445,7 @@ async function cleanTimeout(value) {
     }
   }
   try {
-    if (await bot.deleteMessage(value.chat, value.id) && deleteJoin && value.msg) await bot.deleteMessage(value.chat, value.msg)
+    bot.deleteMessage(value.user_chat || value.chat, value.id)
   } catch (error) { }
 }
 
