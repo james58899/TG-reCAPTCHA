@@ -70,7 +70,7 @@ app.get('/robots.txt', (_, res) => {
   res.send('User-agent: *\nDisallow: /')
 })
 app.get('/verify/:token', recaptcha.middleware.render, (req, res) => {
-  res.set('Cache-Control', 'public, max-age=60')
+  res.set('Cache-Control', 'public, max-age=30')
   if (req.query.hash) {
     const data = parserToken(req.params.token)
     const now = getUnixtime()
