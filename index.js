@@ -211,7 +211,7 @@ bot.on('chat_join_request', async event => {
   let message
   try {
     message = await retryCooldown(() => bot.sendMessage(event.user_chat_id,
-      `You requested to join ${event.chat.title}, are you a robot?\n\nGenerating token...`,
+      `You requested to join ${event.chat.title}!\nAre you a robot?\n\nGenerating token...`,
       { protect_content: true }
     ))
   } catch (e) {
@@ -222,7 +222,7 @@ bot.on('chat_join_request', async event => {
   await sleep(1000) // Wait client sync...
 
   const time = getUnixtime()
-  retryCooldown(() => bot.editMessageText(`You requested to join ${event.chat.title}, are you a robot?`, {
+  retryCooldown(() => bot.editMessageText(`You requested to join ${event.chat.title}!\nAre you a robot?`, {
     chat_id: message.chat.id,
     message_id: message.message_id,
     reply_markup: genKeyboard(genToken(time, event.chat.id, message.message_id, [event.from.id], event.user_chat_id))
