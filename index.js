@@ -95,7 +95,7 @@ app.get('/verify/:token', recaptcha.middleware.render, (req, res) => {
   }
 
   // todo generate auth token whitout login
-  res.status(400).send('Need login to know who you are.')
+  res.status(400).send('Unable to retrieve login information. (Try using a different client)')
 })
 app.post('/verify/:token', recaptcha.middleware.verify, (req, res) => {
   if (req.query.hash && checkVaild(req.query, req.query.hash)) {
