@@ -98,7 +98,7 @@ app.get('/verify/:token', recaptcha.middleware.render, (req, res) => {
   res.status(400).send('Unable to retrieve login information. (Try using a different Telegram client)')
 })
 app.post('/verify/:token', recaptcha.middleware.verify, (req, res) => {
-  if (req.query.hash && checkVaild(req.query, req.query.hash)) {
+  if (req.query.hash && checkVaild(req.query)) {
     if (!req.recaptcha.error) {
       const data = parserToken(req.params.token)
 
