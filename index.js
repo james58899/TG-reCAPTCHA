@@ -1,17 +1,14 @@
 const crypto = require('crypto')
 const express = require('express')
 const morgan = require('morgan')
-const telegrambot = require('node-telegram-bot-api')
+const { Bot } = require('node-telegram-bot-api')
 const Recaptcha = require('express-recaptcha').RecaptchaV2
 const redis = require("redis")
-const util = require('util');
+const { JwtVerifier } = require("aws-jwt-verify");
 const config = require('./config.json')
 
 const secretKey = crypto.createHash('sha256').update(config.token).digest()
-const pollingOption = {
-  interval: 0,
-  params: { timeout: 60, allowed_updates: JSON.stringify(["message", "callback_query", "chat_member", "chat_join_request"]) }
-}
+const allowedUpdates = ["message", "callback_query", "chat_member", "chat_join_request"];
 const unban = {
   can_send_messages: true,
   can_send_media_messages: true,
@@ -23,7 +20,7 @@ const unban = {
   can_pin_messages: true
 }
 
-const bot = new telegrambot(config.token, { polling: config.webhook ? false : pollingOption, baseApiUrl: config.api_base })
+const bot = new Bot(config.token, { apiRoot: config.api_base })
 const app = express()
 const recaptcha = new Recaptcha(config.recaptcha.site_key, config.recaptcha.secret_key, { checkremoteip: true, callback: 'cb' })
 /** @type {import('redis').RedisClientType} */
@@ -31,8 +28,19 @@ let redisClient
 /** @type {Map<Number, Array} */
 let timeout
 let me = 0;
+let username = "";
 
-bot.getMe().then(i => me = i.id);
+// TG OAuth JWT verifier
+let verifier;
+
+bot.api.getMe().then(i => {
+  me = i.id
+  verifier = JwtVerifier.create({
+    issuer: "https://oauth.telegram.org", // set this to the expected "iss" claim on your JWTs
+    audience: me.toString(), // set this to the expected "aud" claim on your JWTs
+    jwksUri: "https://oauth.telegram.org/.well-known/jwks.json", // set this to the JWKS uri from your OpenID configuration
+  });
+});
 
 if (config.redis && config.redis != "") {
   redisClient = redis.createClient(config.redis)
@@ -56,10 +64,12 @@ app.use(express.json())
 if (config.webhook) {
   app.post(`/bot${config.token}`, (req, res) => {
     res.sendStatus(200)
-    bot.processUpdate(req.body)
+    bot.handleUpdate(req.body) // TODO check
   })
 
-  bot.setWebHook(`${config.url}/bot${config.token}`)
+  bot.api.setWebhook({ url: `${config.url}/bot${config.token}`, allowed_updates: allowedUpdates })
+} else {
+  bot.api.deleteWebhook().then(() => bot.startPolling(undefined, { allowedUpdates }))
 }
 
 // Skip webhook logging
@@ -70,12 +80,16 @@ app.get('/robots.txt', (_, res) => {
   res.send('User-agent: *\nDisallow: /')
 })
 app.get('/verify/:token', recaptcha.middleware.render, (req, res) => {
-  res.set('Cache-Control', 'public, max-age=30')
-  if (req.query.hash) {
-    const data = parserToken(req.params.token)
-    const now = getUnixtime()
+  res.set('Cache-Control', 'public, max-age=30, must-revalidate')
+  const data = parserToken(req.params.token)
+  const now = getUnixtime()
+  if (!data || now - data.ts > 60) {
+    res.status(403).send("Token expired, please click <b>Update token</b> and try again.")
+    return
+  }
 
-    if (!data || now - req.query.auth_date > 60 || now - data.ts > 60) {
+  if (req.query.hash) {
+    if (now - req.query.auth_date > 60) {
       res.status(403).send("Token expired, please click <b>Update token</b> and try again.")
       return
     }
@@ -94,58 +108,78 @@ app.get('/verify/:token', recaptcha.middleware.render, (req, res) => {
     return
   }
 
-  // todo generate auth token whitout login
-  res.status(400).send('Unable to retrieve login information. (Try using a different Telegram client)')
+  // TODO generate auth token whitout login
+  res.render('login', { captcha: res.recaptcha, client_id: me }) // Missing login info, fallback to web login
 })
-app.post('/verify/:token', recaptcha.middleware.verify, (req, res) => {
-  if (req.query.hash && checkVaild(req.query)) {
-    if (!req.recaptcha.error) {
-      const data = parserToken(req.params.token)
-
-      if (getUnixtime() - data.ts > 60) {
-        res.status(410).send('Token expired')
-        return
-      }
-
-      if (data.user_chat) {
-        // Join request
-        bot.approveChatJoinRequest(data.chat, req.query.id).catch(e => console.trace("[Pass] Approve chat join request failed.", e.stack))
-      } else {
-        // Unban
-        bot.getChatMember(data.chat, req.query.id).then(member => {
-          if (member.status === "restricted") {
-            bot.restrictChatMember(data.chat, req.query.id, unban).catch(e => console.trace("[Pass] Unban failed.", e.stack))
-          }
-        }).catch(e => console.trace("[Pass] Get chat member failed.", e.stack))
-      }
-      res.send()
-
-      // Remove timeout countdown & Update or delete message
-      removeTimeout(data.time, parseInt(req.query.id)).then(users => {
-        if (users.length === 0) {
-          bot.deleteMessage(data.user_chat || data.chat, data.id).catch(e => console.trace("[Pass] delete message failed.", e.stack))
-        } else {
-          retryCooldown(() => bot.editMessageReplyMarkup(genKeyboard(genToken(data.time, data.chat, data.id, users)), { chat_id: data.chat, message_id: data.id }))
-            .catch(e => console.trace("[Pass] Update message failed.", e.stack))
-        }
-      })
-    } else {
-      res.status(400).send('reCAPTCHA vailed failed.')
-    }
+app.post('/verify/:token', recaptcha.middleware.verify, async (req, res) => {
+  if (req.recaptcha.error) {
+    res.status(400).send('reCAPTCHA vailed failed.')
+    return
   }
+  const data = parserToken(req.params.token)
+  if (getUnixtime() - data.ts > 60) {
+    res.status(410).send('Token expired')
+    return
+  }
+  let user_id;
+  if (req.query.hash && checkVaild(req.query)) {
+    user_id = req.query.id;
+  } else if (req.query.id_token) {
+    // OAuth
+    try {
+      const payload = await verifier.verify(req.query.id_token)
+      user_id = payload.id
+    } catch (err) {
+      console.error("Token not valid!", err);
+      res.status(400).send('JWT vailed failed.')
+      return
+    }
+  } else {
+    res.status(400).send('Missing user id')
+    return
+  }
+
+  if (!data.users.includes(parseInt(req.query.id))) {
+    res.status(400).send("User not match token")
+    return
+  }
+
+  if (data.user_chat) {
+    // Join request
+    bot.api.approveChatJoinRequest({ chat_id: data.chat, user_id }).catch(e => console.trace("[Pass] Approve chat join request failed.", e.stack))
+  } else {
+    // Unban
+    bot.api.getChatMember({ chat_id: data.chat, user_id }).then(member => {
+      if (member.status === "restricted") {
+        bot.api.restrictChatMember({ chat_id: data.chat, user_id, permissions: unban }).catch(e => console.trace("[Pass] Unban failed.", e.stack))
+      }
+    }).catch(e => console.trace("[Pass] Get chat member failed.", e.stack))
+  }
+  res.send()
+
+  // Remove timeout countdown & Update or delete message
+  removeTimeout(data.time, parseInt(user_id)).then(users => {
+    if (users.length === 0) {
+      bot.api.deleteMessage({ chat_id: data.user_chat || data.chat, message_id: data.id }).catch(e => console.trace("[Pass] delete message failed.", e.stack))
+    } else {
+      retryCooldown(() => bot.api.editMessageReplyMarkup({ chat_id: data.chat, message_id: data.id, reply_markup: genKeyboard(genToken(data.time, data.chat, data.id, users)) }))
+        .catch(e => console.trace("[Pass] Update message failed.", e.stack))
+    }
+  })
 })
 
 app.listen(config.port, config.bind, () => console.log(`app listening on port ${config.port}!`)).keepAliveTimeout = 15 * 60 * 1000
 
-bot.onText(/^\/ping(?:@\w+)?/, async msg => {
-  retryCooldown(() => bot.sendMessage(msg.chat.id, "pong", { reply_to_message_id: msg.message_id }))
+bot.hears(/^\/ping(?:@\w+)?/, async msg => {
+  retryCooldown(() => bot.api.sendMessage({ chat_id: msg.chat.id, text: "pong", reply_to_message_id: msg.message.message_id }))
 })
 
-bot.onText(/^\/privacy/, async msg => {
-  retryCooldown(() => bot.sendMessage(msg.chat.id, "This bot will store access logs for debugging and security purposes.", { reply_to_message_id: msg.message_id }))
+bot.hears(/^\/privacy/, async msg => {
+  retryCooldown(() => bot.api.sendMessage({ chat_id: msg.chat.id, text: "This bot will store access logs for debugging and security purposes.", reply_to_message_id: msg.message.message_id }))
 })
 
-bot.on('chat_member', async event => {
+bot.on('chat_member', async ctx => {
+  const event = ctx.update.chat_member
   // Skip join request
   if (event.via_join_request || event.from.id === me || (event.invite_link && event.invite_link.creates_join_request)) return
 
@@ -154,7 +188,7 @@ bot.on('chat_member', async event => {
   const newStatus = event.new_chat_member
   let muteJoin = false
   if (newStatus.status === "member" && ["left", "kicked"].includes(oldStatus.status)) {
-    muteJoin = await bot.restrictChatMember(event.chat.id, newStatus.user.id, { can_send_messages: false }).catch(() => false)
+    muteJoin = await bot.api.restrictChatMember({ chat_id: event.chat.id, user_id: newStatus.user.id, can_send_messages: false }).catch(() => false)
   } else return
   if (!muteJoin) return
 
@@ -171,12 +205,12 @@ bot.on('chat_member', async event => {
     }
   }
   try {
-    message = await retryCooldown(() => bot.sendMessage(event.chat.id,
-      `${name} are you a robot?\n\nGenerating token...`,
-      {
-        protect_content: true,
-        entities: [{ type: "text_mention", offset: 0, length: name.length, user: { id: newStatus.user.id } }]
-      }
+    message = await retryCooldown(() => bot.api.sendMessage({
+      chat_id: event.chat.id,
+      text: `${name} are you a robot?\n\nGenerating token...`,
+      protect_content: true,
+      entities: [{ type: "text_mention", offset: 0, length: name.length, user: { id: newStatus.user.id } }]
+    }
     ))
   } catch (e) {
     console.trace("[Join] Send message failed.", e.stack)
@@ -186,9 +220,10 @@ bot.on('chat_member', async event => {
   await sleep(1000) // Wait client sync...
 
   const time = getUnixtime()
-  retryCooldown(() => bot.editMessageText(`${name} are you a robot?`, {
+  retryCooldown(() => bot.api.editMessageText({
     chat_id: message.chat.id,
     message_id: message.message_id,
+    text: `${name} are you a robot?`,
     entities: [{ type: "text_mention", offset: 0, length: name.length, user: { id: newStatus.user.id } }],
     reply_markup: genKeyboard(genToken(time, event.chat.id, message.message_id, [newStatus.user.id]))
   })).catch(e => console.trace("[Join] Edit message failed.", e.stack))
@@ -197,22 +232,29 @@ bot.on('chat_member', async event => {
 })
 
 // Delete join message
-bot.on('new_chat_members', async msg => {
-  bot.deleteMessage(msg.chat.id, msg.message_id).catch(e => { })
+bot.on('message', async ctx => {
+  const msg = ctx.update.message;
+  if (!msg || !msg.new_chat_members) return
+  bot.api.deleteMessage({ chat_id: msg.chat.id, message_id: msg.message_id }).catch(e => { })
 })
 
 // Delete kick message
-bot.on('left_chat_member', async msg => {
-  if (msg.from.id === me) bot.deleteMessage(msg.chat.id, msg.message_id)
+bot.on('left_chat_member', async ctx => {
+  const msg = ctx.update.message;
+  if (!msg || !msg.left_chat_member) return
+  if (msg.from.id === me) bot.api.deleteMessage({ chat_id: msg.chat.id, message_id: msg.message_id }).catch(e => { })
 })
 
-bot.on('chat_join_request', async event => {
+bot.on('chat_join_request', async ctx => {
+  const request = ctx.update.chat_join_request;
   // Send message
   let message
   try {
-    message = await retryCooldown(() => bot.sendMessage(event.user_chat_id,
-      `You requested to join ${event.chat.title}!\nAre you a robot?\n\nGenerating token...`,
-      { protect_content: true }
+    message = await retryCooldown(() => bot.api.sendMessage({
+      chat_id: request.user_chat_id,
+      text: `You requested to join ${request.chat.title}!\nAre you a robot?\n\nGenerating token...`,
+      protect_content: true
+    }
     ))
   } catch (e) {
     console.trace("[Join request] Send message failed.", e.stack)
@@ -222,43 +264,45 @@ bot.on('chat_join_request', async event => {
   await sleep(1000) // Wait client sync...
 
   const time = getUnixtime()
-  retryCooldown(() => bot.editMessageText(`You requested to join ${event.chat.title}!\nAre you a robot?`, {
+  retryCooldown(() => bot.api.editMessageText({
     chat_id: message.chat.id,
     message_id: message.message_id,
-    reply_markup: genKeyboard(genToken(time, event.chat.id, message.message_id, [event.from.id], event.user_chat_id))
+    text: `You requested to join ${request.chat.title}!\nAre you a robot?`,
+    reply_markup: genKeyboard(genToken(time, request.chat.id, message.message_id, [request.from.id], request.user_chat_id))
   })).catch(e => console.trace("[Join request] Edit message failed.", e.stack))
 
-  addTimeout(time, { chat: event.chat.id, users: [event.from.id], id: message.message_id, user_chat: event.user_chat_id })
+  addTimeout(time, { chat: request.chat.id, users: [request.from.id], id: message.message_id, user_chat: request.user_chat_id })
 })
 
-bot.on('callback_query', async callback => {
-  const data = parserToken(callback.message.reply_markup.inline_keyboard[0][0].url.split('/').pop())
+bot.on('callback_query', async ctx => {
+  const query = ctx.update.callback_query
+  const data = parserToken(query.message.reply_markup.inline_keyboard[0][0].url.split('/').pop())
 
-  const users = await Promise.all(data.users.map(i => bot.getChatMember(data.chat, i)))
+  const users = await Promise.all(data.users.map(i => bot.api.getChatMember({ chat_id: data.chat, user_id: i })))
 
   // Always refresh on join request
   if (data.user_chat) {
     if (users[0].status === 'member') {
-      bot.deleteMessage(data.user_chat, data.id).catch(e => console.trace("[Callback] Delete message failed.", e.stack))
+      bot.api.deleteMessage({ chat_id: data.user_chat, message_id: data.id }).catch(e => console.trace("[Callback] Delete message failed.", e.stack))
     } else {
       const token = genToken(data.time, data.chat, data.id, data.users, data.user_chat)
-      bot.editMessageReplyMarkup(genKeyboard(token), { chat_id: data.user_chat, message_id: data.id })
+      bot.api.editMessageReplyMarkup({ chat_id: data.user_chat, message_id: data.id, reply_markup: genKeyboard(token) })
         .catch(e => console.trace("[Callback] Edit message failed.", e.stack))
-      bot.answerCallbackQuery(callback.id, { cache_time: 30, text: 'Token updated' })
+      bot.api.answerCallbackQuery({ callback_query_id: query.id, cache_time: 30, text: 'Token updated' })
     }
     return
   }
 
   const unvailedUsers = users.filter(i => i.status === 'restricted').map(i => i.user.id)
   if (unvailedUsers.length === 0) {
-    bot.deleteMessage(data.chat, data.id).catch(e => console.trace("[Callback] Delete message failed.", e.stack))
-    bot.answerCallbackQuery(callback.id)
-  } else if (unvailedUsers.includes(callback.from.id)) {
-    bot.editMessageReplyMarkup(genKeyboard(genToken(data.time, data.chat, data.id, unvailedUsers)), { chat_id: data.chat, message_id: data.id })
+    bot.api.deleteMessage({ chat_id: data.chat, message_id: data.id }).catch(e => console.trace("[Callback] Delete message failed.", e.stack))
+    bot.api.answerCallbackQuery({ callback_query_id: query.id })
+  } else if (unvailedUsers.includes(query.from.id)) {
+    bot.api.editMessageReplyMarkup({ chat_id: data.chat, message_id: data.id, reply_markup: genKeyboard(genToken(data.time, data.chat, data.id, unvailedUsers)) })
       .catch(e => console.trace("[Callback] Edit message failed.", e.stack))
-    bot.answerCallbackQuery(callback.id, { cache_time: 30, text: 'Token updated' })
+    bot.api.answerCallbackQuery({ callback_query_id: query.id, cache_time: 30, text: 'Token updated' })
   } else {
-    bot.answerCallbackQuery(callback.id, { cache_time: 300 })
+    bot.api.answerCallbackQuery({ callback_query_id: query.id, cache_time: 300 })
   }
 
   const vailedUsers = users.filter(i => i.status !== 'restricted').map(i => i.user.id)
@@ -423,19 +467,19 @@ async function cleanTimeout(value) {
     try {
       // Decline join request
       if (value.user_chat) {
-        bot.declineChatJoinRequest(value.chat, user).catch(e => { })
+        bot.api.declineChatJoinRequest({ chat_id: value.chat, user_id: user }).catch(e => { })
         continue
       }
 
-      const member = await bot.getChatMember(value.chat, user)
+      const member = await bot.api.getChatMember({ chat_id: value.chat, user_id: user })
       if (member.status === "restricted") {
         deleteJoin = true
         if (member.is_member === true) {
-          await retryCooldown(() => bot.banChatMember(value.chat, member.user.id, { until_date: Math.floor(+new Date() / 1000) + 60 }))
+          await retryCooldown(() => bot.api.banChatMember({ chat_id: value.chat, user_id: member.user.id, until_date: Math.floor(+new Date() / 1000) + 60 }))
           await sleep(1000) // Workaround TG API laggy
-          await retryCooldown(() => bot.unbanChatMember(value.chat, member.user.id, { only_if_banned: true }))
+          await retryCooldown(() => bot.api.unbanChatMember({ chat_id: value.chat, user_id: member.user.id, only_if_banned: true }))
         } else {
-          await retryCooldown(() => bot.unbanChatMember(value.chat, member.user.id))
+          await retryCooldown(() => bot.api.unbanChatMember({ chat_id: value.chat, user_id: member.user.id }))
         }
       } else if (member.status === "kicked") {
         deleteJoin = true
@@ -445,7 +489,7 @@ async function cleanTimeout(value) {
     }
   }
   try {
-    bot.deleteMessage(value.user_chat || value.chat, value.id)
+    bot.api.deleteMessage({ chat_id: value.user_chat || value.chat, message_id: value.id })
   } catch (error) { }
 }
 
@@ -457,7 +501,8 @@ async function retryCooldown(request) {
   try {
     return await request()
   } catch (error) {
-    if (error.code === "ETELEGRAM" && error.response.statusCode === 429) {
+    console.log(error)
+    if (error instanceof TelegramApiError && error.errorCode === 429) {
       const delayTime = error.message.split(' ').pop()
 
       if (isNaN(delayTime)) throw error

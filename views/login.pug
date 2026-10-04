@@ -1,0 +1,65 @@
+doctype html
+html
+  head
+    title Simple-reCAPTCHA
+    meta(name="viewport", content="width=device-width")
+    style(type='text/css').
+      html,body{
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .container{
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .hide{
+        display: none;
+      }
+      .captcha {
+        border: 2px solid #888;
+        border-radius: 5px;
+        padding: 20px;
+      }
+  body
+    .container
+      h1#closeMessage.hide Welcome Human!
+      #captcha.captcha
+        h3 Human?
+        |!{captcha}
+    script(async src="https://oauth.telegram.org/js/telegram-login.js?6")
+    script.
+        function cb(token){
+            Telegram.Login.auth({client_id: !{client_id}}, login => {
+                console.log(login)
+                if (login.error || !login.user) {
+                    console.error(login.error)
+                    return
+                }
+                fetch(window.location + `?id=${login.user.id}&id_token=${login.id_token}`, {
+                  method: 'POST',
+                  body: JSON.stringify({ 'g-recaptcha-response': token }),
+                  headers: new Headers({ 'Content-Type': 'application/json' })
+                }).then(res => {
+                  switch(res.status) {
+                    case 200:
+                      setTimeout(() => {
+                        document.getElementById('captcha').remove()
+                        document.getElementById('closeMessage').classList.remove('hide')
+                      }, 1000)
+                      break
+                    case 400:
+                      location.reload()
+                      break
+                    case 410:
+                      location.reload()
+                      break
+                  }
+                })
+            })
+        }
