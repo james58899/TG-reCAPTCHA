@@ -2,11 +2,12 @@
 Dockerfile
 .dockerignore
 
-# Yarn files
-.yarn/*
-!.yarn/cache
-!.yarn/releases
-!.yarn/plugins
+# Git
+.git
+.gitignore
+
+# Dependency
+node_modules
 
 # Config
-.config.json
+config.json

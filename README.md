@@ -45,7 +45,8 @@ reCAPTCHA bot for telegram
 ### Direct run
 1. Use git or download the entire repo directly
 2. Copy `config_example.json` to `config.json` and change the content.
-3. Run `yarn node index.js`
+3. Run `pnpm install`
+3. Run `pnpm start` or `node index.js`
 
 ### Docker
 1. Build or use an image from Docker Hub.

@@ -1,13 +1,10 @@
-FROM node:lts-alpine
+FROM ghcr.io/pnpm/pnpm:12
 WORKDIR /app
 ENV NODE_ENV=production
 
-COPY package.json yarn.lock .yarnrc.yml .pnp.cjs ./
-COPY .yarn .yarn
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
 
-RUN yarn install --immutable
+COPY . .
 
-COPY views views
-COPY index.js config_example.json ./
-
-CMD ["yarn", "node", "."]
+CMD ["pnpm", "start"]
