@@ -1,7 +1,7 @@
 const crypto = require('crypto')
 const express = require('express')
 const morgan = require('morgan')
-const { Bot } = require('node-telegram-bot-api')
+const { Bot, TelegramApiError } = require('node-telegram-bot-api')
 const Recaptcha = require('express-recaptcha').RecaptchaV2
 const redis = require("redis")
 const { JwtVerifier } = require("aws-jwt-verify");
@@ -239,7 +239,7 @@ bot.on('message', async ctx => {
 })
 
 // Delete kick message
-bot.on('left_chat_member', async ctx => {
+bot.on('message', async ctx => {
   const msg = ctx.update.message;
   if (!msg || !msg.left_chat_member) return
   if (msg.from.id === me) bot.api.deleteMessage({ chat_id: msg.chat.id, message_id: msg.message_id }).catch(e => { })
