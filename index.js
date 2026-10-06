@@ -231,18 +231,12 @@ bot.on('chat_member', async ctx => {
   addTimeout(time, { chat: event.chat.id, users: [newStatus.user.id], id: message.message_id })
 })
 
-// Delete join message
+// Delete join/kick message
 bot.on('message', async ctx => {
   const msg = ctx.update.message;
-  if (!msg || !msg.new_chat_members) return
-  bot.api.deleteMessage({ chat_id: msg.chat.id, message_id: msg.message_id }).catch(e => { })
-})
-
-// Delete kick message
-bot.on('message', async ctx => {
-  const msg = ctx.update.message;
-  if (!msg || !msg.left_chat_member) return
-  if (msg.from.id === me) bot.api.deleteMessage({ chat_id: msg.chat.id, message_id: msg.message_id }).catch(e => { })
+  if (msg.new_chat_members || msg.left_chat_member && msg.from.id === me) {
+    bot.api.deleteMessage({ chat_id: msg.chat.id, message_id: msg.message_id }).catch(e => { })
+  }
 })
 
 bot.on('chat_join_request', async ctx => {
@@ -489,7 +483,7 @@ async function cleanTimeout(value) {
     }
   }
   try {
-    bot.api.deleteMessage({ chat_id: value.user_chat || value.chat, message_id: value.id })
+    await bot.api.deleteMessage({ chat_id: value.user_chat || value.chat, message_id: value.id })
   } catch (error) { }
 }
 
@@ -515,3 +509,7 @@ async function retryCooldown(request) {
     } else throw error
   }
 }
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+});
