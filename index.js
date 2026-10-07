@@ -28,8 +28,6 @@ let redisClient
 /** @type {Map<Number, Array} */
 let timeout
 let me = 0;
-let username = "";
-
 // TG OAuth JWT verifier
 let verifier;
 
@@ -121,7 +119,7 @@ app.post('/verify/:token', recaptcha.middleware.verify, async (req, res) => {
     res.status(410).send('Token expired')
     return
   }
-  let user_id;
+  let user_id = 0;
   if (req.query.hash && checkVaild(req.query)) {
     user_id = req.query.id;
   } else if (req.query.id_token) {
@@ -139,7 +137,7 @@ app.post('/verify/:token', recaptcha.middleware.verify, async (req, res) => {
     return
   }
 
-  if (!data.users.includes(parseInt(req.query.id))) {
+  if (!data.users.includes(parseInt(user_id))) {
     res.status(400).send("User not match token")
     return
   }
