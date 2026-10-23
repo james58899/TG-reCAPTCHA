@@ -88,7 +88,7 @@ app.get('/verify', recaptcha.middleware.renderWith({ onload: 'onRecaptcha', rend
     return
   }
 
-  res.render('verify', { captcha: res.recaptcha })
+  res.render('verify', { captcha: res.recaptcha, users: data.users })
 })
 app.post('/verify', recaptcha.middleware.verify, async (req, res) => {
   if (req.recaptcha.error) {
