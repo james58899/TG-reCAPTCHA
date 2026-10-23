@@ -9,6 +9,8 @@ html
         padding: 0;
         width: 100%;
         height: 100%;
+        background: var(--tg-theme-bg-color, #fff);
+        color: var(--tg-theme-text-color, #000);
       }
       .container{
         margin: 0;
@@ -22,36 +24,46 @@ html
         display: none;
       }
       .captcha {
-        border: 2px solid #888;
+        border: 2px solid var(--tg-theme-hint-color, #888);
         border-radius: 5px;
         padding: 20px;
       }
+    script(src="https://telegram.org/js/telegram-web-app.js?64")
+    //- Defined before the async reCAPTCHA script so onload always finds it
+    script.
+        Telegram.WebApp.ready()
+        let ready = false, theme
+        function onRecaptcha(){
+            ready = true
+            renderCaptcha()
+        }
+        // Theme may arrive after load, widget theme is fixed once rendered so render a new one
+        function renderCaptcha(){
+            const box = document.querySelector('.g-recaptcha')
+            if (!ready || !box || theme === Telegram.WebApp.colorScheme) return
+            theme = Telegram.WebApp.colorScheme
+            const el = document.createElement('div')
+            box.replaceChildren(el)
+            grecaptcha.render(el, { sitekey: box.dataset.sitekey, callback: cb, theme })
+        }
+        Telegram.WebApp.onEvent('themeChanged', renderCaptcha)
+        function cb(token){
+            fetch(window.location, {
+              method: 'POST',
+              body: JSON.stringify({ 'g-recaptcha-response': token, initData: Telegram.WebApp.initData }),
+              headers: new Headers({ 'Content-Type': 'application/json' })
+            }).then(async res => {
+              const message = document.getElementById('closeMessage')
+              // Reload would reuse the same token, show the error instead
+              if (res.status !== 200) message.textContent = await res.text()
+              document.getElementById('captcha').remove()
+              message.classList.remove('hide')
+              if (res.status === 200) setTimeout(() => Telegram.WebApp.close(), 1000)
+            })
+        }
   body
     .container
       h1#closeMessage.hide Welcome Human!
       #captcha.captcha
         h3 Human?
         |!{captcha}
-    script.
-        function cb(token){
-            fetch(window.location, {
-              method: 'POST',
-              body: JSON.stringify({ 'g-recaptcha-response': token }),
-              headers: new Headers({ 'Content-Type': 'application/json' })
-            }).then(res => {
-              switch(res.status) {
-                case 200:
-                  setTimeout(() => {
-                    document.getElementById('captcha').remove()
-                    document.getElementById('closeMessage').classList.remove('hide')
-                  }, 1000)
-                  break
-                case 400:
-                  location.reload()
-                  break
-                case 410:
-                  location.reload()
-                  break
-              }
-            })
-        }

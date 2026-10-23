@@ -17,8 +17,7 @@
   },
   "homepage": "https://github.com/james58899/tg-recaptcha#readme",
   "dependencies": {
-    "aws-jwt-verify": "^5.2.1",
-    "express": "^5.2.1",
+    "express": "^5.3.0",
     "express-recaptcha": "^5.1.0",
     "morgan": "^1.12.1",
     "node-telegram-bot-api": "^2.1.0",
@@ -33,10 +32,9 @@
     },
     "packageManager": {
       "name": "pnpm",
-      "version": "12.9.1",
+      "version": "12.15.0",
       "onFail": "download"
     }
-  }
-  ,
-  "packageManager": "pnpm@12.9.1"
+  },
+  "packageManager": "pnpm@12.15.0"
 }

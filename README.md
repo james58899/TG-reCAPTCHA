@@ -42,6 +42,8 @@ reCAPTCHA bot for telegram
 | `timeout`   | Verification timeout in seconds.                                                             |
 
 ## Deployment
+Set up the Main Mini App in BotFather (Bot Settings → Configure Mini App) with the URL `<url>/verify`.
+
 ### Direct run
 1. Use git or download the entire repo directly
 2. Copy `config_example.json` to `config.json` and change the content.

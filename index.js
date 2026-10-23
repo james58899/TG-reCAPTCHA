@@ -4,10 +4,10 @@ const morgan = require('morgan')
 const { Bot, TelegramApiError } = require('node-telegram-bot-api')
 const Recaptcha = require('express-recaptcha').RecaptchaV2
 const redis = require("redis")
-const { JwtVerifier } = require("aws-jwt-verify");
 const config = require('./config.json')
 
 const secretKey = crypto.createHash('sha256').update(config.token).digest()
+const webAppKey = crypto.createHmac('sha256', 'WebAppData').update(config.token).digest()
 const allowedUpdates = ["message", "callback_query", "chat_member", "chat_join_request"];
 const unban = {
   can_send_messages: true,
@@ -28,16 +28,11 @@ let redisClient
 /** @type {Map<Number, Array} */
 let timeout
 let me = 0;
-// TG OAuth JWT verifier
-let verifier;
+let username = '';
 
 bot.api.getMe().then(i => {
   me = i.id
-  verifier = JwtVerifier.create({
-    issuer: "https://oauth.telegram.org", // set this to the expected "iss" claim on your JWTs
-    audience: me.toString(), // set this to the expected "aud" claim on your JWTs
-    jwksUri: "https://oauth.telegram.org/.well-known/jwks.json", // set this to the JWKS uri from your OpenID configuration
-  });
+  username = i.username
 });
 
 if (config.redis && config.redis != "") {
@@ -77,65 +72,35 @@ app.get('/robots.txt', (_, res) => {
   res.set('Content-Type', 'text/plain')
   res.send('User-agent: *\nDisallow: /')
 })
-app.get('/verify/:token', recaptcha.middleware.render, (req, res) => {
+// Main Mini App URL, set to `${config.url}/verify` in BotFather
+app.get('/verify', recaptcha.middleware.renderWith({ onload: 'onRecaptcha', render: 'explicit' }), (req, res) => {
   res.set('Cache-Control', 'public, max-age=30, must-revalidate')
-  const data = parserToken(req.params.token)
+  const data = parserToken(req.query.tgWebAppStartParam)
   const now = getUnixtime()
   if (!data || now - data.ts > 60) {
     res.status(403).send("Token expired, please click <b>Update token</b> and try again.")
     return
   }
 
-  if (req.query.hash) {
-    if (now - req.query.auth_date > 60) {
-      res.status(403).send("Token expired, please click <b>Update token</b> and try again.")
-      return
-    }
-
-    if (!checkVaild(req.query)) {
-      res.status(401).send("Auth failed, please try again.")
-      return
-    }
-
-    if (!data.users.includes(parseInt(req.query.id))) {
-      res.status(400).send("User not match token")
-      return
-    }
-
-    res.render('verify', { captcha: res.recaptcha })
-    return
-  }
-
-  // TODO generate auth token whitout login
-  res.render('login', { captcha: res.recaptcha, client_id: me }) // Missing login info, fallback to web login
+  res.render('verify', { captcha: res.recaptcha })
 })
-app.post('/verify/:token', recaptcha.middleware.verify, async (req, res) => {
+app.post('/verify', recaptcha.middleware.verify, async (req, res) => {
   if (req.recaptcha.error) {
     res.status(400).send('reCAPTCHA vailed failed.')
     return
   }
-  const data = parserToken(req.params.token)
-  if (getUnixtime() - data.ts > 60) {
-    res.status(410).send('Token expired')
+  const initData = checkVaild(req.body.initData)
+  if (!initData) {
+    res.status(401).send('Auth failed, please try again.')
     return
   }
-  let user_id = 0;
-  if (req.query.hash && checkVaild(req.query)) {
-    user_id = req.query.id;
-  } else if (req.query.id_token) {
-    // OAuth
-    try {
-      const payload = await verifier.verify(req.query.id_token)
-      user_id = payload.id
-    } catch (err) {
-      console.error("Token not valid!", err);
-      res.status(400).send('JWT vailed failed.')
-      return
-    }
-  } else {
-    res.status(400).send('Missing user id')
+  const data = parserToken(initData.get('start_param'))
+  const now = getUnixtime()
+  if (!data || now - data.ts > 60 || now - initData.get('auth_date') > 60) {
+    res.status(410).send('Token expired, please click Update token and try again.')
     return
   }
+  const user_id = JSON.parse(initData.get('user')).id
 
   if (!data.users.includes(parseInt(user_id))) {
     res.status(400).send("User not match token")
@@ -268,7 +233,7 @@ bot.on('chat_join_request', async ctx => {
 
 bot.on('callback_query', async ctx => {
   const query = ctx.update.callback_query
-  const data = parserToken(query.message.reply_markup.inline_keyboard[0][0].url.split('/').pop())
+  const data = parserToken(query.message.reply_markup.inline_keyboard[0][0].url.split('startapp=').pop())
 
   const users = await Promise.all(data.users.map(i => bot.api.getChatMember({ chat_id: data.chat, user_id: i })))
 
@@ -303,14 +268,19 @@ bot.on('callback_query', async ctx => {
   }
 })
 
+/**
+ * Validate Telegram WebApp initData
+ * @param {String} input - Raw initData query string
+ * @returns {?URLSearchParams} Parsed params if valid
+ */
 function checkVaild(input) {
-  const data = Object.keys(input).sort().reduce((acc, key, index) => {
-    if (key === 'hash') return acc
-    if (index !== 0) acc += '\n'
-    return acc + `${key}=${input[key]}`
-  }, '')
+  if (typeof input !== 'string') return null
+  const params = new URLSearchParams(input)
+  const hash = params.get('hash')
+  params.delete('hash')
+  const data = [...params].map(([key, value]) => `${key}=${value}`).sort().join('\n')
 
-  return input.hash === crypto.createHmac('sha256', secretKey).update(data).digest('hex')
+  return hash === crypto.createHmac('sha256', webAppKey).update(data).digest('hex') ? params : null
 }
 
 /**
@@ -329,6 +299,7 @@ function checkVaild(input) {
  * @returns {TokenData} Parsed token data
  */
 function parserToken(input) {
+  if (typeof input !== 'string') return
   const rawdata = Buffer.from(input, 'base64url')
   const hash = rawdata.subarray(0, 32)
   const data = rawdata.subarray(32)
@@ -362,7 +333,7 @@ function getUnixtime() {
 function genKeyboard(token) {
   return {
     inline_keyboard: [
-      [{ text: "I'm not a robot", login_url: { url: `${config.url}/verify/${token}` } }],
+      [{ text: "I'm not a robot", url: `https://t.me/${username}?mode=compact&startapp=${token}` }],
       [{ text: "Update token", callback_data: "update" }]
     ]
   }
