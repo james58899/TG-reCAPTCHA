@@ -84,7 +84,7 @@ app.get('/verify', recaptcha.middleware.renderWith({ onload: 'onRecaptcha', rend
   const now = getUnixtime()
   // Skip 60s expiry for guard bot token
   if (!data || !data.query && now - data.ts > 60) {
-    res.status(403).send("Token expired, please click <b>Update token</b> and try again.")
+    res.status(403).render('verify', { error: 'Token expired, please click Update token and try again.' })
     return
   }
 

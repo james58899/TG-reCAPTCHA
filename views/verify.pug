@@ -63,7 +63,10 @@ html
         }
   body
     .container
-      h1#closeMessage.hide Welcome Human!
-      #captcha.captcha
-        h3 Human?
-        |!{captcha}
+      if error
+        h1= error
+      else
+        h1#closeMessage.hide Welcome Human!
+        #captcha.captcha
+          h3 Human?
+          |!{captcha}
