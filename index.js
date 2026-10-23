@@ -33,6 +33,10 @@ let username = '';
 bot.api.getMe().then(i => {
   me = i.id
   username = i.username
+}).catch(e => {
+  // Links need the username, let the process manager restart us
+  console.error("[Init] Get me failed.", e)
+  process.exit(1)
 });
 
 if (config.redis && config.redis != "") {
