@@ -163,7 +163,7 @@ bot.on('chat_member', async ctx => {
   const newStatus = event.new_chat_member
   let muteJoin = false
   if (newStatus.status === "member" && ["left", "kicked"].includes(oldStatus.status)) {
-    muteJoin = await bot.api.restrictChatMember({ chat_id: event.chat.id, user_id: newStatus.user.id, can_send_messages: false }).catch(() => false)
+    muteJoin = await bot.api.restrictChatMember({ chat_id: event.chat.id, user_id: newStatus.user.id, can_send_messages: false }).catch(e => { console.trace("[Join] Mute failed.", e.stack); return false })
   } else return
   if (!muteJoin) return
 
@@ -210,7 +210,7 @@ bot.on('chat_member', async ctx => {
 bot.on('message', async ctx => {
   const msg = ctx.update.message;
   if (msg.new_chat_members || msg.left_chat_member && msg.from.id === me) {
-    bot.api.deleteMessage({ chat_id: msg.chat.id, message_id: msg.message_id }).catch(e => { })
+    bot.api.deleteMessage({ chat_id: msg.chat.id, message_id: msg.message_id }).catch(e => console.trace("[Message] Delete message failed.", e.stack))
   }
 })
 
@@ -458,12 +458,12 @@ async function cleanTimeout(value) {
   for (const user of value.users) {
     try {
       if (value.query) {
-        bot.api.answerChatJoinRequestQuery({ chat_join_request_query_id: value.query, result: 'decline' }).catch(e => { })
+        bot.api.answerChatJoinRequestQuery({ chat_join_request_query_id: value.query, result: 'decline' }).catch(e => console.trace("[Timeout] Decline join request query failed.", e.stack))
         continue
       }
       // Decline join request
       if (value.user_chat) {
-        bot.api.declineChatJoinRequest({ chat_id: value.chat, user_id: user }).catch(e => { })
+        bot.api.declineChatJoinRequest({ chat_id: value.chat, user_id: user }).catch(e => console.trace("[Timeout] Decline join request failed.", e.stack))
         continue
       }
 
@@ -487,7 +487,9 @@ async function cleanTimeout(value) {
   if (value.query) return // No message
   try {
     await bot.api.deleteMessage({ chat_id: value.user_chat || value.chat, message_id: value.id })
-  } catch (error) { }
+  } catch (error) {
+    console.trace("[Timeout] Delete message failed.", error.stack)
+  }
 }
 
 function sleep(time) {
