@@ -22,7 +22,7 @@ reCAPTCHA bot for telegram
 
 ### Join request
 1. User send join request
-2. Bot send private message for verification
+2. Bot send private message for verification (or open the verification page directly as guard bot)
 3. User clicks the button to open the verification page
 4. Verify via reCAPTCHA
 5. Bot approve join request or timeout decline join request

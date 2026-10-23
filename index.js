@@ -75,9 +75,11 @@ app.get('/robots.txt', (_, res) => {
 // Mini App URL, set to `${config.url}/verify` in BotFather (Main Mini App or /newapp)
 app.get('/verify', recaptcha.middleware.renderWith({ onload: 'onRecaptcha', render: 'explicit' }), (req, res) => {
   res.set('Cache-Control', 'public, max-age=30, must-revalidate')
-  const data = parserToken(req.query.tgWebAppStartParam)
+  // `token` from guard bot join request
+  const data = parserToken(req.query.tgWebAppStartParam || req.query.token)
   const now = getUnixtime()
-  if (!data || now - data.ts > 60) {
+  // Skip 60s expiry for guard bot token
+  if (!data || !data.query && now - data.ts > 60) {
     res.status(403).send("Token expired, please click <b>Update token</b> and try again.")
     return
   }
@@ -94,9 +96,11 @@ app.post('/verify', recaptcha.middleware.verify, async (req, res) => {
     res.status(401).send('Auth failed, please try again.')
     return
   }
-  const data = parserToken(initData.get('start_param'))
+  const data = parserToken(initData.get('start_param') || req.query.token)
   const now = getUnixtime()
-  if (!data || now - data.ts > 60 || now - initData.get('auth_date') > 60) {
+  // Join request query token can't be refreshed, bind it to the signed query id instead of expiring
+  const expired = data && (data.query ? data.query !== initData.get('chat_join_request_query_id') : now - data.ts > 60 || now - initData.get('auth_date') > 60)
+  if (!data || expired) {
     res.status(410).send('Token expired, please click Update token and try again.')
     return
   }
@@ -107,7 +111,10 @@ app.post('/verify', recaptcha.middleware.verify, async (req, res) => {
     return
   }
 
-  if (data.user_chat) {
+  if (data.query) {
+    // Join request query
+    bot.api.answerChatJoinRequestQuery({ chat_join_request_query_id: data.query, result: 'approve' }).catch(e => console.trace("[Pass] Answer join request query failed.", e.stack))
+  } else if (data.user_chat) {
     // Join request
     bot.api.approveChatJoinRequest({ chat_id: data.chat, user_id }).catch(e => console.trace("[Pass] Approve chat join request failed.", e.stack))
   } else {
@@ -122,6 +129,7 @@ app.post('/verify', recaptcha.middleware.verify, async (req, res) => {
 
   // Remove timeout countdown & Update or delete message
   removeTimeout(data.time, parseInt(user_id)).then(users => {
+    if (data.query) return // No message
     if (users.length === 0) {
       bot.api.deleteMessage({ chat_id: data.user_chat || data.chat, message_id: data.id }).catch(e => console.trace("[Pass] delete message failed.", e.stack))
     } else {
@@ -204,6 +212,19 @@ bot.on('message', async ctx => {
 
 bot.on('chat_join_request', async ctx => {
   const request = ctx.update.chat_join_request;
+  // Guard bot
+  if (request.query_id) {
+    const time = getUnixtime()
+    const token = genToken(time, request.chat.id, 0, [request.from.id], undefined, request.query_id)
+    try {
+      await bot.api.sendChatJoinRequestWebApp({ chat_join_request_query_id: request.query_id, web_app_url: `${config.url}/verify?token=${token}` })
+      addTimeout(time, { chat: request.chat.id, users: [request.from.id], query: request.query_id })
+    } catch (e) {
+      console.trace("[Join request] Send web app failed.", e.stack)
+    }
+    return
+  }
+
   // Send message
   let message
   try {
@@ -291,6 +312,7 @@ function checkVaild(input) {
  * @property {Number} time - Data timestamp
  * @property {Number} ts - Token generated timestamp
  * @property {?Number} user_chat - Private chat ID
+ * @property {?String} query - Join request query ID
  */
 
 /**
@@ -316,11 +338,13 @@ function parserToken(input) {
  * @param {Number} id - Verify message ID
  * @param {Array<Number>} users - User IDs
  * @param {?Number} user_chat - Private chat ID
+ * @param {?String} query - Join request query ID
  * @returns {String} base64url encoded string of {@link TokenData}
  */
-function genToken(time, chat, id, users, user_chat) {
+function genToken(time, chat, id, users, user_chat, query) {
   let data = { chat, id, users, time, ts: getUnixtime() }
   if (user_chat) data.user_chat = user_chat
+  if (query) data.query = query
   const json = JSON.stringify(data)
   const hash = crypto.createHmac('sha256', secretKey).update(json).digest()
   return Buffer.concat([hash, Buffer.from(json, 'latin1')]).toString('base64url')
@@ -345,6 +369,7 @@ function genKeyboard(token) {
  * @property {Array<Number>} users - User IDs
  * @property {Number} id - Verify message ID
  * @property {?Number} user_chat - Private chat ID
+ * @property {?String} query - Join request query ID
  */
 
 /**
@@ -428,6 +453,10 @@ async function cleanTimeout(value) {
   let deleteJoin = false
   for (const user of value.users) {
     try {
+      if (value.query) {
+        bot.api.answerChatJoinRequestQuery({ chat_join_request_query_id: value.query, result: 'decline' }).catch(e => { })
+        continue
+      }
       // Decline join request
       if (value.user_chat) {
         bot.api.declineChatJoinRequest({ chat_id: value.chat, user_id: user }).catch(e => { })
@@ -451,6 +480,7 @@ async function cleanTimeout(value) {
       console.trace("[Timeout] Kick failed.", error.stack)
     }
   }
+  if (value.query) return // No message
   try {
     await bot.api.deleteMessage({ chat_id: value.user_chat || value.chat, message_id: value.id })
   } catch (error) { }
