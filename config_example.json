@@ -2,6 +2,7 @@
     "api_base": "",
     "token": "",
     "url": "",
+    "app_name": "",
     "bind": "",
     "port": 8080,
     "webhook": false,

@@ -34,6 +34,7 @@ reCAPTCHA bot for telegram
 | `api_base`  | Telegram bot api base url, for local telegram bot server, leave empty to use default server. |
 | `token`     | Telegram bot api token.                                                                      |
 | `url`       | The URL used to serve the verification page.                                                 |
+| `app_name`  | Direct link app name, leave it empty to use the Main Mini App.                               |
 | `bind`      | The address the bot listens on, leave it empty to listen on all.                             |
 | `port`      | The port that the bot listens on.                                                            |
 | `webhook`   | Use webhooks instead of polling to receive Telegram updates.                                 |
@@ -42,7 +43,7 @@ reCAPTCHA bot for telegram
 | `timeout`   | Verification timeout in seconds.                                                             |
 
 ## Deployment
-Set up the Main Mini App in BotFather (Bot Settings → Configure Mini App) with the URL `<url>/verify`.
+Set up the Main Mini App in BotFather (Bot Settings → Configure Mini App) with the URL `<url>/verify`, or create one with `/newapp` and put its short name in `app_name`.
 
 ### Direct run
 1. Use git or download the entire repo directly

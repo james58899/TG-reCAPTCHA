@@ -72,7 +72,7 @@ app.get('/robots.txt', (_, res) => {
   res.set('Content-Type', 'text/plain')
   res.send('User-agent: *\nDisallow: /')
 })
-// Main Mini App URL, set to `${config.url}/verify` in BotFather
+// Mini App URL, set to `${config.url}/verify` in BotFather (Main Mini App or /newapp)
 app.get('/verify', recaptcha.middleware.renderWith({ onload: 'onRecaptcha', render: 'explicit' }), (req, res) => {
   res.set('Cache-Control', 'public, max-age=30, must-revalidate')
   const data = parserToken(req.query.tgWebAppStartParam)
@@ -333,7 +333,7 @@ function getUnixtime() {
 function genKeyboard(token) {
   return {
     inline_keyboard: [
-      [{ text: "I'm not a robot", url: `https://t.me/${username}?mode=compact&startapp=${token}` }],
+      [{ text: "I'm not a robot", url: `https://t.me/${username}${config.app_name ? `/${config.app_name}` : ''}?mode=compact&startapp=${token}` }],
       [{ text: "Update token", callback_data: "update" }]
     ]
   }
