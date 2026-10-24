@@ -210,7 +210,7 @@ bot.on('chat_member', async ctx => {
 bot.on('message', async ctx => {
   const msg = ctx.update.message;
   if (msg.new_chat_members || msg.left_chat_member && msg.from.id === me) {
-    bot.api.deleteMessage({ chat_id: msg.chat.id, message_id: msg.message_id }).catch(e => console.trace("[Message] Delete message failed.", e.stack))
+    bot.api.deleteMessage({ chat_id: msg.chat.id, message_id: msg.message_id }).catch(e => { })
   }
 })
 
@@ -458,7 +458,9 @@ async function cleanTimeout(value) {
   for (const user of value.users) {
     try {
       if (value.query) {
-        bot.api.answerChatJoinRequestQuery({ chat_join_request_query_id: value.query, result: 'decline' }).catch(e => console.trace("[Timeout] Decline join request query failed.", e.stack))
+        bot.api.answerChatJoinRequestQuery({ chat_join_request_query_id: value.query, result: 'decline' })
+          .catch(() => bot.api.declineChatJoinRequest({ chat_id: value.chat, user_id: user }))
+          .catch(e => console.trace("[Timeout] Decline join request query failed.", e.stack))
         continue
       }
       // Decline join request
